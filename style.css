@@ -1,0 +1,243 @@
+*,
+::before,
+::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(45deg, #2732b6, #3595b3);
+    color: white;
+}
+
+.header-myflow {
+    width: 100%;
+    min-height: 50px;
+}
+
+.container__navbar__header {
+    width: 70%;
+    background: #00000099;
+    backdrop-filter: blur(3px);
+    color: white;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1% auto;
+    border-radius: 100px;
+}
+
+.h1__header {
+    font-size: clamp(20px, 2vw, 24px);
+}
+
+.span-h1__header {
+    font-weight: 200;
+}
+
+.main-myflow {
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+.section__mix {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 5% auto;
+    gap: 10%;
+}
+
+.group-btn__mix {
+    background: #00000099;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    gap: 10px;
+
+}
+
+.btn-mix {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    border: none;
+}
+
+.section__ambiance {
+    width: 90%;
+    background: #00000099;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.container__ambiance {
+    display: grid;
+    gap: 15px;
+}
+
+.div__volume-general {
+    width: max-content;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.btn-input__volume-general {
+    background: #96969663;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 15px;
+    border-radius: 10px 10px 0 0;
+    gap: 5px;
+}
+
+.btn__volume-general {
+    background: none;
+    border: none;
+    color: white;
+    display: flex;
+}
+
+span.material-symbols-outlined {
+    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* volume control general  */
+.generals-controls {
+    min-width: max-content;
+    width: 180px;
+    height: max-content;
+}
+
+.div-generals-controls-div-input {
+    background: #3b3b3b4d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px 20px;
+    border-radius: 10px 10px 0 0;
+}
+
+.button-icon__generals-controls {
+    background: none;
+    border: none;
+    color: white;
+    display: flex;
+}
+
+.div-generals-controls-btns {
+    background: #000000c7;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 10px;
+    border-radius: 0 0 10px 10px;
+}
+
+.btn-generals-controls-for-input {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+/* audio player  */
+.audio-player {
+    width: 180px;
+    height: 180px;
+    background: #3b3b3b4d;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.div-audioplayer-btn__p{
+    width: 100%;
+    height: 110px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    justify-content: center;
+}
+
+.div-icon {
+    width: 60px;
+    height: 60px;
+    background: #00000085;
+    border-radius: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.p-audioplayer {
+    color: white;
+}
+
+.div-audioplayer-input {
+    width: 100%;
+    height: 70px;
+    background: #00000085;
+    display: flex;
+    padding: 5px;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column nowrap;
+    gap: 5px;
+}
+
+.volumeControl__audioplayer {
+    width: 90%;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 18px;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    cursor: col-resize;
+    background: #00000073;
+}
+
+/* track */
+.volumeControl__audioplayer:focus {
+    outline: none;
+}
+.volumeControl__audioplayer::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 0;
+    box-shadow: -100px 0 0 100px #bdbdbdb6;
+    position: relative;
+    z-index: 9;
+}
+/* track */
+
+
+.div-audioplayer-btninput {
+    display: flex;
+    width: 90%;
+    justify-content: space-evenly;
+}
+
+.btn-audioplayer-input {
+    border: none;
+    cursor: pointer;
+    background: no-repeat;
+    color: white;
+}
