@@ -114,9 +114,35 @@ body {
 /* volume control general  */
 .generals-controls {
     min-width: max-content;
-    width: 180px;
+    width: 250px;
     height: max-content;
 }
+
+.generals-controls-input {
+    width: 90%;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 20px;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    cursor: col-resize;
+    background: #00000073;
+}
+
+/* track */
+.generals-controls-input:focus {
+    outline: none;
+}
+.generals-controls-input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 0;
+    box-shadow: -100px 0 0 100px #bdbdbdb6;
+    position: relative;
+    z-index: 9;
+}
+/* track */
 
 .div-generals-controls-div-input {
     background: #3b3b3b4d;
@@ -126,6 +152,7 @@ body {
     gap: 10px;
     padding: 15px 20px;
     border-radius: 10px 10px 0 0;
+    margin-top: 10px;
 }
 
 .button-icon__generals-controls {
@@ -136,7 +163,7 @@ body {
 }
 
 .div-generals-controls-btns {
-    background: #000000c7;
+    background: #00000085;
     width: 100%;
     display: flex;
     align-items: center;
@@ -232,7 +259,7 @@ body {
     position: relative;
     overflow: hidden;
     cursor: col-resize;
-    background: #00000073;
+    background: #5a5a5a73;
 }
 
 /* track */
