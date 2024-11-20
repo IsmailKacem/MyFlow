@@ -50,6 +50,15 @@ function handleVolumeControle(e) {
     
     console.log(`volume : ${volumeValue}`);
     // console.log(songAudio);
+
+    if (songAudio.volume === 0) {
+        audioPlayer.querySelector(".span-vol-for-input").textContent = "volume_off"
+    } else if (songAudio.volume >= 0.15 && songAudio.volume <= 0.30) {
+        audioPlayer.querySelector(".span-vol-for-input").textContent = "volume_down"
+    }
+     else {
+        audioPlayer.querySelector(".span-vol-for-input").textContent = "volume_up"
+    }
 }
 
 
