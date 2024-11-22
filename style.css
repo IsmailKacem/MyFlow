@@ -120,9 +120,6 @@ body {
 
 /* volume control general  */
 .generals-controls {
-    min-width: max-content;
-    width: 250px;
-    height: max-content;
     grid-column-start: 1;
     grid-column-end: 5;
 }
@@ -154,6 +151,7 @@ body {
 /* track */
 
 .div-generals-controls-div-input {
+    width: 250px;
     background: #3b3b3b4d;
     display: flex;
     align-items: center;
@@ -172,8 +170,8 @@ body {
 }
 
 .div-generals-controls-btns {
+    width: 250px;
     background: #00000085;
-    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-evenly;

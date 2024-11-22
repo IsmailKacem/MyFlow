@@ -1,4 +1,6 @@
 const btnPlayPause = document.querySelectorAll(".btnplaypause")
+const PSoundsOnGeneralControls = document.querySelector(".p__sounds-on__generals-controls")
+let activeSounds = []
 
 btnPlayPause.forEach(btn => {
     btn.addEventListener("click", handlePlayAudio)
@@ -13,14 +15,23 @@ function handlePlayAudio(e) {
     
     const songAudio = audioPlayer.querySelector(".audio-player-song")
     const spanPlayPause = btn.querySelector(".spanplaypause")
+    const nameSound = audioPlayer.querySelector(".p-audioplayer").textContent
     
     if (songAudio.paused) {
         songAudio.play()
         spanPlayPause.textContent = "pause"
+
+        activeSounds.push(nameSound)
+        
     } else {
         songAudio.pause()
         spanPlayPause.textContent = "play_arrow"
+
+        activeSounds = activeSounds.filter(sound => sound !== nameSound)
     }
+
+    
+    updateSoundsOnGeneralControls()
 }
 
 
@@ -91,12 +102,10 @@ function handleBtnAdd(e){
 }
 
 
-
-const btnPlayPauseGeneral = document.querySelector(".btnplaypause-general")
-
-btnPlayPauseGeneral.addEventListener("click", handleBtnPlayPauseGeneral)
-
-function handleBtnPlayPauseGeneral() {
-   console.log("hello");
-   
+function updateSoundsOnGeneralControls() {    
+    if (activeSounds.length > 0) {
+        PSoundsOnGeneralControls.textContent = `Sounds On : ${activeSounds.join(", ")}`
+    } else {
+        PSoundsOnGeneralControls.textContent = `No sounds are currently playing.`;
+    }
 }
