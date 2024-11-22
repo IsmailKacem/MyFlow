@@ -1,5 +1,6 @@
 const btnPlayPause = document.querySelectorAll(".btnplaypause")
 const PSoundsOnGeneralControls = document.querySelector(".p__sounds-on__generals-controls")
+const spanPlayPauseGeneral = document.querySelector(".spanplaypause-general")
 let activeSounds = []
 
 btnPlayPause.forEach(btn => {
@@ -105,7 +106,10 @@ function handleBtnAdd(e){
 function updateSoundsOnGeneralControls() {    
     if (activeSounds.length > 0) {
         PSoundsOnGeneralControls.textContent = `Sounds On : ${activeSounds.join(", ")}`
+        spanPlayPauseGeneral.textContent = "pause"
+        
     } else {
         PSoundsOnGeneralControls.textContent = `No sounds are currently playing.`;
+        spanPlayPauseGeneral.textContent = "play_arrow"
     }
 }
