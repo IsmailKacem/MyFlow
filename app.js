@@ -89,3 +89,14 @@ function handleBtnAdd(e){
     input.value++
     handleVolumeControle({currentTarget: input})
 }
+
+
+
+const btnPlayPauseGeneral = document.querySelector(".btnplaypause-general")
+
+btnPlayPauseGeneral.addEventListener("click", handleBtnPlayPauseGeneral)
+
+function handleBtnPlayPauseGeneral() {
+   console.log("hello");
+   
+}
