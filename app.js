@@ -1,7 +1,13 @@
 const btnPlayPause = document.querySelectorAll(".btnplaypause")
+const divTopAudioPlayer = document.querySelectorAll(".div-audioplayer-btn__p")
 const PSoundsOnGeneralControls = document.querySelector(".p__sounds-on__generals-controls")
 const spanPlayPauseGeneral = document.querySelector(".spanplaypause-general")
+const btnPlayPauseGeneral = document.querySelector(".btnplaypause-general")
 let activeSounds = []
+
+divTopAudioPlayer.forEach(div => {
+    div.addEventListener("click", handlePlayAudio)
+});
 
 btnPlayPause.forEach(btn => {
     btn.addEventListener("click", handlePlayAudio)
@@ -13,24 +19,24 @@ function handlePlayAudio(e) {
     // on recup le parent du btn clicked
     const audioPlayer = btn.closest(".audio-player")
     console.log(audioPlayer);
+    console.log(btn);
     
     const songAudio = audioPlayer.querySelector(".audio-player-song")
-    const spanPlayPause = btn.querySelector(".spanplaypause")
+    const spanPlayPause = audioPlayer.querySelector(".spanplaypause")
     const nameSound = audioPlayer.querySelector(".p-audioplayer").textContent
     
-    if (songAudio.paused) {
-        songAudio.play()
-        spanPlayPause.textContent = "pause"
-
-        activeSounds.push(nameSound)
-        
-    } else {
-        songAudio.pause()
-        spanPlayPause.textContent = "play_arrow"
-
-        activeSounds = activeSounds.filter(sound => sound !== nameSound)
-    }
-
+        if (songAudio.paused) {
+            songAudio.play()
+            spanPlayPause.textContent = "pause"
+    
+            activeSounds.push(nameSound)
+            
+        } else {
+            songAudio.pause()
+            spanPlayPause.textContent = "play_arrow"
+    
+            activeSounds = activeSounds.filter(sound => sound !== nameSound)
+        }
     
     updateSoundsOnGeneralControls()
 }
@@ -112,4 +118,11 @@ function updateSoundsOnGeneralControls() {
         PSoundsOnGeneralControls.textContent = `No sounds are currently playing.`;
         spanPlayPauseGeneral.textContent = "play_arrow"
     }
+}
+
+
+btnPlayPauseGeneral.addEventListener("click", handleBtnPlayPauseGeneral)
+
+function handleBtnPlayPauseGeneral() {
+    console.log("handleBtnPlayPauseGeneral");
 }
