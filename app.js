@@ -1,9 +1,14 @@
 const btnPlayPause = document.querySelectorAll(".btnplaypause")
 const divTopAudioPlayer = document.querySelectorAll(".div-audioplayer-btn__p")
+
 const PSoundsOnGeneralControls = document.querySelector(".p__sounds-on__generals-controls")
 const spanPlayPauseGeneral = document.querySelector(".spanplaypause-general")
 const btnPlayPauseGeneral = document.querySelector(".btnplaypause-general")
+
+
 let activeSounds = []
+let listGeneralSounds = []
+let songAudio;
 
 divTopAudioPlayer.forEach(div => {
     div.addEventListener("click", handlePlayAudio)
@@ -21,23 +26,27 @@ function handlePlayAudio(e) {
     console.log(audioPlayer);
     console.log(btn);
     
-    const songAudio = audioPlayer.querySelector(".audio-player-song")
+    songAudio = audioPlayer.querySelector(".audio-player-song")
     const spanPlayPause = audioPlayer.querySelector(".spanplaypause")
     const nameSound = audioPlayer.querySelector(".p-audioplayer").textContent
     
-        if (songAudio.paused) {
-            songAudio.play()
-            spanPlayPause.textContent = "pause"
-    
-            activeSounds.push(nameSound)
-            
+    if (songAudio.paused) {
+        songAudio.play()
+        spanPlayPause.textContent = "pause"
+        
+        activeSounds.push(nameSound)            
+        listGeneralSounds.push(songAudio)
         } else {
             songAudio.pause()
             spanPlayPause.textContent = "play_arrow"
     
             activeSounds = activeSounds.filter(sound => sound !== nameSound)
+            listGeneralSounds = listGeneralSounds.filter(sound => sound !== songAudio);
+
         }
-    
+
+        console.log(listGeneralSounds);
+        
     updateSoundsOnGeneralControls()
 }
 
@@ -124,5 +133,46 @@ function updateSoundsOnGeneralControls() {
 btnPlayPauseGeneral.addEventListener("click", handleBtnPlayPauseGeneral)
 
 function handleBtnPlayPauseGeneral() {
-    console.log("handleBtnPlayPauseGeneral");
+      
+    if (listGeneralSounds.length <= 0) {
+        console.log("Aucun son sélectionné.");
+        return;
+    }
+
+    const isAnyPlaying = listGeneralSounds.some(audio => !audio.paused);
+
+    if (isAnyPlaying) {
+        // Mettre tous les sons en pause
+        listGeneralSounds.forEach(audio => {
+            if (!audio.paused) {
+                audio.pause();
+                console.log(`Son mis en pause : ${audio.src}`);
+                const AudioPlayer = audio.closest(".audio-player")
+                const spanAudioPlayer = AudioPlayer.querySelector(".spanplaypause")
+                spanAudioPlayer.textContent = "play_arrow"
+
+                const btnPlayPause = AudioPlayer.querySelector(".btnplaypause")
+                btnPlayPause.removeEventListener("click", handlePlayAudio)
+            }
+        });
+
+        spanPlayPauseGeneral.textContent = "play_arrow"; // Mettre l'icône sur "play_arrow"
+        console.log("Tous les sons mis en pause.");
+
+    } else {
+        // Relancer tous les sons
+        listGeneralSounds.forEach(audio => {
+            audio.play();
+            console.log(`Son relancé : ${audio.src}`);
+            const AudioPlayer = audio.closest(".audio-player")
+            const spanAudioPlayer = AudioPlayer.querySelector(".spanplaypause")
+            spanAudioPlayer.textContent = "pause"
+
+            const btnPlayPause = AudioPlayer.querySelector(".btnplaypause")
+            btnPlayPause.addEventListener("click", handlePlayAudio)
+        });
+
+        spanPlayPauseGeneral.textContent = "pause"; // Mettre l'icône sur "pause"
+        console.log("Tous les sons relancés.");
+    }
 }
