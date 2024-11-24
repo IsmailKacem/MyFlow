@@ -207,6 +207,7 @@ body {
     align-items: center;
     gap: 10px;
     justify-content: center;
+    cursor: pointer;
 }
 
 .div-icon {

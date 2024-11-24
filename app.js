@@ -4,6 +4,7 @@ const divTopAudioPlayer = document.querySelectorAll(".div-audioplayer-btn__p")
 const PSoundsOnGeneralControls = document.querySelector(".p__sounds-on__generals-controls")
 const spanPlayPauseGeneral = document.querySelector(".spanplaypause-general")
 const btnPlayPauseGeneral = document.querySelector(".btnplaypause-general")
+const spanVolumeGeneral = document.querySelector(".spanvolume-general")
 
 
 let activeSounds = []
@@ -186,6 +187,15 @@ function triggerVolumeGeneral(e){
     listGeneralSounds.forEach(songAudio => {
         songAudio.volume = volumeGeneralNumber
     });
+
+
+    if (volumeGeneralNumber === 0) {
+        spanVolumeGeneral.textContent = "volume_off"
+    } else if (volumeGeneralNumber < 0.5) {
+        spanVolumeGeneral.textContent = "volume_down"
+    } else if (volumeGeneralNumber >= 0.5){
+        spanVolumeGeneral.textContent = "volume_up"
+    }
 
     // inputVolume.value = volumeGeneralNumber
 }
