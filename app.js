@@ -33,23 +33,20 @@ function handlePlayAudio(e) {
     if (songAudio.paused) {
         songAudio.play()
         spanPlayPause.textContent = "pause"
-        
         activeSounds.push(nameSound)            
         listGeneralSounds.push(songAudio)
+
         } else {
             songAudio.pause()
             spanPlayPause.textContent = "play_arrow"
-    
             activeSounds = activeSounds.filter(sound => sound !== nameSound)
             listGeneralSounds = listGeneralSounds.filter(sound => sound !== songAudio);
-
         }
 
         console.log(listGeneralSounds);
         
     updateSoundsOnGeneralControls()
 }
-
 
 const inputVolume = document.querySelectorAll(".volumeControl__audioplayer")
 
@@ -175,4 +172,20 @@ function handleBtnPlayPauseGeneral() {
         spanPlayPauseGeneral.textContent = "pause"; // Mettre l'icône sur "pause"
         console.log("Tous les sons relancés.");
     }
+}
+
+const volumeGeneralInput = document.querySelector(".generals-controls-input")
+
+volumeGeneralInput.addEventListener("click", triggerVolumeGeneral)
+
+function triggerVolumeGeneral(e){
+    
+    const volumeGeneralNumber = parseFloat(e.target.value)
+    console.log(e.target.value * 100);
+
+    listGeneralSounds.forEach(songAudio => {
+        songAudio.volume = volumeGeneralNumber
+    });
+
+    // inputVolume.value = volumeGeneralNumber
 }
