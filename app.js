@@ -5,6 +5,7 @@ const PSoundsOnGeneralControls = document.querySelector(".p__sounds-on__generals
 const spanPlayPauseGeneral = document.querySelector(".spanplaypause-general")
 const btnPlayPauseGeneral = document.querySelector(".btnplaypause-general")
 const spanVolumeGeneral = document.querySelector(".spanvolume-general")
+const volumeGeneralInput = document.querySelector(".generals-controls-input")
 
 
 let activeSounds = []
@@ -18,7 +19,6 @@ divTopAudioPlayer.forEach(div => {
 btnPlayPause.forEach(btn => {
     btn.addEventListener("click", handlePlayAudio)
 });
-
 
 function handlePlayAudio(e) {
     const btn = e.currentTarget
@@ -44,7 +44,7 @@ function handlePlayAudio(e) {
             listGeneralSounds = listGeneralSounds.filter(sound => sound !== songAudio);
         }
 
-        console.log(listGeneralSounds);
+    console.log(listGeneralSounds);
         
     updateSoundsOnGeneralControls()
 }
@@ -59,6 +59,7 @@ function handleVolumeControle(e) {
     const input = e.currentTarget
     const audioPlayer = input.closest(".audio-player")
     const songAudio = audioPlayer.querySelector(".audio-player-song")
+
     
     const volumeMapping = {
         0: 0, // 0% de volume
@@ -74,7 +75,6 @@ function handleVolumeControle(e) {
     songAudio.volume = volumeMapping[volumeValue];
     
     console.log(`volume : ${volumeValue}`);
-    // console.log(songAudio);
 
     if (songAudio.volume === 0) {
         audioPlayer.querySelector(".span-vol-for-input").textContent = "volume_off"
@@ -131,7 +131,6 @@ function updateSoundsOnGeneralControls() {
 btnPlayPauseGeneral.addEventListener("click", handleBtnPlayPauseGeneral)
 
 function handleBtnPlayPauseGeneral() {
-      
     if (listGeneralSounds.length <= 0) {
         console.log("Aucun son sélectionné.");
         return;
@@ -154,7 +153,7 @@ function handleBtnPlayPauseGeneral() {
             }
         });
 
-        spanPlayPauseGeneral.textContent = "play_arrow"; // Mettre l'icône sur "play_arrow"
+        spanPlayPauseGeneral.textContent = "play_arrow";
         console.log("Tous les sons mis en pause.");
 
     } else {
@@ -170,18 +169,18 @@ function handleBtnPlayPauseGeneral() {
             btnPlayPause.addEventListener("click", handlePlayAudio)
         });
 
-        spanPlayPauseGeneral.textContent = "pause"; // Mettre l'icône sur "pause"
+        spanPlayPauseGeneral.textContent = "pause";
         console.log("Tous les sons relancés.");
     }
 }
 
-const volumeGeneralInput = document.querySelector(".generals-controls-input")
+let volumeGeneralNumber;
 
-volumeGeneralInput.addEventListener("click", triggerVolumeGeneral)
+volumeGeneralInput.addEventListener("input", triggerVolumeGeneral)
 
 function triggerVolumeGeneral(e){
     
-    const volumeGeneralNumber = parseFloat(e.target.value)
+    volumeGeneralNumber = parseFloat(e.target.value)
     console.log(e.target.value * 100);
 
     listGeneralSounds.forEach(songAudio => {
