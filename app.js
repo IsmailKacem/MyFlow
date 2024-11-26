@@ -36,12 +36,12 @@ function handlePlayAudio(e) {
         spanPlayPause.textContent = "pause"
         activeSounds.push(nameSound)            
         listGeneralSounds.push(songAudio)
-
-        } else {
-            songAudio.pause()
-            spanPlayPause.textContent = "play_arrow"
-            activeSounds = activeSounds.filter(sound => sound !== nameSound)
-            listGeneralSounds = listGeneralSounds.filter(sound => sound !== songAudio);
+        
+    } else {
+        songAudio.pause()
+        spanPlayPause.textContent = "play_arrow"
+        activeSounds = activeSounds.filter(sound => sound !== nameSound)
+        listGeneralSounds = listGeneralSounds.filter(sound => sound !== songAudio);
         }
 
     console.log(listGeneralSounds);
@@ -120,10 +120,12 @@ function updateSoundsOnGeneralControls() {
     if (activeSounds.length > 0) {
         PSoundsOnGeneralControls.textContent = `Sounds On : ${activeSounds.join(", ")}`
         spanPlayPauseGeneral.textContent = "pause"
+        PSoundsOnGeneralControls.style.background = "#39ff004d"
         
     } else {
         PSoundsOnGeneralControls.textContent = `No sounds are currently playing.`;
         spanPlayPauseGeneral.textContent = "play_arrow"
+        PSoundsOnGeneralControls.style.background = "#ff00004d"
     }
 }
 

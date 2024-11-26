@@ -144,6 +144,14 @@ body {
     grid-column-end: 5;
 }
 
+.p__sounds-on__generals-controls {
+    background: #ff00004d;
+    padding: 5px 15px;
+    border-radius: 50px;
+    width: max-content;
+    margin-top: 5px;
+}
+
 .generals-controls-input {
     width: 90%;
     -webkit-appearance: none;
@@ -164,7 +172,7 @@ body {
     -webkit-appearance: none;
     appearance: none;
     width: 0;
-    box-shadow: -100px 0 0 100px #bdbdbdb6;
+    box-shadow: -300px 0 0 300px #bdbdbdb6;
     position: relative;
     z-index: 9;
 }
@@ -373,15 +381,31 @@ body {
 @media screen and (max-width:500px) {
     
     .container__ambiance{
-        justify-items: center;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
         gap: 15px;
-        grid-template-columns: repeat(2, 150px);
-        grid-template-rows: repeat(5, 160px);
+        grid-template-columns: none;
+        grid-template-rows: none;
+    }
+
+    .generals-controls{
+        width: 100%;
+        flex-grow: 1;
+    }
+
+    .div-generals-controls-div-input{
+        width: 100%;
+    }
+
+    .div-generals-controls-btns{
+        width: 100%;
     }
 
     .audio-player {
-        width: 150px;
-        height: 160px;
+        width: 46%;
+        height: max-content;
+        flex-grow: 1;
     }
     
     .div-icon{
@@ -405,19 +429,6 @@ body {
     .group__my-mix, .group__default-mix {
         width: 100%;
     }
-}
 
-@media screen and (max-width:400px) {
-    
-    .container__ambiance{
-        justify-items: center;
-        gap: 15px;
-        grid-template-columns: repeat(2, 120px);
-        grid-template-rows: repeat(5, 160px);
-    }
 
-    .audio-player {
-        width: 120px;
-        height: 160px;
-    }
 }
