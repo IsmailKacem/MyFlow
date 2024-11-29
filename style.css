@@ -376,6 +376,10 @@ body {
     .generals-controls{
         grid-column-end: 3;
     }
+
+    .p__sounds-on__generals-controls {
+        width: auto;
+    }
 }
 
 @media screen and (max-width:500px) {
@@ -430,5 +434,7 @@ body {
         width: 100%;
     }
 
-
+    .p__sounds-on__generals-controls {
+        border-radius: 10px;
+    }
 }

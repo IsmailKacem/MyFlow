@@ -205,3 +205,21 @@ function triggerVolumeGeneral(e){
 
     // inputVolume.value = volumeGeneralNumber
 }
+
+
+
+const btnRemoveGeneral = document.querySelector(".btnremove-general")
+btnRemoveGeneral.addEventListener("click", triggerBtnRemoveGeneral)
+
+function triggerBtnRemoveGeneral() {
+    const currentVolume = parseFloat(volumeGeneralInput.value)
+   
+    if (currentVolume > 0) {
+        const newVolume = Math.max(0, currentVolume - 0.01)
+        volumeGeneralInput.value = newVolume.toFixed(2)
+        
+        // triggerVolumeGeneral(newVolume)
+    }
+    
+    
+}
