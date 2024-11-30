@@ -218,8 +218,14 @@ function triggerBtnRemoveGeneral() {
         const newVolume = Math.max(0, currentVolume - 0.01)
         volumeGeneralInput.value = newVolume.toFixed(2)
         
-        // triggerVolumeGeneral(newVolume)
+        listGeneralSounds.forEach(songAudio => {
+            songAudio.volume = volumeGeneralInput.value
+        });
+
+    } else if (currentVolume <= 0) {
+        spanVolumeGeneral.textContent = "volume_off"
     }
-    
+
+    console.log(volumeGeneralInput.value);
     
 }
