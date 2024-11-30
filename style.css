@@ -341,7 +341,7 @@ body {
 
 .content-footer {
     width: 90%;
-    height: 50px;
+    min-height: 50px;
     background: #00000099;
     border-radius: 10px;
     display: flex;
@@ -375,6 +375,15 @@ body {
 }
 .link-social-footer:hover {
     filter: invert(1);
+}
+
+.logo-footer-IK {
+    width: 40px;
+    filter: invert(1);
+}
+
+a.link-logo-footer-IK {
+    pointer-events: none;
 }
 @media screen and (max-width:930px) {
     
