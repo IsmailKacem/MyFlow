@@ -1,9 +1,7 @@
 const btnPlayPause = document.querySelectorAll(".btnplaypause");
 const divTopAudioPlayer = document.querySelectorAll(".div-audioplayer-btn__p");
 
-const PSoundsOnGeneralControls = document.querySelector(
-  ".p__sounds-on__generals-controls"
-);
+const PSoundsOnGeneralControls = document.querySelector(".p__sounds-on__generals-controls");
 const spanPlayPauseGeneral = document.querySelector(".spanplaypause-general");
 const btnPlayPauseGeneral = document.querySelector(".btnplaypause-general");
 const spanVolumeGeneral = document.querySelector(".spanvolume-general");
@@ -119,6 +117,7 @@ function handleBtnAdd(e) {
   handleVolumeControle({ currentTarget: input });
 }
 
+
 function updateSoundsOnGeneralControls() {
   if (activeSounds.length > 0) {
     PSoundsOnGeneralControls.textContent = `Sounds On : ${activeSounds.join(
@@ -178,8 +177,8 @@ function handleBtnPlayPauseGeneral() {
   }
 }
 
-let volumeGeneralNumber;
 
+let volumeGeneralNumber;
 volumeGeneralInput.addEventListener("input", triggerVolumeGeneral);
 
 function triggerVolumeGeneral(e) {
@@ -197,9 +196,9 @@ function triggerVolumeGeneral(e) {
   } else if (volumeGeneralNumber >= 0.5) {
     spanVolumeGeneral.textContent = "volume_up";
   }
-
   // inputVolume.value = volumeGeneralNumber
 }
+
 
 const btnRemoveGeneral = document.querySelector(".btnremove-general");
 btnRemoveGeneral.addEventListener("click", triggerBtnRemoveGeneral);
@@ -222,5 +221,27 @@ function triggerBtnRemoveGeneral() {
     spanVolumeGeneral.textContent = "volume_up";
   }
 
-  console.log(currentVolume);
+}
+
+
+const btnAddGeneral = document.querySelector(".btnadd-general");
+btnAddGeneral.addEventListener("click", triggerBtnAddGeneral)
+
+function triggerBtnAddGeneral() {
+    const currentVolume = parseFloat(volumeGeneralInput.value)
+
+    const newVolume = Math.max(0, currentVolume + 0.01)
+    volumeGeneralInput.value = newVolume.toFixed(2)
+
+    listGeneralSounds.forEach((songAudio) => {
+        songAudio.volume = volumeGeneralInput.value;
+      });
+
+      if (currentVolume === 0) {
+        spanVolumeGeneral.textContent = "volume_off";
+      } else if (currentVolume < 0.5) {
+        spanVolumeGeneral.textContent = "volume_down";
+      } else if (currentVolume >= 0.5) {
+        spanVolumeGeneral.textContent = "volume_up";
+      }
 }
