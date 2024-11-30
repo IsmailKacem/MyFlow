@@ -346,14 +346,36 @@ body {
     border-radius: 10px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     margin: 0 auto;
 }
 .link__footer{
     color: white;
 }
 
+.div-icon-footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
 
+.link-social-footer {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    background: white;
+    padding: 5px;
+    border-radius: 8px;
+}
+
+.img-social-footer {
+    width: 20px;
+}
+.link-social-footer:hover {
+    filter: invert(1);
+}
 @media screen and (max-width:930px) {
     
     .container__ambiance{
