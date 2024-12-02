@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 *,
 ::before,
 ::after {
@@ -7,7 +8,7 @@
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "DM Sans", sans-serif;
     min-height: 100vh;
     background: linear-gradient(45deg, #2732b6, #3595b3);
     color: white;
@@ -35,6 +36,7 @@ body {
 
 .h1__header {
     font-size: clamp(20px, 2vw, 24px);
+    font-weight: 500;
 }
 
 .span-h1__header {
