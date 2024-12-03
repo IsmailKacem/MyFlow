@@ -154,6 +154,8 @@ function handleBtnPlayPauseGeneral() {
 
         const btnPlayPause = AudioPlayer.querySelector(".btnplaypause");
         btnPlayPause.removeEventListener("click", handlePlayAudio);
+        const divTopAudioPlayer = AudioPlayer.querySelector(".div-audioplayer-btn__p");
+        divTopAudioPlayer.removeEventListener("click", handlePlayAudio);
       }
     });
 
@@ -170,6 +172,8 @@ function handleBtnPlayPauseGeneral() {
 
       const btnPlayPause = AudioPlayer.querySelector(".btnplaypause");
       btnPlayPause.addEventListener("click", handlePlayAudio);
+      const divTopAudioPlayer = AudioPlayer.querySelector(".div-audioplayer-btn__p");
+      divTopAudioPlayer.addEventListener("click", handlePlayAudio);
     });
 
     spanPlayPauseGeneral.textContent = "pause";
