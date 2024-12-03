@@ -38,13 +38,24 @@ function handlePlayAudio(e) {
     listGeneralSounds.push(songAudio);
     divIcon.style.background = "#ffffffe3";
     divIcon.style.color = "#1e1d1d";
+
+    listGeneralSounds.forEach(sound => {
+      sound.play()
+      const AudioPlayer2 = sound.closest(".audio-player");
+      const spanAudioPlayer = AudioPlayer2.querySelector(".spanplaypause");
+      spanAudioPlayer.textContent = "pause";
+
+      const btnPlayPause2 = AudioPlayer2.querySelector(".btnplaypause");
+      btnPlayPause2.addEventListener("click", handlePlayAudio);
+      const divTopAudioPlayer2 = AudioPlayer2.querySelector(".div-audioplayer-btn__p");
+      divTopAudioPlayer2.addEventListener("click", handlePlayAudio);
+    });
+
   } else {
     songAudio.pause();
     spanPlayPause.textContent = "play_arrow";
     activeSounds = activeSounds.filter((sound) => sound !== nameSound);
-    listGeneralSounds = listGeneralSounds.filter(
-      (sound) => sound !== songAudio
-    );
+    listGeneralSounds = listGeneralSounds.filter((sound) => sound !== songAudio);
     divIcon.style.background = "#00000085";
     divIcon.style.color = "white";
   }
@@ -178,7 +189,7 @@ function handleBtnPlayPauseGeneral() {
 
     spanPlayPauseGeneral.textContent = "pause";
     console.log("Tous les sons relancés.");
-  }
+  } 
 }
 
 
