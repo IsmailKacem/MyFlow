@@ -7,9 +7,15 @@ const btnPlayPauseGeneral = document.querySelector(".btnplaypause-general");
 const spanVolumeGeneral = document.querySelector(".spanvolume-general");
 const volumeGeneralInput = document.querySelector(".generals-controls-input");
 
+let volumeGeneralNumber = 1.0;
 let activeSounds = [];
 let listGeneralSounds = [];
 let songAudio;
+const userVolumes = new Map();
+
+listGeneralSounds.forEach((audio, index) => {
+  audio.dataset.id = `audio-${index}`
+})
 
 divTopAudioPlayer.forEach((div) => {
   div.addEventListener("click", handlePlayAudio);
@@ -79,23 +85,26 @@ function handleVolumeControle(e) {
   const volumeMapping = {
     0: 0, // 0% de volume
     1: 0.15, // 15% de volume
-    2: 0.3, // 30% de volume
-    3: 0.6, // 60% de volume
-    4: 0.8, // 80% de volume
+    2: 0.30, // 30% de volume
+    3: 0.50, // 50% de volume
+    4: 0.70, // 70% de volume
     5: 1.0, // 100% de volume
   };
 
   // converti la valeur la string en number, ex: "2" => 2
   let volumeValue = parseInt(input.value, 10);
-  songAudio.volume = volumeMapping[volumeValue];
+  const individualVolume = volumeMapping[volumeValue];
 
-  console.log(`volume : ${volumeValue}`);
+  const songId = songAudio.dataset.id;
+  userVolumes.set(songId, individualVolume)
+
+  const effectiveVolume = individualVolume * volumeGeneralNumber;
+  songAudio.volume = effectiveVolume;
 
   if (songAudio.volume === 0) {
     audioPlayer.querySelector(".span-vol-for-input").textContent = "volume_off";
   } else if (songAudio.volume >= 0.15 && songAudio.volume <= 0.3) {
-    audioPlayer.querySelector(".span-vol-for-input").textContent =
-      "volume_down";
+    audioPlayer.querySelector(".span-vol-for-input").textContent = "volume_down";
   } else {
     audioPlayer.querySelector(".span-vol-for-input").textContent = "volume_up";
   }
@@ -193,15 +202,16 @@ function handleBtnPlayPauseGeneral() {
 }
 
 
-let volumeGeneralNumber;
 volumeGeneralInput.addEventListener("input", triggerVolumeGeneral);
 
 function triggerVolumeGeneral(e) {
   volumeGeneralNumber = parseFloat(e.target.value);
-  console.log(e.target.value * 100);
+  console.log(`volume general réglé à : ${volumeGeneralNumber * 100}%`);
 
   listGeneralSounds.forEach((songAudio) => {
-    songAudio.volume = volumeGeneralNumber;
+    const songId = songAudio.dataset.id;
+    const individualVolume = userVolumes.get(songId) || 1.0;
+    songAudio.volume = individualVolume * volumeGeneralNumber;
   });
 
   if (volumeGeneralNumber === 0) {
@@ -213,6 +223,10 @@ function triggerVolumeGeneral(e) {
   }
   // inputVolume.value = volumeGeneralNumber
 }
+listGeneralSounds.forEach((songAudio, index) => {
+  songAudio.dataset.id = `audio-${index}`; // Ajout de l'ID unique
+  userVolumes.set(songAudio.dataset.id, 1.0); // Volume par défaut
+});
 
 
 const btnRemoveGeneral = document.querySelector(".btnremove-general");
