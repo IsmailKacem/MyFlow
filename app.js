@@ -44,6 +44,7 @@ function handlePlayAudio(e) {
     listGeneralSounds.push(songAudio);
     divIcon.style.background = "#ffffffe3";
     divIcon.style.color = "#1e1d1d";
+    audioPlayer.classList.add("clicked-audioplayer")
 
     listGeneralSounds.forEach(sound => {
       sound.play()
@@ -64,6 +65,7 @@ function handlePlayAudio(e) {
     listGeneralSounds = listGeneralSounds.filter((sound) => sound !== songAudio);
     divIcon.style.background = "#00000085";
     divIcon.style.color = "white";
+    audioPlayer.classList.remove("clicked-audioplayer")
   }
 
   console.log(listGeneralSounds);
@@ -102,11 +104,11 @@ function handleVolumeControle(e) {
   const effectiveVolume = individualVolume * volumeGeneralNumber;
   songAudio.volume = effectiveVolume;
 
-  console.log(input.value);
+  console.log(volumeValue);
   
-  if (input.value == 0) {
+  if (volumeValue === 0) {
     volumeIcon.textContent = "volume_off";
-  } else if (input.value >= 1 && input.value <= 2) {
+  } else if (volumeValue >= 1 && volumeValue <= 2) {
     volumeIcon.textContent = "volume_down";
   } else {
     volumeIcon.textContent = "volume_up";
