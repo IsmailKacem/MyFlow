@@ -81,6 +81,7 @@ function handleVolumeControle(e) {
   const input = e.currentTarget;
   const audioPlayer = input.closest(".audio-player");
   const songAudio = audioPlayer.querySelector(".audio-player-song");
+  const volumeIcon = audioPlayer.querySelector(".span-vol-for-input");
 
   const volumeMapping = {
     0: 0, // 0% de volume
@@ -101,12 +102,14 @@ function handleVolumeControle(e) {
   const effectiveVolume = individualVolume * volumeGeneralNumber;
   songAudio.volume = effectiveVolume;
 
-  if (songAudio.volume === 0) {
-    audioPlayer.querySelector(".span-vol-for-input").textContent = "volume_off";
-  } else if (songAudio.volume >= 0.15 && songAudio.volume <= 0.3) {
-    audioPlayer.querySelector(".span-vol-for-input").textContent = "volume_down";
+  console.log(input.value);
+  
+  if (input.value == 0) {
+    volumeIcon.textContent = "volume_off";
+  } else if (input.value >= 1 && input.value <= 2) {
+    volumeIcon.textContent = "volume_down";
   } else {
-    audioPlayer.querySelector(".span-vol-for-input").textContent = "volume_up";
+    volumeIcon.textContent = "volume_up";
   }
 }
 
