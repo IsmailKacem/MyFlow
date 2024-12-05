@@ -62,16 +62,16 @@ body {
 }
 
 .group__default-mix {
-    width: 50%;
+    width: max-content;
     display: flex;
-    flex-direction: column;
     gap: 5px;
+    flex-flow: column wrap;
 }
 
 .group__my-mix {
-    width: 50%;
+    width: max-content;
     display: flex;
-    flex-direction: column;
+    flex-flow: column wrap;
     gap: 5px;
 }
 
@@ -81,17 +81,26 @@ body {
     border-radius: 10px;
     display: flex;
     gap: 10px;
-
+    flex-flow: row wrap;
+    justify-content: center;
 }
 
 .btn-mix {
-    width: 50px;
-    height: 50px;
+    /* width: 50px;
+    height: 50px; */
     border-radius: 5px;
     border: none;
     background: #c2c2c24d;
     color: white;
-    font-size: 20px;
+    font-size: 16px;
+    padding: 10px 20px;
+    flex-grow: 1;
+    cursor: pointer;
+}
+
+.btn__my-mix {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 .section__ambiance {
@@ -519,7 +528,7 @@ body {
     }
 
     .section__mix {
-        flex-direction: column;
+        flex-direction: column-reverse;
         gap: 15px;
     }
 
