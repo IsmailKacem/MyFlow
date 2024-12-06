@@ -279,3 +279,92 @@ function triggerBtnAddGeneral() {
         spanVolumeGeneral.textContent = "volume_up";
       }
 }
+
+const beachAudio = document.querySelector(".beach-audio")
+const birdsAudio = document.querySelector(".birds-audio")
+const fireAudio = document.querySelector(".fire-audio")
+
+const btnBeachCampFire = document.querySelector(".beach-campfire-btn")
+btnBeachCampFire.addEventListener("click", triggerBeachCampFire)
+
+function triggerBeachCampFire() {
+  const mixSounds = [beachAudio, birdsAudio, fireAudio];
+
+  // Vérifie si TOUS les sons de beachCamp sont actuellement joués
+  const areAllMixSoundsPlaying = mixSounds.every((audio) => !audio.paused);
+
+  if (areAllMixSoundsPlaying) {
+    btnBeachCampFire.classList.remove("beach-campfire-btn-clicked")
+    // Arrête et réinitialise les sons de beachCamp
+    mixSounds.forEach((audio) => {
+      audio.pause();
+      audio.currentTime = 0;
+
+      // Réinitialise l'interface de chaque audio de beachCamp
+      const audioPlayer = audio.closest(".audio-player");
+      if (audioPlayer) {
+        const spanPlayPause = audioPlayer.querySelector(".spanplaypause");
+        spanPlayPause.textContent = "play_arrow";
+        const divIcon = audioPlayer.querySelector(".div-icon");
+        divIcon.style.background = "#00000085";
+        divIcon.style.color = "white";
+        audioPlayer.classList.remove("clicked-audioplayer");
+        const nameSound = audioPlayer.querySelector(".p-audioplayer").textContent;
+        activeSounds = activeSounds.filter((audio) => !nameSound.includes(audio));
+      }
+    });
+
+    // Supprime beachCamp de la liste générale
+    listGeneralSounds = listGeneralSounds.filter(
+      (audio) => !mixSounds.includes(audio)
+    );
+
+  } else {
+    // Arrête tous les autres sons en cours de lecture
+    btnBeachCampFire.classList.add("beach-campfire-btn-clicked")
+
+    listGeneralSounds.forEach((sound) => {
+      sound.pause();
+      sound.currentTime = 0;
+
+      const audioPlayer = sound.closest(".audio-player");
+      if (audioPlayer) {
+        const spanPlayPause = audioPlayer.querySelector(".spanplaypause");
+        spanPlayPause.textContent = "play_arrow";
+        const divIcon = audioPlayer.querySelector(".div-icon");
+        divIcon.style.background = "#00000085";
+        divIcon.style.color = "white";
+        audioPlayer.classList.remove("clicked-audioplayer");
+      }
+    });
+
+    // Vide la liste générale avant d'ajouter beachCamp
+    listGeneralSounds = [];
+    activeSounds = [];
+
+    // Joue beachCamp
+    mixSounds.forEach((audio) => {
+      audio.play();
+
+      // Met à jour l'interface de chaque audio de beachCamp
+      const audioPlayer = audio.closest(".audio-player");
+      if (audioPlayer) {
+        const spanPlayPause = audioPlayer.querySelector(".spanplaypause");
+        spanPlayPause.textContent = "pause";
+        const divIcon = audioPlayer.querySelector(".div-icon");
+        divIcon.style.background = "#ffffffe3";
+        divIcon.style.color = "#1e1d1d";
+        audioPlayer.classList.add("clicked-audioplayer");
+        const nameSound = audioPlayer.querySelector(".p-audioplayer").textContent;
+        activeSounds.push(nameSound);
+      }
+
+      // Ajoute le son à la liste générale
+      listGeneralSounds.push(audio);
+    });
+    console.log("Mix Beach Campfire activé.");
+  } 
+
+  // Met à jour les contrôles globaux (volume, etc.)
+  updateSoundsOnGeneralControls();
+}

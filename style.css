@@ -103,6 +103,11 @@ body {
     cursor: not-allowed;
 }
 
+.beach-campfire-btn-clicked{
+    background: gold;
+    color: black;
+}
+
 .section__ambiance {
     width: 90%;
     margin: 0 auto;
