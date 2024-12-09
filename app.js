@@ -9,6 +9,7 @@ const volumeGeneralInput = document.querySelector(".generals-controls-input");
 const beachAudio = document.querySelector(".beach-audio")
 const birdsAudio = document.querySelector(".birds-audio")
 const fireAudio = document.querySelector(".fire-audio")
+
 const mixSounds = [beachAudio, birdsAudio, fireAudio]
 
 let volumeGeneralNumber = 1.0;
@@ -16,6 +17,7 @@ let activeSounds = [];
 let listGeneralSounds = [];
 let songAudio;
 const userVolumes = new Map();
+let activeMix = null; // Stocke les sons d'un mix actif
 
 listGeneralSounds.forEach((audio, index) => {
   audio.dataset.id = `audio-${index}`
@@ -31,59 +33,42 @@ btnPlayPause.forEach((btn) => {
 
 function handlePlayAudio(e) {
   const btn = e.currentTarget;
-  // on recup le parent du btn clicked
   const audioPlayer = btn.closest(".audio-player");
-  console.log(audioPlayer);
-  console.log(btn);
-
-  songAudio = audioPlayer.querySelector(".audio-player-song");
+  const songAudio = audioPlayer.querySelector(".audio-player-song");
   const spanPlayPause = audioPlayer.querySelector(".spanplaypause");
-  const nameSound = audioPlayer.querySelector(".p-audioplayer").textContent;
   const divIcon = audioPlayer.querySelector(".div-icon");
+  const nameSound = audioPlayer.querySelector(".p-audioplayer").textContent;
 
-  const isNotInMix = !mixSounds.includes(songAudio);
-  if (isNotInMix) {
-
-    console.log("Un son hors du mix est joué, désactivation de mixSounds");
-
-    // Mettre à jour le bouton BeachCampFire
-    btnBeachCampFire.classList.remove("beach-campfire-btn-clicked");
+  if (activeMix && !mixSounds.includes(songAudio)) {
+    // Si un son hors du mix est activé, désactiver le mix
+    deactivateMix();
   }
 
   if (songAudio.paused) {
+    // Lecture
     songAudio.play();
     spanPlayPause.textContent = "pause";
-    activeSounds.push(nameSound);
-    listGeneralSounds.push(songAudio);
     divIcon.style.background = "#ffffffe3";
     divIcon.style.color = "#1e1d1d";
-    audioPlayer.classList.add("clicked-audioplayer")
-
-    listGeneralSounds.forEach(sound => {
-      sound.play()
-      const AudioPlayer2 = sound.closest(".audio-player");
-      const spanAudioPlayer = AudioPlayer2.querySelector(".spanplaypause");
-      spanAudioPlayer.textContent = "pause";
-
-      const btnPlayPause2 = AudioPlayer2.querySelector(".btnplaypause");
-      btnPlayPause2.addEventListener("click", handlePlayAudio);
-      const divTopAudioPlayer2 = AudioPlayer2.querySelector(".div-audioplayer-btn__p");
-      divTopAudioPlayer2.addEventListener("click", handlePlayAudio);
-    });
-
+    audioPlayer.classList.add("clicked-audioplayer");
+    
+    // Ajouter à la liste générale
+    if (!listGeneralSounds.includes(songAudio)) {
+      listGeneralSounds.push(songAudio);
+      activeSounds.push(nameSound);
+    }
   } else {
+    // Pause
     songAudio.pause();
     spanPlayPause.textContent = "play_arrow";
-    activeSounds = activeSounds.filter((sound) => sound !== nameSound);
-    listGeneralSounds = listGeneralSounds.filter((sound) => sound !== songAudio);
     divIcon.style.background = "#00000085";
     divIcon.style.color = "white";
-    audioPlayer.classList.remove("clicked-audioplayer")
+    audioPlayer.classList.remove("clicked-audioplayer");
+    // Retirer de la liste générale
+    activeSounds = activeSounds.filter((sound) => sound !== nameSound);
+    listGeneralSounds = listGeneralSounds.filter((audio) => audio !== songAudio);
   }
-
-  console.log(listGeneralSounds);
-
-  updateSoundsOnGeneralControls();
+  updateSoundsOnGeneralControls()
 }
 
 const inputVolume = document.querySelectorAll(".volumeControl__audioplayer");
@@ -190,10 +175,10 @@ function handleBtnPlayPauseGeneral() {
         const spanAudioPlayer = AudioPlayer.querySelector(".spanplaypause");
         spanAudioPlayer.textContent = "play_arrow";
 
-        const btnPlayPause = AudioPlayer.querySelector(".btnplaypause");
-        btnPlayPause.removeEventListener("click", handlePlayAudio);
-        const divTopAudioPlayer = AudioPlayer.querySelector(".div-audioplayer-btn__p");
-        divTopAudioPlayer.removeEventListener("click", handlePlayAudio);
+        // const btnPlayPause = AudioPlayer.querySelector(".btnplaypause");
+        // btnPlayPause.removeEventListener("click", handlePlayAudio);
+        // const divTopAudioPlayer = AudioPlayer.querySelector(".div-audioplayer-btn__p");
+        // divTopAudioPlayer.removeEventListener("click", handlePlayAudio);
       }
     });
 
@@ -299,65 +284,98 @@ btnBeachCampFire.addEventListener("click", triggerBeachCampFire)
 
 function triggerBeachCampFire() {
 
-  const areAllMixSoundsPlaying = mixSounds.every((audio) => !audio.paused);
-
-  if (!areAllMixSoundsPlaying) {
-    listGeneralSounds.forEach((sound) => {
+  if (activeMix) {
+    // Si un mix est actif, désactiver ses sons
+    activeMix.forEach((sound) => {
       sound.pause();
-      sound.currentTime = 0; // Réinitialise les sons joués avant
-  
+      sound.currentTime = 0; // Réinitialise le son
       const audioPlayer = sound.closest(".audio-player");
-        if (audioPlayer) {
-          const spanPlayPause = audioPlayer.querySelector(".spanplaypause");
-          spanPlayPause.textContent = "play_arrow";
-          const divIcon = audioPlayer.querySelector(".div-icon");
-          divIcon.style.background = "#00000085";
-          divIcon.style.color = "white";
-          audioPlayer.classList.remove("clicked-audioplayer");
-          const nameSound = audioPlayer.querySelector(".p-audioplayer").textContent;
-          activeSounds = activeSounds.filter((audio) => !nameSound.includes(audio));
-        }
-    });
-    listGeneralSounds = []
-    btnBeachCampFire.classList.add("beach-campfire-btn-clicked")
-
-    mixSounds.forEach(sound => {
-      sound.play()
-
-      const audioPlayer = sound.closest(".audio-player");
-        const spanPlayPause = audioPlayer.querySelector(".spanplaypause");
-        spanPlayPause.textContent = "pause";
-        const divIcon = audioPlayer.querySelector(".div-icon");
-        divIcon.style.background = "#ffffffe3";
-        divIcon.style.color = "#1e1d1d";
-        audioPlayer.classList.add("clicked-audioplayer");
-        const nameSound = audioPlayer.querySelector(".p-audioplayer").textContent;
-        activeSounds.push(nameSound);
-        listGeneralSounds.push(sound)
-
+      updateAudioPlayerUI(audioPlayer, false); // Mise à jour de l'interface
     });
 
-    console.log(listGeneralSounds);    
+    // Retirer les sons du mix de la liste globale
+    listGeneralSounds = listGeneralSounds.filter(
+      (sound) => !activeMix.includes(sound)
+    );
+    // activeSounds = activeSounds.filter((sound) => sound !== nameSound);
 
-  }else {
-  btnBeachCampFire.classList.remove("beach-campfire-btn-clicked")
-    mixSounds.forEach(sound => {
-      sound.pause()
+    activeMix = null; // Désactiver le mix
+    btnBeachCampFire.classList.remove("beach-campfire-btn-clicked");
 
-      const audioPlayer = sound.closest(".audio-player");
-        const spanPlayPause = audioPlayer.querySelector(".spanplaypause");
-        spanPlayPause.textContent = "play_arrow";
-        const divIcon = audioPlayer.querySelector(".div-icon");
-        divIcon.style.background = "#00000085";
-        divIcon.style.color = "white";
-        audioPlayer.classList.remove("clicked-audioplayer");
-        const nameSound = audioPlayer.querySelector(".p-audioplayer").textContent;
-        activeSounds = activeSounds.filter((audio) => !nameSound.includes(audio));
-        listGeneralSounds = listGeneralSounds.filter((sound) => !mixSounds.includes(sound));
-    });
-    console.log(listGeneralSounds);
-
+    // Mettre à jour les contrôles généraux
+    updateSoundsOnGeneralControls();
+    return;
   }
 
+  // Désactiver tous les sons avant d'activer le mix
+  deactivateAllSounds();
+
+  // Activer les sons du mix
+  mixSounds.forEach((sound) => {
+    sound.play();
+    const audioPlayer = sound.closest(".audio-player");
+    updateAudioPlayerUI(audioPlayer, true);
+
+    // Ajouter à la liste générale si pas déjà présent
+    if (!listGeneralSounds.includes(sound)) {
+      listGeneralSounds.push(sound);
+    }
+    
+  });
+
+  activeMix = mixSounds; // Définir le mix actif
+  btnBeachCampFire.classList.add("beach-campfire-btn-clicked");
   updateSoundsOnGeneralControls()
+}
+
+// Fonction : Désactiver le mix
+function deactivateMix() {
+  if (activeMix) {
+    activeMix.forEach((sound) => {
+      sound.pause();
+      sound.currentTime = 0; // Réinitialise
+      const audioPlayer = sound.closest(".audio-player");
+      updateAudioPlayerUI(audioPlayer, false);
+    });
+
+    listGeneralSounds = [];
+    activeSounds = [];
+    activeMix = null;
+    btnBeachCampFire.classList.remove("beach-campfire-btn-clicked");
+  }
+}
+
+// Fonction : Désactiver tous les sons
+function deactivateAllSounds() {
+  listGeneralSounds.forEach((sound) => {
+    sound.pause();
+    sound.currentTime = 0; // Réinitialise
+    const audioPlayer = sound.closest(".audio-player");
+    updateAudioPlayerUI(audioPlayer, false);
+  });
+
+  listGeneralSounds = [];
+  activeSounds = [];
+}
+
+// Fonction utilitaire : Mettre à jour l'état visuel d'un audioPlayer
+function updateAudioPlayerUI(audioPlayer, isPlaying) {
+  const spanPlayPause = audioPlayer.querySelector(".spanplaypause");
+  const divIcon = audioPlayer.querySelector(".div-icon");
+  const nameSound = audioPlayer.querySelector(".p-audioplayer").textContent;
+
+  if (isPlaying) {
+    spanPlayPause.textContent = "pause";
+    divIcon.style.background = "#ffffffe3";
+    divIcon.style.color = "#1e1d1d";
+    audioPlayer.classList.add("clicked-audioplayer");
+    activeSounds.push(nameSound)
+  } else {
+    spanPlayPause.textContent = "play_arrow";
+    divIcon.style.background = "#00000085";
+    divIcon.style.color = "white";
+    audioPlayer.classList.remove("clicked-audioplayer");
+    activeSounds = activeSounds.filter((sound) => sound !== nameSound);
+
+  }
 }
