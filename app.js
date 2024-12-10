@@ -35,9 +35,6 @@ function handlePlayAudio(e) {
   const btn = e.currentTarget;
   const audioPlayer = btn.closest(".audio-player");
   const songAudio = audioPlayer.querySelector(".audio-player-song");
-  const spanPlayPause = audioPlayer.querySelector(".spanplaypause");
-  const divIcon = audioPlayer.querySelector(".div-icon");
-  const nameSound = audioPlayer.querySelector(".p-audioplayer").textContent;
 
   if (activeMix && !mixSounds.includes(songAudio)) {
     // Si un son hors du mix est activé, désactiver le mix
@@ -45,28 +42,18 @@ function handlePlayAudio(e) {
   }
 
   if (songAudio.paused) {
-    // Lecture
     songAudio.play();
-    spanPlayPause.textContent = "pause";
-    divIcon.style.background = "#ffffffe3";
-    divIcon.style.color = "#1e1d1d";
-    audioPlayer.classList.add("clicked-audioplayer");
+    updateAudioPlayerUI(audioPlayer, true)
     
     // Ajouter à la liste générale
     if (!listGeneralSounds.includes(songAudio)) {
       listGeneralSounds.push(songAudio);
-      activeSounds.push(nameSound);
+      // activeSounds.push(nameSound);
     }
+
   } else {
-    // Pause
     songAudio.pause();
-    spanPlayPause.textContent = "play_arrow";
-    divIcon.style.background = "#00000085";
-    divIcon.style.color = "white";
-    audioPlayer.classList.remove("clicked-audioplayer");
-    // Retirer de la liste générale
-    activeSounds = activeSounds.filter((sound) => sound !== nameSound);
-    listGeneralSounds = listGeneralSounds.filter((audio) => audio !== songAudio);
+    updateAudioPlayerUI(audioPlayer, false)
   }
   updateSoundsOnGeneralControls()
 }
@@ -285,24 +272,7 @@ btnBeachCampFire.addEventListener("click", triggerBeachCampFire)
 function triggerBeachCampFire() {
 
   if (activeMix) {
-    // Si un mix est actif, désactiver ses sons
-    activeMix.forEach((sound) => {
-      sound.pause();
-      sound.currentTime = 0; // Réinitialise le son
-      const audioPlayer = sound.closest(".audio-player");
-      updateAudioPlayerUI(audioPlayer, false); // Mise à jour de l'interface
-    });
-
-    // Retirer les sons du mix de la liste globale
-    listGeneralSounds = listGeneralSounds.filter(
-      (sound) => !activeMix.includes(sound)
-    );
-    // activeSounds = activeSounds.filter((sound) => sound !== nameSound);
-
-    activeMix = null; // Désactiver le mix
-    btnBeachCampFire.classList.remove("beach-campfire-btn-clicked");
-
-    // Mettre à jour les contrôles généraux
+    deactivateMix()
     updateSoundsOnGeneralControls();
     return;
   }
@@ -333,7 +303,7 @@ function deactivateMix() {
   if (activeMix) {
     activeMix.forEach((sound) => {
       sound.pause();
-      sound.currentTime = 0; // Réinitialise
+      sound.currentTime = 0;
       const audioPlayer = sound.closest(".audio-player");
       updateAudioPlayerUI(audioPlayer, false);
     });
@@ -349,7 +319,7 @@ function deactivateMix() {
 function deactivateAllSounds() {
   listGeneralSounds.forEach((sound) => {
     sound.pause();
-    sound.currentTime = 0; // Réinitialise
+    sound.currentTime = 0;
     const audioPlayer = sound.closest(".audio-player");
     updateAudioPlayerUI(audioPlayer, false);
   });
@@ -358,7 +328,6 @@ function deactivateAllSounds() {
   activeSounds = [];
 }
 
-// Fonction utilitaire : Mettre à jour l'état visuel d'un audioPlayer
 function updateAudioPlayerUI(audioPlayer, isPlaying) {
   const spanPlayPause = audioPlayer.querySelector(".spanplaypause");
   const divIcon = audioPlayer.querySelector(".div-icon");
