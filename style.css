@@ -55,7 +55,7 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     margin: 0 auto;
     gap: 10%;
     width: 90%;
@@ -66,6 +66,7 @@ body {
     display: flex;
     gap: 5px;
     flex-flow: column wrap;
+    padding: 5px;
 }
 
 .group__my-mix {
@@ -73,11 +74,12 @@ body {
     display: flex;
     flex-flow: column wrap;
     gap: 5px;
+    padding: 5px;
 }
 
 .group-btn__mix {
-    background: #00000099;
-    padding: 10px;
+    /* background: #00000099;
+    padding: 10px; */
     border-radius: 10px;
     display: flex;
     gap: 10px;
@@ -90,7 +92,7 @@ body {
     height: 50px; */
     border-radius: 5px;
     border: none;
-    background: #c2c2c24d;
+    background: #00000099;
     color: white;
     font-size: 16px;
     padding: 10px 20px;
