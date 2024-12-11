@@ -18,6 +18,8 @@ let listGeneralSounds = [];
 let songAudio;
 const userVolumes = new Map();
 let activeMix = null; // Stocke les sons d'un mix actif
+let isGeneralPause = false;
+
 
 listGeneralSounds.forEach((audio, index) => {
   audio.dataset.id = `audio-${index}`
@@ -54,6 +56,14 @@ function handlePlayAudio(e) {
   } else {
     songAudio.pause();
     updateAudioPlayerUI(audioPlayer, false)
+
+    setTimeout(() => {
+      listGeneralSounds = listGeneralSounds.filter(sound => sound !== songAudio);
+    }, 50);
+  }
+   // Vérifiez les sons du mix
+   if (mixSounds.some(s => s.paused) && activeMix) {
+    deactivateMix();
   }
   updateSoundsOnGeneralControls()
 }
@@ -145,6 +155,8 @@ function updateSoundsOnGeneralControls() {
 btnPlayPauseGeneral.addEventListener("click", handleBtnPlayPauseGeneral);
 
 function handleBtnPlayPauseGeneral() {
+  isGeneralPause = true;
+
   if (listGeneralSounds.length <= 0) {
     console.log("Aucun son sélectionné.");
     return;
@@ -161,11 +173,6 @@ function handleBtnPlayPauseGeneral() {
         const AudioPlayer = audio.closest(".audio-player");
         const spanAudioPlayer = AudioPlayer.querySelector(".spanplaypause");
         spanAudioPlayer.textContent = "play_arrow";
-
-        // const btnPlayPause = AudioPlayer.querySelector(".btnplaypause");
-        // btnPlayPause.removeEventListener("click", handlePlayAudio);
-        // const divTopAudioPlayer = AudioPlayer.querySelector(".div-audioplayer-btn__p");
-        // divTopAudioPlayer.removeEventListener("click", handlePlayAudio);
       }
     });
 
@@ -179,16 +186,15 @@ function handleBtnPlayPauseGeneral() {
       const AudioPlayer = audio.closest(".audio-player");
       const spanAudioPlayer = AudioPlayer.querySelector(".spanplaypause");
       spanAudioPlayer.textContent = "pause";
-
-      const btnPlayPause = AudioPlayer.querySelector(".btnplaypause");
-      btnPlayPause.addEventListener("click", handlePlayAudio);
-      const divTopAudioPlayer = AudioPlayer.querySelector(".div-audioplayer-btn__p");
-      divTopAudioPlayer.addEventListener("click", handlePlayAudio);
     });
 
     spanPlayPauseGeneral.textContent = "pause";
     console.log("Tous les sons relancés.");
   } 
+
+  setTimeout(() => {
+    isGeneralPause = false;
+  }, 100);
 }
 
 
@@ -345,6 +351,15 @@ function updateAudioPlayerUI(audioPlayer, isPlaying) {
     divIcon.style.color = "white";
     audioPlayer.classList.remove("clicked-audioplayer");
     activeSounds = activeSounds.filter((sound) => sound !== nameSound);
-
   }
 }
+
+
+mixSounds.forEach(sound => {
+  sound.addEventListener("pause", () => {
+    if (!isGeneralPause && mixSounds.some(s => s.paused)) {
+      deactivateMix();
+      updateSoundsOnGeneralControls();
+    }
+  });
+});
