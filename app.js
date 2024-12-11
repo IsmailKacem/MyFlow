@@ -177,7 +177,6 @@ function handleBtnPlayPauseGeneral() {
     });
 
     spanPlayPauseGeneral.textContent = "play_arrow";
-    console.log("Tous les sons mis en pause.");
   } else {
     // Relancer tous les sons
     listGeneralSounds.forEach((audio) => {
@@ -189,7 +188,6 @@ function handleBtnPlayPauseGeneral() {
     });
 
     spanPlayPauseGeneral.textContent = "pause";
-    console.log("Tous les sons relancés.");
   } 
 
   setTimeout(() => {
@@ -217,8 +215,8 @@ function triggerVolumeGeneral(e) {
   } else if (volumeGeneralNumber >= 0.5) {
     spanVolumeGeneral.textContent = "volume_up";
   }
-  // inputVolume.value = volumeGeneralNumber
 }
+
 listGeneralSounds.forEach((songAudio, index) => {
   songAudio.dataset.id = `audio-${index}`; // Ajout de l'ID unique
   userVolumes.set(songAudio.dataset.id, 1.0); // Volume par défaut
