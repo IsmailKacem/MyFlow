@@ -6,11 +6,18 @@ const spanPlayPauseGeneral = document.querySelector(".spanplaypause-general");
 const btnPlayPauseGeneral = document.querySelector(".btnplaypause-general");
 const spanVolumeGeneral = document.querySelector(".spanvolume-general");
 const volumeGeneralInput = document.querySelector(".generals-controls-input");
+
 const beachAudio = document.querySelector(".beach-audio")
 const birdsAudio = document.querySelector(".birds-audio")
 const fireAudio = document.querySelector(".fire-audio")
+const thunderAudio = document.querySelector(".thunder-audio")
+const rainAudio = document.querySelector(".rain-audio")
+const windAudio = document.querySelector(".wind-audio")
+const publicPlaceAudio = document.querySelector(".public-place-audio")
 
-const mixSounds = [beachAudio, birdsAudio, fireAudio]
+const beachCampFireMix = [beachAudio, birdsAudio, fireAudio]
+const calmStormMix = [thunderAudio, rainAudio, windAudio]
+const seaSideCityMix = [beachAudio, birdsAudio, publicPlaceAudio]
 
 let volumeGeneralNumber = 1.0;
 let activeSounds = [];
@@ -19,7 +26,6 @@ let songAudio;
 const userVolumes = new Map();
 let activeMix = null; // Stocke les sons d'un mix actif
 let isGeneralPause = false;
-
 
 listGeneralSounds.forEach((audio, index) => {
   audio.dataset.id = `audio-${index}`
@@ -38,7 +44,7 @@ function handlePlayAudio(e) {
   const audioPlayer = btn.closest(".audio-player");
   const songAudio = audioPlayer.querySelector(".audio-player-song");
 
-  if (activeMix && !mixSounds.includes(songAudio)) {
+  if (activeMix && !beachCampFireMix.includes(songAudio)) {
     // Si un son hors du mix est activé, désactiver le mix
     deactivateMix();
   }
@@ -62,7 +68,7 @@ function handlePlayAudio(e) {
     }, 50);
   }
    // Vérifiez les sons du mix
-   if (mixSounds.some(s => s.paused) && activeMix) {
+   if (beachCampFireMix.some(s => s.paused) && activeMix) {
     deactivateMix();
   }
   updateSoundsOnGeneralControls()
@@ -285,7 +291,7 @@ function triggerBeachCampFire() {
   deactivateAllSounds();
 
   // Activer les sons du mix
-  mixSounds.forEach((sound) => {
+  beachCampFireMix.forEach((sound) => {
     sound.play();
     const audioPlayer = sound.closest(".audio-player");
     updateAudioPlayerUI(audioPlayer, true);
@@ -297,7 +303,7 @@ function triggerBeachCampFire() {
     
   });
 
-  activeMix = mixSounds; // Définir le mix actif
+  activeMix = beachCampFireMix; // Définir le mix actif
   btnBeachCampFire.classList.add("beach-campfire-btn-clicked");
   updateSoundsOnGeneralControls()
 }
@@ -353,9 +359,9 @@ function updateAudioPlayerUI(audioPlayer, isPlaying) {
 }
 
 
-mixSounds.forEach(sound => {
+beachCampFireMix.forEach(sound => {
   sound.addEventListener("pause", () => {
-    if (!isGeneralPause && mixSounds.some(s => s.paused)) {
+    if (!isGeneralPause && beachCampFireMix.some(s => s.paused)) {
       deactivateMix();
       updateSoundsOnGeneralControls();
     }

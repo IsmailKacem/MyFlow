@@ -111,6 +111,15 @@ body {
     color: black;
 }
 
+.calmstorm-btn-clicked{
+    background: rgb(181, 37, 210);
+    color: rgb(255, 255, 255);
+}
+
+.seasidecity-btn-clicked{
+    background: rgb(166, 255, 0);
+    color: black;
+}
 .section__ambiance {
     width: 90%;
     margin: 0 auto;
