@@ -292,43 +292,61 @@ function triggerBtnAddGeneral() {
 }
 
 
-const btnBeachCampFire = document.querySelector(".beach-campfire-btn")
-btnBeachCampFire.addEventListener("click", triggerBeachCampFire)
-
-function triggerBeachCampFire() {
-
-  if (activeMix && activeMix !== beachCampFireMix) {
-    deactivateMix()
+function triggerMix(mixArray, buttonElement) {
+  if (activeMix && activeMix !== mixArray) {
+    deactivateMix();
     updateSoundsOnGeneralControls();
     return;
   }
 
-    // Si le même mix est déjà actif, le désactiver
-    if (activeMix === beachCampFireMix) {
-      deactivateMix();
-      updateSoundsOnGeneralControls();
-      return;
-    }
+  if (activeMix === mixArray) {
+    deactivateMix();
+    updateSoundsOnGeneralControls();
+    return;
+  }
 
   deactivateAllSounds();
 
-  // Activer les sons du mix
-  beachCampFireMix.forEach((sound) => {
+  mixArray.forEach((sound) => {
     sound.play();
     const audioPlayer = sound.closest(".audio-player");
     updateAudioPlayerUI(audioPlayer, true);
 
-    // Ajouter à la liste générale si pas déjà présent
     if (!listGeneralSounds.includes(sound)) {
       listGeneralSounds.push(sound);
     }
-    
   });
 
-  activeMix = beachCampFireMix;
-  btnBeachCampFire.classList.add("beach-campfire-btn-clicked");
-  updateSoundsOnGeneralControls()
+    // Ajouter la classe clicked au bon bouton
+    if (mixArray === beachCampFireMix) {
+      btnBeachCampFire.classList.add('beach-campfire-btn-clicked');
+    } else if (mixArray === calmStormMix) {
+      btnCalmStorm.classList.add('calm-storm-btn-clicked');
+    } else if (mixArray === seaSideCityMix) {
+      btnSeaSideCity.classList.add('seaside-city-btn-clicked');
+    }
+  activeMix = mixArray;
+  updateSoundsOnGeneralControls();
+
+  mixArray.forEach(sound => {
+    sound.addEventListener("pause", () => {
+      if (!isGeneralPause && mixArray.some(s => s.paused)) {
+        deactivateMix();
+        buttonElement.classList.remove(`${buttonElement.className}-clicked`);
+        updateSoundsOnGeneralControls();
+      }
+    });
+  });
 }
+
+const btnBeachCampFire = document.querySelector(".beach-campfire-btn");
+btnBeachCampFire.addEventListener("click", () => triggerMix(beachCampFireMix, btnBeachCampFire));
+
+const btnCalmStorm = document.querySelector(".calmstorm-btn");
+btnCalmStorm.addEventListener("click", () => triggerMix(calmStormMix, btnCalmStorm));
+
+const btnSeaSideCity = document.querySelector(".seaside-city-btn");
+btnSeaSideCity.addEventListener("click", () => triggerMix(seaSideCityMix, btnSeaSideCity));
 
 // Fonction : Désactiver le mix
 function deactivateMix() {
@@ -382,106 +400,3 @@ function updateAudioPlayerUI(audioPlayer, isPlaying) {
     activeSounds = activeSounds.filter((sound) => sound !== nameSound);
   }
 }
-
-
-beachCampFireMix.forEach(sound => {
-  sound.addEventListener("pause", () => {
-    if (!isGeneralPause && beachCampFireMix.some(s => s.paused)) {
-      deactivateMix();
-      updateSoundsOnGeneralControls();
-    }
-  });
-});
-
-
-//Default Mix CALM STORM and SEASIDE CITY
-const btnCalmStorm = document.querySelector(".calmstorm-btn")
-btnCalmStorm.addEventListener("click", triggerCalmStorm)
-
-const btnSeaSideCity = document.querySelector(".seaside-city-btn")
-btnSeaSideCity.addEventListener("click", triggerSeaSideCity)
-
-function triggerCalmStorm() {
-  if (activeMix && activeMix !== calmStormMix) {
-    deactivateMix()
-    updateSoundsOnGeneralControls();
-    return;
-  }
-
-    // Si le même mix est déjà actif, le désactiver
-    if (activeMix === calmStormMix) {
-      deactivateMix();
-      updateSoundsOnGeneralControls();
-      return;
-    }
-
-  deactivateAllSounds();
-
-  // Activer les sons du mix
-  calmStormMix.forEach((sound) => {
-    sound.play();
-    const audioPlayer = sound.closest(".audio-player");
-    updateAudioPlayerUI(audioPlayer, true);
-
-    // Ajouter à la liste générale si pas déjà présent
-    if (!listGeneralSounds.includes(sound)) {
-      listGeneralSounds.push(sound);
-    }
-  });
-
-  activeMix = calmStormMix;
-  btnCalmStorm.classList.add("calm-storm-btn-clicked");
-  updateSoundsOnGeneralControls()
-}
-
-function triggerSeaSideCity() {
-  if (activeMix && activeMix !== seaSideCityMix) {
-    deactivateMix()
-    updateSoundsOnGeneralControls();
-    return;
-  }
-
-   // Si le même mix est déjà actif, le désactiver
-   if (activeMix === seaSideCityMix) {
-    deactivateMix();
-    updateSoundsOnGeneralControls();
-    return;
-  }
-
-  deactivateAllSounds();
-
-  // Activer les sons du mix
-  seaSideCityMix.forEach((sound) => {
-    sound.play();
-    const audioPlayer = sound.closest(".audio-player");
-    updateAudioPlayerUI(audioPlayer, true);
-
-    // Ajouter à la liste générale si pas déjà présent
-    if (!listGeneralSounds.includes(sound)) {
-      listGeneralSounds.push(sound);
-    }
-  });
-
-  activeMix = seaSideCityMix;
-  btnSeaSideCity.classList.add("seaside-city-btn-clicked");
-  updateSoundsOnGeneralControls()
-}
-
-// Ajoutez ces écouteurs d'événements similaires à ceux de beachCampFireMix
-calmStormMix.forEach(sound => {
-  sound.addEventListener("pause", () => {
-    if (!isGeneralPause && calmStormMix.some(s => s.paused)) {
-      deactivateMix();
-      updateSoundsOnGeneralControls();
-    }
-  });
-});
-
-seaSideCityMix.forEach(sound => {
-  sound.addEventListener("pause", () => {
-    if (!isGeneralPause && seaSideCityMix.some(s => s.paused)) {
-      deactivateMix();
-      updateSoundsOnGeneralControls();
-    }
-  });
-});
