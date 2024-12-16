@@ -459,6 +459,13 @@ body {
     justify-content: flex-end;
 }
 
+.div-paypal-link{
+    background: linear-gradient(45deg, #0035ff, #fe00ff);
+    padding: 2.5px 2px;
+    border-radius: 8px;
+    transition: 0.2s ease-out;
+}
+
 .paypal-link{
     width: max-content;
     background: white;
@@ -469,7 +476,24 @@ body {
     align-items: center;
     padding: 5px 10px;
     gap: 5px;
-    border-radius: 8px;
+    border-radius: 7px;
+    transition: 0.2s ease-out;
+}
+.imgpaypal{
+    transition: 0.2s ease-out;
+}
+
+.div-paypal-link:hover{
+    box-shadow: 0 0 20px 0 #a155ff7b;
+}
+
+.div-paypal-link:hover .paypal-link {
+    background: transparent;
+    color: white;
+}
+
+.div-paypal-link:hover .imgpaypal {
+    filter: invert(1);
 }
 
 @media screen and (max-width:930px) {
