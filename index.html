@@ -19,301 +19,280 @@
     </header>
     
     <main class="main-myflow">
-        <section class="section__mix">
-            <div class="group__default-mix">
-                <p class="p__default-mix">Default Mix</p>
-                <div class="group-btn__mix group__default-mix-btn">
-                    <button class="btn-mix btn__default-mix beach-campfire-btn">Beach Campfire</button>
-                    <button class="btn-mix btn__default-mix calmstorm-btn">Calm Storm</button>
-                    <button class="btn-mix btn__default-mix seaside-city-btn">Seaside City</button>
+
+        <div class="div-sections">
+            <section class="section__mix">
+                <div class="group__default-mix">
+                    <p class="p__default-mix">Default Mix</p>
+                    <div class="group-btn__mix group__default-mix-btn">
+                        <button class="btn-mix btn__default-mix beach-campfire-btn">Beach Campfire</button>
+                        <button class="btn-mix btn__default-mix calmstorm-btn">Calm Storm</button>
+                        <button class="btn-mix btn__default-mix seaside-city-btn">Seaside City</button>
+                    </div>
                 </div>
-            </div>
-
-            <div class="group__my-mix">
-                <p class="p__my-mix">My Mix (Soon)</p>
-                <div class="group-btn__mix group__my-mix-btn">
-                    <button class="btn-mix btn__my-mix">Create New Mix +</button>
+                <div class="group__my-mix">
+                    <p class="p__my-mix">My Mix (Soon)</p>
+                    <div class="group-btn__mix group__my-mix-btn">
+                        <button class="btn-mix btn__my-mix">Create New Mix +</button>
+                    </div>
                 </div>
-            </div>
-        </section>
-
-        <section class="section__ambiance">
-            <div class="container__ambiance">
-
-                <!-- General Controls start-->
-                <div class="generals-controls">
-                    <p class="p__generals-controls">General Controls</p>
-                    <p class="p__sounds-on__generals-controls">No sounds are currently playing.</p>
-
-                    <div class="global-settings">
-                        <div class="div-generals-controls-div-input">
-                            <button class="button-icon__generals-controls"><span class="spanvolume-general material-symbols-outlined">
-                                volume_up
-                                </span></button>
-                                <input type="range" class="generals-controls-input" min="0" step="0.01" max="1" value="1">
+            </section>
+            <section class="section__ambiance">
+                <div class="container__ambiance">
+                    <!-- General Controls start-->
+                    <div class="generals-controls">
+                        <p class="p__generals-controls">General Controls</p>
+                        <p class="p__sounds-on__generals-controls">No sounds are currently playing.</p>
+                        <div class="global-settings">
+                            <div class="div-generals-controls-div-input">
+                                <button class="button-icon__generals-controls"><span class="spanvolume-general material-symbols-outlined">
+                                    volume_up
+                                    </span></button>
+                                    <input type="range" class="generals-controls-input" min="0" step="0.01" max="1" value="1">
+                            </div>
+                            <div class="div-generals-controls-btns">
+            
+                                    <button class="btn-generals-controls-for-input btnremove-general"><span class="material-symbols-outlined">
+                                        remove
+                                        </span></button>
+                                    <button class="btn-generals-controls-for-input btnplaypause-general"><span class="material-symbols-outlined spanplaypause-general">
+                                        play_arrow
+                                        </span></button>
+                                    <button class="btn-generals-controls-for-input btnadd-general"><span class="material-symbols-outlined">
+                                        add
+                                        </span></button>
+                            </div>
                         </div>
-                        <div class="div-generals-controls-btns">
-                        
-                                <button class="btn-generals-controls-for-input btnremove-general"><span class="material-symbols-outlined">
+            
+                    </div>
+                    <!-- General Controls end -->
+                    <div class="audio-player --1">
+                        <div class="div-audioplayer-btn__p">
+                            <div class="div-icon"><span class="material-symbols-outlined">
+                                waves
+                                </span></div>
+                                <p class="p-audioplayer">Waves</p>
+                        </div>
+                        <div class="div-audioplayer-input">
+                            <div class="div-icon-vol__input-vol">
+                                <span class="span-vol-for-input material-symbols-outlined">volume_down</span>
+                                <input type="range" class="volumeControl__audioplayer" min="0" max="5" step="1" value="2">
+                            </div>
+            
+                            <div class="div-audioplayer-btninput">
+                                <button class="btn-audioplayer-input btnremove"><span class="material-symbols-outlined">
                                     remove
                                     </span></button>
-                                <button class="btn-generals-controls-for-input btnplaypause-general"><span class="material-symbols-outlined spanplaypause-general">
+                                <button class="btn-audioplayer-input btnplaypause"><span class="material-symbols-outlined spanplaypause">
                                     play_arrow
                                     </span></button>
-                                <button class="btn-generals-controls-for-input btnadd-general"><span class="material-symbols-outlined">
+                                <button class="btn-audioplayer-input btnadd"><span class="material-symbols-outlined">
                                     add
                                     </span></button>
+                            </div>
                         </div>
+            
+                        <audio loop class="audio-player-song beach-audio" src="assets/plage.mp3"></audio>
                     </div>
-                    
+                    <div class="audio-player --2">
+                        <div class="div-audioplayer-btn__p">
+                            <div class="div-icon"><span class="material-symbols-outlined">
+                                raven
+                                </span></div>
+                                <p class="p-audioplayer">Birds</p>
+                        </div>
+                        <div class="div-audioplayer-input">
+                            <div class="div-icon-vol__input-vol">
+                                <span class="span-vol-for-input material-symbols-outlined">volume_down</span>
+                                <input type="range" class="volumeControl__audioplayer" min="0" max="5" step="1" value="2">
+                            </div>
+            
+                            <div class="div-audioplayer-btninput">
+                                <button class="btn-audioplayer-input btnremove"><span class="material-symbols-outlined">
+                                    remove
+                                    </span></button>
+                                <button class="btn-audioplayer-input btnplaypause"><span class="material-symbols-outlined spanplaypause">
+                                    play_arrow
+                                    </span></button>
+                                <button class="btn-audioplayer-input btnadd"><span class="material-symbols-outlined">
+                                    add
+                                    </span></button>
+                            </div>
+                        </div>
+            
+                        <audio loop class="audio-player-song birds-audio" src="assets/birds.MP3"></audio>
+                    </div>
+                    <div class="audio-player --3">
+                        <div class="div-audioplayer-btn__p">
+                            <div class="div-icon"><span class="material-symbols-outlined">
+                                local_fire_department
+                                </span></div>
+                                <p class="p-audioplayer">Fire</p>
+                        </div>
+                        <div class="div-audioplayer-input">
+                            <div class="div-icon-vol__input-vol">
+                                <span class="span-vol-for-input material-symbols-outlined">volume_down</span>
+                                <input type="range" class="volumeControl__audioplayer" min="0" max="5" step="1" value="2">
+                            </div>
+            
+                            <div class="div-audioplayer-btninput">
+                                <button class="btn-audioplayer-input btnremove"><span class="material-symbols-outlined">
+                                    remove
+                                    </span></button>
+                                <button class="btn-audioplayer-input btnplaypause"><span class="material-symbols-outlined spanplaypause">
+                                    play_arrow
+                                    </span></button>
+                                <button class="btn-audioplayer-input btnadd"><span class="material-symbols-outlined">
+                                    add
+                                    </span></button>
+                            </div>
+                        </div>
+            
+                        <audio loop class="audio-player-song fire-audio" src="assets/fire.mp3"></audio>
+                    </div>
+                    <div class="audio-player --4">
+                        <div class="div-audioplayer-btn__p">
+                            <div class="div-icon"><span class="material-symbols-outlined">
+                                thunderstorm
+                                </span></div>
+                                <p class="p-audioplayer">Thunder</p>
+                        </div>
+                        <div class="div-audioplayer-input">
+                            <div class="div-icon-vol__input-vol">
+                                <span class="span-vol-for-input material-symbols-outlined">volume_down</span>
+                                <input type="range" class="volumeControl__audioplayer" min="0" max="5" step="1" value="2">
+                            </div>
+            
+                            <div class="div-audioplayer-btninput">
+                                <button class="btn-audioplayer-input btnremove"><span class="material-symbols-outlined">
+                                    remove
+                                    </span></button>
+                                <button class="btn-audioplayer-input btnplaypause"><span class="material-symbols-outlined spanplaypause">
+                                    play_arrow
+                                    </span></button>
+                                <button class="btn-audioplayer-input btnadd"><span class="material-symbols-outlined">
+                                    add
+                                    </span></button>
+                            </div>
+                        </div>
+            
+                        <audio loop class="audio-player-song thunder-audio" src="assets/thunder.mp3"></audio>
+                    </div>
+                    <div class="audio-player --5">
+                        <div class="div-audioplayer-btn__p">
+                            <div class="div-icon"><span class="material-symbols-outlined">
+                                rainy_light
+                                </span></div>
+                                <p class="p-audioplayer">Rain</p>
+                        </div>
+                        <div class="div-audioplayer-input">
+                            <div class="div-icon-vol__input-vol">
+                                <span class="span-vol-for-input material-symbols-outlined">volume_down</span>
+                                <input type="range" class="volumeControl__audioplayer" min="0" max="5" step="1" value="2">
+                            </div>
+            
+                            <div class="div-audioplayer-btninput">
+                                <button class="btn-audioplayer-input btnremove"><span class="material-symbols-outlined">
+                                    remove
+                                    </span></button>
+                                <button class="btn-audioplayer-input btnplaypause"><span class="material-symbols-outlined spanplaypause">
+                                    play_arrow
+                                    </span></button>
+                                <button class="btn-audioplayer-input btnadd"><span class="material-symbols-outlined">
+                                    add
+                                    </span></button>
+                            </div>
+                        </div>
+            
+                        <audio loop class="audio-player-song rain-audio" src="assets/rain.mp3"></audio>
+                    </div>
+                    <div class="audio-player --6">
+                        <div class="div-audioplayer-btn__p">
+                            <div class="div-icon"><span class="material-symbols-outlined">
+                                air
+                                </span></div>
+                                <p class="p-audioplayer">Wind</p>
+                        </div>
+                        <div class="div-audioplayer-input">
+                            <div class="div-icon-vol__input-vol">
+                                <span class="span-vol-for-input material-symbols-outlined">volume_down</span>
+                                <input type="range" class="volumeControl__audioplayer" min="0" max="5" step="1" value="2">
+                            </div>
+            
+                            <div class="div-audioplayer-btninput">
+                                <button class="btn-audioplayer-input btnremove"><span class="material-symbols-outlined">
+                                    remove
+                                    </span></button>
+                                <button class="btn-audioplayer-input btnplaypause"><span class="material-symbols-outlined spanplaypause">
+                                    play_arrow
+                                    </span></button>
+                                <button class="btn-audioplayer-input btnadd"><span class="material-symbols-outlined">
+                                    add
+                                    </span></button>
+                            </div>
+                        </div>
+            
+                        <audio loop class="audio-player-song wind-audio" src="assets/wind.mp3"></audio>
+                    </div>
+                    <div class="audio-player --7">
+                        <div class="div-audioplayer-btn__p">
+                            <div class="div-icon"><span class="material-symbols-outlined">
+                                groups
+                                </span></div>
+                                <p class="p-audioplayer">Public Place</p>
+                        </div>
+                        <div class="div-audioplayer-input">
+                            <div class="div-icon-vol__input-vol">
+                                <span class="span-vol-for-input material-symbols-outlined">volume_down</span>
+                                <input type="range" class="volumeControl__audioplayer" min="0" max="5" step="1" value="2">
+                            </div>
+            
+                            <div class="div-audioplayer-btninput">
+                                <button class="btn-audioplayer-input btnremove"><span class="material-symbols-outlined">
+                                    remove
+                                    </span></button>
+                                <button class="btn-audioplayer-input btnplaypause"><span class="material-symbols-outlined spanplaypause">
+                                    play_arrow
+                                    </span></button>
+                                <button class="btn-audioplayer-input btnadd"><span class="material-symbols-outlined">
+                                    add
+                                    </span></button>
+                            </div>
+                        </div>
+            
+                        <audio loop class="audio-player-song public-place-audio" src="assets/public-place.mp3"></audio>
+                    </div>
+                    <div class="audio-player --8">
+                        <div class="div-audioplayer-btn__p">
+                            <div class="div-icon"><span class="span-noise-effect material-symbols-outlined">
+                                tv
+                                </span></div>
+                                <p class="p-audioplayer">Noise Effect</p>
+                        </div>
+                        <div class="div-audioplayer-input">
+                            <div class="div-icon-vol__input-vol">
+                                <span class="span-vol-for-input material-symbols-outlined">volume_down</span>
+                                <input type="range" class="volumeControl__audioplayer" min="0" max="5" step="1" value="2">
+                            </div>
+            
+                            <div class="div-audioplayer-btninput">
+                                <button class="btn-audioplayer-input btnremove"><span class="material-symbols-outlined">
+                                    remove
+                                    </span></button>
+                                <button class="btn-audioplayer-input btnplaypause"><span class="material-symbols-outlined spanplaypause">
+                                    play_arrow
+                                    </span></button>
+                                <button class="btn-audioplayer-input btnadd"><span class="material-symbols-outlined">
+                                    add
+                                    </span></button>
+                            </div>
+                        </div>
+            
+                        <audio loop class="audio-player-song" src="assets/noise.mp3"></audio>
+                    </div>
                 </div>
-                <!-- General Controls end -->
-
-
-                <div class="audio-player --1">
-                    <div class="div-audioplayer-btn__p">
-                        <div class="div-icon"><span class="material-symbols-outlined">
-                            waves
-                            </span></div>
-                            <p class="p-audioplayer">Waves</p>
-                    </div>
-
-                    <div class="div-audioplayer-input">
-                        <div class="div-icon-vol__input-vol">
-                            <span class="span-vol-for-input material-symbols-outlined">volume_down</span>
-                            <input type="range" class="volumeControl__audioplayer" min="0" max="5" step="1" value="2">
-                        </div>
-                        
-                        <div class="div-audioplayer-btninput">
-                            <button class="btn-audioplayer-input btnremove"><span class="material-symbols-outlined">
-                                remove
-                                </span></button>
-                            <button class="btn-audioplayer-input btnplaypause"><span class="material-symbols-outlined spanplaypause">
-                                play_arrow
-                                </span></button>
-                            <button class="btn-audioplayer-input btnadd"><span class="material-symbols-outlined">
-                                add
-                                </span></button>
-                        </div>
-                    </div>
-                    
-                    <audio loop class="audio-player-song beach-audio" src="assets/plage.mp3"></audio>
-                </div>
-
-
-                <div class="audio-player --2">
-                    <div class="div-audioplayer-btn__p">
-                        <div class="div-icon"><span class="material-symbols-outlined">
-                            raven
-                            </span></div>
-                            <p class="p-audioplayer">Birds</p>
-                    </div>
-
-                    <div class="div-audioplayer-input">
-                        <div class="div-icon-vol__input-vol">
-                            <span class="span-vol-for-input material-symbols-outlined">volume_down</span>
-                            <input type="range" class="volumeControl__audioplayer" min="0" max="5" step="1" value="2">
-                        </div>
-                        
-                        <div class="div-audioplayer-btninput">
-                            <button class="btn-audioplayer-input btnremove"><span class="material-symbols-outlined">
-                                remove
-                                </span></button>
-                            <button class="btn-audioplayer-input btnplaypause"><span class="material-symbols-outlined spanplaypause">
-                                play_arrow
-                                </span></button>
-                            <button class="btn-audioplayer-input btnadd"><span class="material-symbols-outlined">
-                                add
-                                </span></button>
-                        </div>
-                    </div>
-                    
-                    <audio loop class="audio-player-song birds-audio" src="assets/birds.MP3"></audio>
-                </div>
-
-
-                <div class="audio-player --3">
-                    <div class="div-audioplayer-btn__p">
-                        <div class="div-icon"><span class="material-symbols-outlined">
-                            local_fire_department
-                            </span></div>
-                            <p class="p-audioplayer">Fire</p>
-                    </div>
-
-                    <div class="div-audioplayer-input">
-                        <div class="div-icon-vol__input-vol">
-                            <span class="span-vol-for-input material-symbols-outlined">volume_down</span>
-                            <input type="range" class="volumeControl__audioplayer" min="0" max="5" step="1" value="2">
-                        </div>
-                        
-                        <div class="div-audioplayer-btninput">
-                            <button class="btn-audioplayer-input btnremove"><span class="material-symbols-outlined">
-                                remove
-                                </span></button>
-                            <button class="btn-audioplayer-input btnplaypause"><span class="material-symbols-outlined spanplaypause">
-                                play_arrow
-                                </span></button>
-                            <button class="btn-audioplayer-input btnadd"><span class="material-symbols-outlined">
-                                add
-                                </span></button>
-                        </div>
-                    </div>
-                    
-                    <audio loop class="audio-player-song fire-audio" src="assets/fire.mp3"></audio>
-                </div>
-
-                <div class="audio-player --4">
-                    <div class="div-audioplayer-btn__p">
-                        <div class="div-icon"><span class="material-symbols-outlined">
-                            thunderstorm
-                            </span></div>
-                            <p class="p-audioplayer">Thunder</p>
-                    </div>
-
-                    <div class="div-audioplayer-input">
-                        <div class="div-icon-vol__input-vol">
-                            <span class="span-vol-for-input material-symbols-outlined">volume_down</span>
-                            <input type="range" class="volumeControl__audioplayer" min="0" max="5" step="1" value="2">
-                        </div>
-                        
-                        <div class="div-audioplayer-btninput">
-                            <button class="btn-audioplayer-input btnremove"><span class="material-symbols-outlined">
-                                remove
-                                </span></button>
-                            <button class="btn-audioplayer-input btnplaypause"><span class="material-symbols-outlined spanplaypause">
-                                play_arrow
-                                </span></button>
-                            <button class="btn-audioplayer-input btnadd"><span class="material-symbols-outlined">
-                                add
-                                </span></button>
-                        </div>
-                    </div>
-                    
-                    <audio loop class="audio-player-song thunder-audio" src="assets/thunder.mp3"></audio>
-                </div>
-
-                <div class="audio-player --5">
-                    <div class="div-audioplayer-btn__p">
-                        <div class="div-icon"><span class="material-symbols-outlined">
-                            rainy_light
-                            </span></div>
-                            <p class="p-audioplayer">Rain</p>
-                    </div>
-
-                    <div class="div-audioplayer-input">
-                        <div class="div-icon-vol__input-vol">
-                            <span class="span-vol-for-input material-symbols-outlined">volume_down</span>
-                            <input type="range" class="volumeControl__audioplayer" min="0" max="5" step="1" value="2">
-                        </div>
-                        
-                        <div class="div-audioplayer-btninput">
-                            <button class="btn-audioplayer-input btnremove"><span class="material-symbols-outlined">
-                                remove
-                                </span></button>
-                            <button class="btn-audioplayer-input btnplaypause"><span class="material-symbols-outlined spanplaypause">
-                                play_arrow
-                                </span></button>
-                            <button class="btn-audioplayer-input btnadd"><span class="material-symbols-outlined">
-                                add
-                                </span></button>
-                        </div>
-                    </div>
-                    
-                    <audio loop class="audio-player-song rain-audio" src="assets/rain.mp3"></audio>
-                </div>
-
-                <div class="audio-player --6">
-                    <div class="div-audioplayer-btn__p">
-                        <div class="div-icon"><span class="material-symbols-outlined">
-                            air
-                            </span></div>
-                            <p class="p-audioplayer">Wind</p>
-                    </div>
-
-                    <div class="div-audioplayer-input">
-                        <div class="div-icon-vol__input-vol">
-                            <span class="span-vol-for-input material-symbols-outlined">volume_down</span>
-                            <input type="range" class="volumeControl__audioplayer" min="0" max="5" step="1" value="2">
-                        </div>
-                        
-                        <div class="div-audioplayer-btninput">
-                            <button class="btn-audioplayer-input btnremove"><span class="material-symbols-outlined">
-                                remove
-                                </span></button>
-                            <button class="btn-audioplayer-input btnplaypause"><span class="material-symbols-outlined spanplaypause">
-                                play_arrow
-                                </span></button>
-                            <button class="btn-audioplayer-input btnadd"><span class="material-symbols-outlined">
-                                add
-                                </span></button>
-                        </div>
-                    </div>
-                    
-                    <audio loop class="audio-player-song wind-audio" src="assets/wind.mp3"></audio>
-                </div>
-
-                <div class="audio-player --7">
-                    <div class="div-audioplayer-btn__p">
-                        <div class="div-icon"><span class="material-symbols-outlined">
-                            groups
-                            </span></div>
-                            <p class="p-audioplayer">Public Place</p>
-                    </div>
-
-                    <div class="div-audioplayer-input">
-                        <div class="div-icon-vol__input-vol">
-                            <span class="span-vol-for-input material-symbols-outlined">volume_down</span>
-                            <input type="range" class="volumeControl__audioplayer" min="0" max="5" step="1" value="2">
-                        </div>
-                        
-                        <div class="div-audioplayer-btninput">
-                            <button class="btn-audioplayer-input btnremove"><span class="material-symbols-outlined">
-                                remove
-                                </span></button>
-                            <button class="btn-audioplayer-input btnplaypause"><span class="material-symbols-outlined spanplaypause">
-                                play_arrow
-                                </span></button>
-                            <button class="btn-audioplayer-input btnadd"><span class="material-symbols-outlined">
-                                add
-                                </span></button>
-                        </div>
-                    </div>
-                    
-                    <audio loop class="audio-player-song public-place-audio" src="assets/public-place.mp3"></audio>
-                </div>
-
-                <div class="audio-player --8">
-                    <div class="div-audioplayer-btn__p">
-                        <div class="div-icon"><span class="span-noise-effect material-symbols-outlined">
-                            tv
-                            </span></div>
-                            <p class="p-audioplayer">Noise Effect</p>
-                    </div>
-
-                    <div class="div-audioplayer-input">
-                        <div class="div-icon-vol__input-vol">
-                            <span class="span-vol-for-input material-symbols-outlined">volume_down</span>
-                            <input type="range" class="volumeControl__audioplayer" min="0" max="5" step="1" value="2">
-                        </div>
-                        
-                        <div class="div-audioplayer-btninput">
-                            <button class="btn-audioplayer-input btnremove"><span class="material-symbols-outlined">
-                                remove
-                                </span></button>
-                            <button class="btn-audioplayer-input btnplaypause"><span class="material-symbols-outlined spanplaypause">
-                                play_arrow
-                                </span></button>
-                            <button class="btn-audioplayer-input btnadd"><span class="material-symbols-outlined">
-                                add
-                                </span></button>
-                        </div>
-                    </div>
-                    
-                    <audio loop class="audio-player-song" src="assets/noise.mp3"></audio>
-                </div>
-
-            </div>
-        </section>
+            </section>
+        </div>
     </main>
 
 
