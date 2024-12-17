@@ -168,14 +168,6 @@ body {
 
 .global-settings{
     width: max-content;
-    box-shadow: 5px 5px 0 0 #16161685;
-    border-radius: 10px;
-    transition: 0.3s cubic-bezier(0, 1.11, 0.71, 0.98);
-}
-
-.global-settings:hover {
-    box-shadow: 0 0 0 0 #16161685;
-    transform: translate(5px, 5px);
 }
 
 .p__sounds-on__generals-controls {
@@ -260,19 +252,19 @@ body {
     justify-content: center;
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 5px 5px 0 0 #16161685;
+    box-shadow: 0 0 0 0 #16161685;
     transform: translate(0px, 0px);
     transition: 0.3s cubic-bezier(0.14, 0.73, 0.58, 1);
 }
 
 .audio-player:hover {
-    transform: translate(5px, 5px);
-    box-shadow: 0 0 0 0 #16161685;
+    transform: translate(-5px, -5px);
+    box-shadow: 5px 5px 0 0 #16161685;
 }
 
 .clicked-audioplayer{
-    transform: translate(5px, 5px);
-    box-shadow: 0 0 0 0 #16161685;
+    transform: translate(-5px, -5px);
+    box-shadow: 5px 5px 0 0 #16161685;
 }
 
 .div-audioplayer-btn__p {
