@@ -88,6 +88,8 @@ function handlePlayAudio(e) {
     deactivateMix();
   }
   updateSoundsOnGeneralControls()
+  triggerBtnRemoveGeneral()
+
 }
 
 const inputVolume = document.querySelectorAll(".volumeControl__audioplayer");
@@ -337,6 +339,7 @@ function triggerMix(mixArray, buttonElement) {
       }
     });
   });
+  triggerBtnRemoveGeneral()
 }
 
 const btnBeachCampFire = document.querySelector(".beach-campfire-btn");

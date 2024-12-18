@@ -456,8 +456,8 @@ body {
 
 .div-paypal-link{
     background: linear-gradient(45deg, #0035ff, #fe00ff);
-    padding: 2.5px 2px;
-    border-radius: 8px;
+    padding: 3px;
+    border-radius: 6px;
     transition: 0.2s ease-out;
 }
 
@@ -471,7 +471,7 @@ body {
     align-items: center;
     padding: 5px 10px;
     gap: 5px;
-    border-radius: 7px;
+    border-radius: 4px;
     transition: 0.2s ease-out;
 }
 .imgpaypal{
