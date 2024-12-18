@@ -127,11 +127,23 @@ body {
 .calm-storm-btn-clicked{
     background: rgb(181, 37, 210);
     color: rgb(255, 255, 255);
+
+    background-image: url(assets/calmstorm-bg-btn4.jpg);
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: soft-light;
+    box-shadow: 0 0 20px 0px #7700ff4d;
 }
 
 .seaside-city-btn-clicked{
-    background: rgb(166, 255, 0);
+    background: #0069ff;
     color: black;
+
+    background-image: url(assets/seasidecity-bg-btn3.jpg);
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: soft-light;
+    box-shadow: 0 0 20px 0px #0069ff63;
 }
 .section__ambiance {
     width: 90%;
