@@ -105,6 +105,7 @@ body {
     padding: 10px 20px;
     flex-grow: 1;
     cursor: pointer;
+    transition: 0.3s ease-out;
 }
 
 .btn__my-mix {
@@ -115,6 +116,12 @@ body {
 .beach-campfire-btn-clicked{
     background: gold;
     color: black;
+    
+    background-image: url(assets/beachcampfire-bg-btn.png);
+    background-size: cover;
+    background-position: bottom;
+    background-blend-mode: soft-light;
+    box-shadow: 0 0 20px 0px #ffd7004d;
 }
 
 .calm-storm-btn-clicked{
