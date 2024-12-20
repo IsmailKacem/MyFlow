@@ -456,7 +456,7 @@ body {
 }
 
 .img-social-footer {
-    width: 20px;
+    width: 25px;
 }
 
 .link-social-footer:hover {
@@ -479,8 +479,8 @@ body {
 
 .div-paypal-link{
     background: linear-gradient(45deg, #0035ff, #fe00ff);
-    padding: 3px;
-    border-radius: 6px;
+    padding: 3px 3.1px;
+    border-radius: 8px;
     transition: 0.2s ease-out;
 }
 
@@ -494,11 +494,13 @@ body {
     align-items: center;
     padding: 5px 10px;
     gap: 5px;
-    border-radius: 4px;
+    border-radius: 6px;
+    height: 29px;
     transition: 0.2s ease-out;
 }
 .imgpaypal{
     transition: 0.2s ease-out;
+    width: 20px;
 }
 
 .div-paypal-link:hover{
