@@ -288,12 +288,12 @@ body {
 
 .audio-player:hover {
     transform: translate(-5px, -5px);
-    box-shadow: 5px 5px 0 0 #16161685;
+    box-shadow: 5px 5px 0 0 #08080882;
 }
 
 .clicked-audioplayer{
     transform: translate(-5px, -5px);
-    box-shadow: 5px 5px 0 0 #16161685;
+    box-shadow: 5px 5px 0 0 #08080882;
 }
 
 .div-audioplayer-btn__p {
