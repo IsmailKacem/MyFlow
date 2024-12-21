@@ -110,7 +110,6 @@ body {
 .beach-campfire-btn-clicked{
     background: gold;
     color: black;
-    
     background-image: url(assets/beachcampfire-bg-btn.png);
     background-size: cover;
     background-position: bottom;
@@ -121,7 +120,6 @@ body {
 .calm-storm-btn-clicked{
     background: rgb(181, 37, 210);
     color: rgb(255, 255, 255);
-
     background-image: url(assets/calmstorm-bg-btn4.jpg);
     background-size: cover;
     background-position: center;
@@ -132,7 +130,6 @@ body {
 .seaside-city-btn-clicked{
     background: #0069ff;
     color: black;
-
     background-image: url(assets/seasidecity-bg-btn3.jpg);
     background-size: cover;
     background-position: center;
@@ -379,8 +376,6 @@ body {
 }
 
 /* track */
-
-
 .div-audioplayer-btninput {
     display: flex;
     width: 90%;
