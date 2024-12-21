@@ -16,7 +16,7 @@ body {
 
 .header-myflow {
     min-height: 50px;
-    margin-top: 30px;
+    padding-top: 30px;
 }
 
 .container__navbar__header {
