@@ -16,21 +16,16 @@ body {
 
 .header-myflow {
     min-height: 50px;
-    max-width: 1500px;
-    margin: 0 auto;
-    margin-top: 15px;
-    display: flex;
-    align-items: center;
+    margin-top: 30px;
 }
 
 .container__navbar__header {
-    width: max-content;
     color: white;
-    margin: 0 auto;
+    text-align: center;
 }
 
 .h1__header {
-    font-size: clamp(20px, 2vw, 24px);
+    font-size: clamp(25px, 3vw, 35px);
     font-weight: 500;
 }
 
@@ -47,7 +42,7 @@ body {
 .div-sections{
     /* background: #00000099; */
     width: 90%;
-    padding: 20px;
+    padding: 20px 0;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
