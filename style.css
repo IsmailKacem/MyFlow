@@ -436,6 +436,7 @@ body {
     background: white;
     padding: 5px;
     border-radius: 8px;
+    transition: 0.2s ease-out;
 }
 
 .img-social-footer {
@@ -443,7 +444,8 @@ body {
 }
 
 .link-social-footer:hover {
-    filter: invert(1);
+    transform: translate(-3px, -3px);
+    box-shadow: 3px 3px 0 0 #adadadbd;
 }
 
 .logo-footer-IK {
