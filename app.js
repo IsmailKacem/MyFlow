@@ -168,7 +168,7 @@ function updateSoundsOnGeneralControls() {
       ", "
     )}`;
     spanPlayPauseGeneral.textContent = "pause";
-    PSoundsOnGeneralControls.style.background = "linear-gradient(45deg, rgb(76, 175, 80), rgb(5, 255, 232))";
+    PSoundsOnGeneralControls.style.background = "linear-gradient(45deg, rgb(41 241 157), rgb(2 165 255))";
     PSoundsOnGeneralControls.style.color = "black";
   } else {
     PSoundsOnGeneralControls.textContent = `No sounds are currently playing.`;
