@@ -403,3 +403,12 @@ function updateAudioPlayerUI(audioPlayer, isPlaying) {
     activeSounds = activeSounds.filter((sound) => sound !== nameSound);
   }
 }
+
+
+window.addEventListener("load", triggerLoad)
+
+function triggerLoad() {
+  const divLoad = document.querySelector(".div-loading-page")
+  divLoad.style.display = "none"
+  divLoad.remove()
+}
