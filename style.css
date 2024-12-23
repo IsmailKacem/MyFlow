@@ -489,7 +489,7 @@ body {
 }
 
 .div-paypal-link{
-    background: linear-gradient(45deg, #0035ff, #fe00ff);
+    background: linear-gradient(45deg, rgb(41 241 157), rgb(2 165 255));
     padding: 3px 3.1px;
     border-radius: 9px;
     transition: 0.2s ease-out;
@@ -515,16 +515,11 @@ body {
 }
 
 .div-paypal-link:hover{
-    box-shadow: 0 0 20px 0 #a155ff7b;
+    box-shadow: 0 0 20px 0 #14c6cf94;
 }
 
 .div-paypal-link:hover .paypal-link {
     background: transparent;
-    color: white;
-}
-
-.div-paypal-link:hover .imgpaypal {
-    filter: invert(1);
 }
 
 @media screen and (max-width:930px) {
