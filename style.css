@@ -218,7 +218,7 @@ body {
 }
 
 .p__sounds-on__generals-controls {
-    background: #ff00004d;
+    background: linear-gradient(225deg, #E91E63, #c90b0b);
     padding: 5px 15px;
     border-radius: 50px;
     width: max-content;

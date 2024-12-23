@@ -168,11 +168,13 @@ function updateSoundsOnGeneralControls() {
       ", "
     )}`;
     spanPlayPauseGeneral.textContent = "pause";
-    PSoundsOnGeneralControls.style.background = "#39ff004d";
+    PSoundsOnGeneralControls.style.background = "linear-gradient(45deg, rgb(76, 175, 80), rgb(5, 255, 232))";
+    PSoundsOnGeneralControls.style.color = "black";
   } else {
     PSoundsOnGeneralControls.textContent = `No sounds are currently playing.`;
     spanPlayPauseGeneral.textContent = "play_arrow";
-    PSoundsOnGeneralControls.style.background = "#ff00004d";
+    PSoundsOnGeneralControls.style.background = "linear-gradient(225deg, #E91E63, #c90b0b)";
+    PSoundsOnGeneralControls.style.color = "white";
   }
 }
 
