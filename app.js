@@ -27,6 +27,15 @@ const userVolumes = new Map();
 let activeMix = null; // Stocke les sons d'un mix actif
 let isGeneralPause = false;
 
+// Ajouter cette fonction d'initialisation
+function initializeAudioPlayers() {
+  const allAudioElements = document.querySelectorAll('.audio-player-song');
+  allAudioElements.forEach((audio, index) => {
+    audio.dataset.id = `audio-${index}`;
+    userVolumes.set(audio.dataset.id, 1.0); // Volume par défaut
+  });
+}
+
 listGeneralSounds.forEach((audio, index) => {
   audio.dataset.id = `audio-${index}`
 })
@@ -88,8 +97,12 @@ function handlePlayAudio(e) {
     deactivateMix();
   }
   updateSoundsOnGeneralControls()
-  triggerBtnRemoveGeneral()
 
+  const input = audioPlayer.querySelector(".volumeControl__audioplayer");
+  // let volumeValue = parseInt(input.value, 10);
+  // console.log(volumeValue);
+  handleVolumeControle({ currentTarget: input });
+  
 }
 
 const inputVolume = document.querySelectorAll(".volumeControl__audioplayer");
@@ -117,13 +130,19 @@ function handleVolumeControle(e) {
   let volumeValue = parseInt(input.value, 10);
   const individualVolume = volumeMapping[volumeValue];
 
+   // Vérifier que songAudio.dataset.id existe
+   if (!songAudio.dataset.id) {
+    console.warn('Audio element missing ID, reinitializing...');
+    initializeAudioPlayers();
+  }
+  
   const songId = songAudio.dataset.id;
   userVolumes.set(songId, individualVolume)
 
   const effectiveVolume = individualVolume * volumeGeneralNumber;
   songAudio.volume = effectiveVolume;
 
-  console.log(volumeValue);
+  console.log(songId);
   
   if (volumeValue === 0) {
     volumeIcon.textContent = "volume_off";
@@ -231,7 +250,14 @@ function triggerVolumeGeneral(e) {
   listGeneralSounds.forEach((songAudio) => {
     const songId = songAudio.dataset.id;
     const individualVolume = userVolumes.get(songId) || 1.0;
-    songAudio.volume = individualVolume * volumeGeneralNumber;
+
+     // Vérifier si le volume individuel est à 0
+    if (songAudio.volume === 0) {
+      songAudio.volume = 0; // Le son reste désactivé
+      volumeGeneralNumber === 0;
+    } else {
+      songAudio.volume = individualVolume * volumeGeneralNumber; // Appliquer le volume ajusté
+    }
   });
 
   if (volumeGeneralNumber === 0) {
@@ -316,6 +342,10 @@ function triggerMix(mixArray, buttonElement) {
     const audioPlayer = sound.closest(".audio-player");
     updateAudioPlayerUI(audioPlayer, true);
 
+    const input = audioPlayer.querySelector(".volumeControl__audioplayer");
+    input.value = 2
+    handleVolumeControle({ currentTarget: input });
+
     if (!listGeneralSounds.includes(sound)) {
       listGeneralSounds.push(sound);
     }
@@ -341,7 +371,6 @@ function triggerMix(mixArray, buttonElement) {
       }
     });
   });
-  triggerBtnRemoveGeneral()
 }
 
 const btnBeachCampFire = document.querySelector(".beach-campfire-btn");
