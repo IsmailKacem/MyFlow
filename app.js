@@ -99,8 +99,6 @@ function handlePlayAudio(e) {
   updateSoundsOnGeneralControls()
 
   const input = audioPlayer.querySelector(".volumeControl__audioplayer");
-  // let volumeValue = parseInt(input.value, 10);
-  // console.log(volumeValue);
   handleVolumeControle({ currentTarget: input });
   
 }
@@ -141,8 +139,6 @@ function handleVolumeControle(e) {
 
   const effectiveVolume = individualVolume * volumeGeneralNumber;
   songAudio.volume = effectiveVolume;
-
-  console.log(songId);
   
   if (volumeValue === 0) {
     volumeIcon.textContent = "volume_off";
@@ -203,7 +199,6 @@ function handleBtnPlayPauseGeneral() {
   isGeneralPause = true;
 
   if (listGeneralSounds.length <= 0) {
-    console.log("Aucun son sélectionné.");
     return;
   }
 
@@ -214,7 +209,6 @@ function handleBtnPlayPauseGeneral() {
     listGeneralSounds.forEach((audio) => {
       if (!audio.paused) {
         audio.pause();
-        console.log(`Son mis en pause : ${audio.src}`);
         const AudioPlayer = audio.closest(".audio-player");
         const spanAudioPlayer = AudioPlayer.querySelector(".spanplaypause");
         spanAudioPlayer.textContent = "play_arrow";
@@ -226,7 +220,6 @@ function handleBtnPlayPauseGeneral() {
     // Relancer tous les sons
     listGeneralSounds.forEach((audio) => {
       audio.play();
-      console.log(`Son relancé : ${audio.src}`);
       const AudioPlayer = audio.closest(".audio-player");
       const spanAudioPlayer = AudioPlayer.querySelector(".spanplaypause");
       spanAudioPlayer.textContent = "pause";
@@ -245,7 +238,7 @@ volumeGeneralInput.addEventListener("input", triggerVolumeGeneral);
 
 function triggerVolumeGeneral(e) {
   volumeGeneralNumber = parseFloat(e.target.value);
-  console.log(`volume general réglé à : ${volumeGeneralNumber * 100}%`);
+  // console.log(`volume general réglé à : ${volumeGeneralNumber * 100}%`);
 
   listGeneralSounds.forEach((songAudio) => {
     const songId = songAudio.dataset.id;
