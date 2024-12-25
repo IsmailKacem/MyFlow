@@ -134,13 +134,12 @@ body {
 }
 
 .beach-campfire-btn-clicked{
-    background: gold;
+    background: linear-gradient(45deg, #FFEB3B, #E91E63), url(assets/beachcampfire-bg-btn.png);
     color: black;
-    background-image: url(assets/beachcampfire-bg-btn.png);
     background-size: cover;
     background-position: bottom;
-    background-blend-mode: soft-light;
-    box-shadow: 0 0 20px 0px #ffd7004d;
+    background-blend-mode: hard-light;
+    box-shadow: 0 0 20px 0px #ff7b004d;
 }
 
 .calm-storm-btn-clicked{
