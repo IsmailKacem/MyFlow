@@ -143,12 +143,11 @@ body {
 }
 
 .calm-storm-btn-clicked{
-    background: rgb(181, 37, 210);
-    color: rgb(255, 255, 255);
-    background-image: url(assets/calmstorm-bg-btn4.jpg);
+    background: linear-gradient(45deg, #9C27B0, #2196F3), url(assets/calmstorm-bg-btn4.jpg);
+    color: #ffffff;
     background-size: cover;
     background-position: center;
-    background-blend-mode: soft-light;
+    background-blend-mode: screen;
     box-shadow: 0 0 20px 0px #7700ff4d;
 }
 
