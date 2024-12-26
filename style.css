@@ -26,9 +26,9 @@ body {
 }
 
 .img-loading-page{
-    width: 200px;
+    width: 150px;
     transform: rotate(0deg);
-    animation: img-load-animation 0.5s 0s ease-out infinite;
+    animation: img-load-animation 1s 0s ease-out infinite;
 }
 
 @keyframes img-load-animation {
@@ -487,7 +487,7 @@ body {
 }
 
 .div-paypal-link{
-    background: linear-gradient(45deg, rgb(41 241 157), rgb(2 165 255));
+    background: linear-gradient(45deg, rgb(70 96 255), rgb(14 204 255));
     padding: 3px 3.1px;
     border-radius: 9px;
     transition: 0.2s ease-out;
@@ -513,7 +513,7 @@ body {
 }
 
 .div-paypal-link:hover{
-    box-shadow: 0 0 20px 0 #14c6cf94;
+    box-shadow: 0 0 20px 0 #1464cf94;
 }
 
 .div-paypal-link:hover .paypal-link {
