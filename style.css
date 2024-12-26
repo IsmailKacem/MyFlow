@@ -134,8 +134,8 @@ body {
 }
 
 .beach-campfire-btn-clicked{
-    background: linear-gradient(45deg, #FFEB3B, #E91E63), url(assets/beachcampfire-bg-btn.png);
-    color: black;
+    background: linear-gradient(45deg, #ffeb3bd1, #e91e63d4), url(assets/beachcampfire-bg-btn.png);
+    color: #ffffff;
     background-size: cover;
     background-position: bottom;
     background-blend-mode: hard-light;
@@ -152,12 +152,10 @@ body {
 }
 
 .seaside-city-btn-clicked{
-    background: #0069ff;
-    color: black;
-    background-image: url(assets/seasidecity-bg-btn3.jpg);
+    background: linear-gradient(180deg, #00b8ff, #0756ff), url(assets/test-bg-seasidecity3.png);
     background-size: cover;
     background-position: center;
-    background-blend-mode: soft-light;
+    background-blend-mode: hard-light;
     box-shadow: 0 0 20px 0px #0069ff63;
 }
 .section__ambiance {
