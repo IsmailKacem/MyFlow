@@ -1,5 +1,3 @@
-import { inject } from "https://cdn.jsdelivr.net/npm/@vercel/analytics";
-inject();
 const btnPlayPause = document.querySelectorAll(".btnplaypause");
 const divTopAudioPlayer = document.querySelectorAll(".div-audioplayer-btn__p");
 
