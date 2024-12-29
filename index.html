@@ -51,6 +51,25 @@
     
     <main class="main-myflow">
 
+        <div class="popup-delete-div">
+            <p class="p-popup-delete">Are you sure you want to delete this mix ?</p>
+            <div class="popup-delete-div-btns">
+                <button class="btn-popop-delete btn-popop-delete__yes">Delete</button>
+                <button class="btn-popop-delete btn-popop-delete__no">Go Back</button>
+            </div>
+        </div>
+
+        <div class="popup-namemix">
+            <form class="form-namemix">
+                <label class="label-namemix" for="input-namemix">Name your mix</label>
+                <div class="div-input-btn__mymix">
+                    <input maxlength="10" class="input-namemix" id="input-namemix" type="text" placeholder="John's Mix">
+                    <button class="btn-input-mymix" for="input-namemix"><span class="material-symbols-outlined">
+                        check
+                        </span></button>
+                </div>
+            </form>
+        </div>
         <div class="div-sections">
             <section class="section__mix">
                 <div class="group__default-mix">
@@ -61,15 +80,17 @@
                         <button class="btn-mix btn__default-mix seaside-city-btn">Seaside City</button>
                     </div>
                 </div>
-                <div class="group__my-mix">
-                    <p class="p__my-mix">My Mix <span class="span-soon-mymix">Coming Soon</span></p>
-                    <div class="group-btn__mix group__my-mix-btn">
-                        <button class="btn-mix btn__my-mix">Create New Mix +</button>
+                <div class="group__my-mix">                   
+                    <div class="group__my-mix-p-btn">
+                        <p class="p__my-mix">My Mix <span class="span-soon-mymix">New</span></p>
                     </div>
+                    <button class="btn-mix btn__my-mix">Create Your Mix</button>
                 </div>
             </section>
             <section class="section__ambiance">
                 <div translate="no" class="container__ambiance">
+                    <p class="p-select-sounds">Select your sounds</p>
+                    <button class="btn-save-mymix">Save</button>
                     <!-- General Controls start-->
                     <div class="generals-controls">
                         <p translate="yes" class="p__generals-controls">General Controls</p>

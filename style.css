@@ -65,6 +65,107 @@ body {
     min-height: 90svh;
 }
 
+.popup-namemix {
+    display: none;
+    position: fixed;
+    background: #0a0a0ae8;
+    width: 50%;
+    height: 25%;
+    z-index: 999;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(5px);
+    border-radius: 8px;
+    border: 2px solid white;
+    gap: 7px;
+}
+
+.popup-delete-div {
+    position: fixed;
+    background: #0a0a0ae8;
+    backdrop-filter: blur(5px);
+    border: 2px solid white;
+    border-radius: 8px;
+    width: 50%;
+    height: 25%;
+    z-index: 999;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.popup-delete-div-btns {
+    display: flex;
+    gap: 15px;
+}
+
+.btn-popop-delete {
+    padding: 5px 10px;
+    border-radius: 53px;
+    cursor: pointer;
+    font-size: 16px;
+    border: none;
+}
+
+.btn-popop-delete__yes {
+    background: crimson;
+}
+
+.btn-popop-delete:hover {
+    opacity: 0.7;
+}
+
+.form-namemix {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+.input-namemix {
+    width: 100%;
+    padding: 10px 60px 10px 15px;
+    font-size: 16px;
+    outline: none;
+    border: none;
+    box-shadow: 0 0 3px 0px #0000002b;
+    border-radius: 10px;
+}
+
+.div-input-btn__mymix {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    position: relative;
+}
+
+.btn-input-mymix {
+    position: absolute;
+    right: 2px;
+    display: flex;
+    border: none;
+    background: none;
+    cursor: pointer;
+    background: black;
+    color: white;
+    border-radius: 9px;
+    padding: 5px;
+}
+
+.btn-input-mymix:hover {
+    opacity: 0.8;
+}
+
 .div-sections{
     /* background: #00000099; */
     width: 90%;
@@ -78,7 +179,7 @@ body {
 .section__mix {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     margin: 0 auto;
     gap: 10%;
@@ -110,7 +211,16 @@ body {
     gap: 10px;
     flex-flow: row wrap;
     justify-content: center;
+    align-items: flex-start;
 }
+
+.group__my-mix-p-btn {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    flex-flow: row nowrap;
+}
+
 
 .btn-mix {
     border-radius: 50px;
@@ -129,9 +239,14 @@ body {
 }
 
 .btn__my-mix {
-    opacity: 0.5;
-    cursor: not-allowed;
+    /* opacity: 0.5;
+    cursor: not-allowed; */
     box-shadow: inset 0 0 0 2px white;
+}
+
+.btn__my-mix-clicked {
+    background: white;
+    color: black;
 }
 
 .p__my-mix {
@@ -141,8 +256,29 @@ body {
     align-items: center;
 }
 
+.btn-delete-mix {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .btn-delete-mix:hover {
+    color: crimson;
+  }
+
+  .btn-delete-mix span {
+    font-size: 20px;
+  }
+
+  .material-symbols-outlined.btn-delete-mix {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+
 .span-soon-mymix {
-    background: linear-gradient(45deg, crimson, #FF5722);
+    background: linear-gradient(45deg, rgb(70, 96, 255), rgb(14, 204, 255));
+    color: black;
     padding: 2px 4px;
     border-radius: 2px;
     font-size: 14px;
@@ -186,6 +322,47 @@ body {
     justify-items: start;
     justify-content: center;
     min-height: max-content;
+}
+
+.clicked-mymix-container1 {
+    background: #4e4e4e;
+    padding: 50px 20px;
+    border: 2px solid white;
+    border-radius: 8px;
+    position: relative;
+    margin-top: 30px;
+}
+
+.p-select-sounds {
+    display: none;
+    position: absolute;
+    background: white;
+    color: black;
+    padding: 5px 15px;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50px;
+    font-size: 18px;
+    width: max-content;
+}
+
+.btn-save-mymix{
+    display: none;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    padding: 6px 35px;
+    font-size: 16px;
+    cursor: pointer;
+    background: white;
+    border: none;
+    border-radius: 50px;
+}
+
+.btn-save-mymix:hover{
+    background: linear-gradient(45deg, rgb(70, 96, 255), rgb(14, 204, 255));
 }
 
 .div__volume-general {
@@ -266,7 +443,7 @@ body {
 
 .div-generals-controls-div-input {
     width: 250px;
-    background: #6d6d6d4d;
+    background: #383838;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -285,7 +462,7 @@ body {
 
 .div-generals-controls-btns {
     width: 250px;
-    background: #00000085;
+    background: #101010;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -328,7 +505,7 @@ body {
 .div-audioplayer-btn__p {
     width: 100%;
     height: 110px;
-    background: #6d6d6d4d;
+    background: #383838;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -377,7 +554,7 @@ body {
 .div-audioplayer-input {
     width: 100%;
     height: 70px;
-    background: #00000085;
+    background: #101010;
     display: flex;
     padding: 5px;
     justify-content: center;
@@ -533,6 +710,13 @@ body {
     background: transparent;
 }
 
+@media screen and (max-width:1030px) {
+
+    .section__ambiance {
+        width: 100%;
+    }
+}
+
 @media screen and (max-width:930px) {
 
     .container__ambiance {
@@ -555,7 +739,23 @@ body {
     }
 }
 
+@media screen and (max-width:800px) {
+
+    .group__my-mix,
+    .group__default-mix {
+        width: 50%;
+    }
+}
+
 @media screen and (max-width:700px) {
+
+    .popup-namemix{
+        width: 90%;
+    }
+
+    .popup-delete-div{
+        width: 90%;
+    }
 
     .container__ambiance {
         grid-template-columns: repeat(2, 180px);

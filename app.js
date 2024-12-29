@@ -1,3 +1,5 @@
+import { inject } from "https://cdn.jsdelivr.net/npm/@vercel/analytics";
+inject();
 const btnPlayPause = document.querySelectorAll(".btnplaypause");
 const divTopAudioPlayer = document.querySelectorAll(".div-audioplayer-btn__p");
 
@@ -52,6 +54,10 @@ function handlePlayAudio(e) {
   const btn = e.currentTarget;
   const audioPlayer = btn.closest(".audio-player");
   const songAudio = audioPlayer.querySelector(".audio-player-song");
+
+  if (activeMix && !MyMixArray.includes(songAudio) && activeMix === MyMixArray) {
+    deactivateMyMix();
+  }
 
   if (activeMix && !beachCampFireMix.includes(songAudio)) {
     // Si un son hors du mix est activé, désactiver le mix
@@ -377,21 +383,26 @@ btnSeaSideCity.addEventListener("click", () => triggerMix(seaSideCityMix, btnSea
 
 // Fonction : Désactiver le mix
 function deactivateMix() {
-  if (activeMix) {
-    activeMix.forEach((sound) => {
-      sound.pause();
-      sound.currentTime = 0;
-      const audioPlayer = sound.closest(".audio-player");
-      updateAudioPlayerUI(audioPlayer, false);
-    });
+   if (activeMix) {
+    if (activeMix === MyMixArray) {
+      deactivateMyMix();
+    } else {
+      // Code existant pour les autres mix
+      activeMix.forEach((sound) => {
+        sound.pause();
+        sound.currentTime = 0;
+        const audioPlayer = sound.closest(".audio-player");
+        updateAudioPlayerUI(audioPlayer, false);
+      });
 
-     btnBeachCampFire.classList.remove("beach-campfire-btn-clicked");
-     btnCalmStorm.classList.remove("calm-storm-btn-clicked");
-     btnSeaSideCity.classList.remove("seaside-city-btn-clicked");
+      btnBeachCampFire.classList.remove("beach-campfire-btn-clicked");
+      btnCalmStorm.classList.remove("calm-storm-btn-clicked");
+      btnSeaSideCity.classList.remove("seaside-city-btn-clicked");
 
-    listGeneralSounds = [];
-    activeSounds = [];
-    activeMix = null;
+      listGeneralSounds = [];
+      activeSounds = [];
+      activeMix = null;
+    }
   }
 }
 
@@ -435,4 +446,232 @@ function triggerLoad() {
   const divLoad = document.querySelector(".div-loading-page")
   divLoad.style.display = "none"
   divLoad.remove()
+
+  loadMyMixFromLocalStorage();
 }
+
+
+//My Mix
+// Ajout des fonctions de gestion du localStorage
+function saveMyMixToLocalStorage(mixName, mixSources) {
+  const myMixData = {
+    name: mixName,
+    sources: mixSources.map(audio => {
+      // Sauvegarder la classe audio spécifique (beach-audio, birds-audio, etc.)
+      return Array.from(audio.classList).find(cls => cls.endsWith('-audio'));
+    })
+  };
+  localStorage.setItem('myMixData', JSON.stringify(myMixData));
+}
+
+function loadMyMixFromLocalStorage() {
+  const savedMixData = localStorage.getItem('myMixData');
+  if (savedMixData) {
+    try {
+      const { name, sources } = JSON.parse(savedMixData);
+      btnMyMix.textContent = name;
+      
+      // Récréer MyMixArray avec les éléments audio correspondants
+      MyMixArray = sources
+        .map(className => document.querySelector(`.${className}`))
+        .filter(Boolean); // Filtrer les éléments null/undefined
+      
+      // Afficher le bouton de suppression si le mix existe
+      if (MyMixArray.length > 0) {
+        btnDeleteMix.style.display = 'block';
+      }
+      
+      return true;
+    } catch (error) {
+      console.error('Error loading mix:', error);
+      clearMyMixFromLocalStorage();
+      return false;
+    }
+  }
+  return false;
+}
+
+function clearMyMixFromLocalStorage() {
+  localStorage.removeItem('myMixData');
+  btnMyMix.textContent = "Create Your Mix";
+  MyMixArray = [];
+  btnDeleteMix.style.display = 'none';
+}
+
+
+let MyMixArray = [];
+let isMyMixActive = false;
+const btnMyMix = document.querySelector(".btn__my-mix")
+const btnSaveMyMix = document.querySelector(".btn-save-mymix")
+const containerAmbiance = document.querySelector(".container__ambiance")
+const pSelectSounds = document.querySelector(".p-select-sounds")
+
+btnMyMix.addEventListener("click", triggerMyMix1)
+
+function triggerMyMix1() {
+  if (activeMix) {
+    deactivateMix();
+    updateSoundsOnGeneralControls();
+    return;
+  }
+
+  if (btnMyMix.textContent.trim() !== "Create Your Mix") {
+    if (isMyMixActive) {
+      // Désactiver le mix
+      deactivateMyMix();
+    } else {
+      // Activer le mix
+      activateMyMix();
+    }
+  } else {
+    // Processus de création du mix
+    btnMyMix.classList.add("btn__my-mix-clicked");
+    containerAmbiance.classList.add("clicked-mymix-container1");
+    pSelectSounds.style.display = "block";
+    btnSaveMyMix.style.display = "block";
+    document.addEventListener("click", handleOutsideClick);
+  }
+}
+
+function activateMyMix() {
+  deactivateAllSounds();
+  
+  MyMixArray.forEach((sound) => {
+    sound.play();
+    const audioPlayer = sound.closest(".audio-player");
+    updateAudioPlayerUI(audioPlayer, true);
+
+    const input = audioPlayer.querySelector(".volumeControl__audioplayer");
+    input.value = 2;
+    handleVolumeControle({ currentTarget: input });
+
+    if (!listGeneralSounds.includes(sound)) {
+      listGeneralSounds.push(sound);
+    }
+  });
+
+  btnMyMix.classList.add("btn__my-mix-clicked");
+  activeMix = MyMixArray;
+  updateSoundsOnGeneralControls();
+}
+
+function deactivateMyMix() {
+  MyMixArray.forEach((sound) => {
+    sound.pause();
+    sound.currentTime = 0;
+    const audioPlayer = sound.closest(".audio-player");
+    updateAudioPlayerUI(audioPlayer, false);
+  });
+
+  btnMyMix.classList.remove("btn__my-mix-clicked");
+  activeMix = null;
+  listGeneralSounds = [];
+  activeSounds = [];
+  updateSoundsOnGeneralControls();
+}
+
+
+function handleOutsideClick(event) {
+  // Vérifie si le clic est en dehors de containerAmbiance
+  if (!containerAmbiance.contains(event.target) && event.target !== btnMyMix) {
+    btnMyMix.classList.remove("btn__my-mix-clicked")
+    containerAmbiance.classList.remove("clicked-mymix-container1")
+    pSelectSounds.style.display = "none";
+    btnSaveMyMix.style.display = "none";
+    // Retirer l'écouteur une fois que l'action est effectuée
+    document.removeEventListener("click", handleOutsideClick);
+  }
+}
+
+btnSaveMyMix.addEventListener("click", triggerBtnSave)
+function triggerBtnSave() {
+  MyMixArray = [...listGeneralSounds]; // Créer une copie de listGeneralSounds
+  
+  if (MyMixArray.length > 0) {
+    triggerNameMix();
+    btnDeleteMix.style.display = 'block';
+  }
+  
+  btnMyMix.classList.remove("btn__my-mix-clicked");
+  containerAmbiance.classList.remove("clicked-mymix-container1");
+  pSelectSounds.style.display = "none";
+  btnSaveMyMix.style.display = "none";
+  
+  deactivateAllSounds();
+  updateSoundsOnGeneralControls();
+}
+
+const popupNameMix = document.querySelector(".popup-namemix")
+function triggerNameMix() {
+popupNameMix.style.display = "flex"
+}
+
+const formNameMix = document.querySelector(".form-namemix")
+formNameMix.addEventListener("submit", triggerSubmitNameMix)
+function triggerSubmitNameMix(e){
+  e.preventDefault()
+  let inputValue = document.querySelector(".input-namemix").value;
+  console.log(inputValue);
+  
+  if (inputValue.trim() === "") {
+    inputValue = "Custom Mix";
+  }
+  btnMyMix.textContent = inputValue;
+  popupNameMix.style.display = "none"
+  
+  saveMyMixToLocalStorage(inputValue, MyMixArray);
+  btnDeleteMix.style.display = 'block';
+
+  updateSoundsOnGeneralControls()
+}
+
+const pMyMix = document.querySelector('.p__my-mix');
+// Ajouter un bouton de suppression du mix
+const btnDeleteMix = document.createElement('button');
+btnDeleteMix.className = 'btn-delete-mix material-symbols-outlined';
+btnDeleteMix.textContent = 'manufacturing';
+btnDeleteMix.setAttribute('translate', 'no');
+// Insérer le bouton après btnMyMix
+pMyMix.parentNode.insertBefore(btnDeleteMix, pMyMix.nextSibling);
+btnDeleteMix.style.display = 'none';
+
+btnDeleteMix.addEventListener('click', (e) => {
+  e.stopPropagation(); // Empêcher la propagation au document
+  // if (confirm('Are you sure you want to delete this mix?')) {
+  //   clearMyMixFromLocalStorage();
+  //   deactivateMyMix();
+  // }
+
+  const btnPopUPDeleteYes = document.querySelector(".btn-popop-delete__yes")
+  const btnPopUPDeleteNo = document.querySelector(".btn-popop-delete__no")
+  const popUpDeleteDiv = document.querySelector(".popup-delete-div")
+  popUpDeleteDiv.style.display = "flex"
+
+  // Ajouter un gestionnaire pour le bouton "Oui"
+  btnPopUPDeleteYes.addEventListener('click', () => {
+    clearMyMixFromLocalStorage(); // Supprimer le mix du stockage local
+    deactivateMyMix(); // Désactiver le mix actif
+    popUpDeleteDiv.style.display = "none"; // Fermer la popup
+  });
+
+  // Ajouter un gestionnaire pour le bouton "Non"
+  btnPopUPDeleteNo.addEventListener('click', () => {
+    popUpDeleteDiv.style.display = "none"; // Fermer la popup sans rien faire
+  });
+
+});
+
+window.addEventListener('error', (e) => {
+  if (e.target.tagName === 'AUDIO') {
+    console.warn('Audio source not available:', e.target);
+    // Supprimer l'audio non disponible du mix
+    MyMixArray = MyMixArray.filter(audio => audio !== e.target);
+    if (MyMixArray.length === 0) {
+      clearMyMixFromLocalStorage();
+      btnDeleteMix.style.display = 'none';
+    } else {
+      // Mettre à jour le storage avec les sources restantes
+      saveMyMixToLocalStorage(btnMyMix.textContent, MyMixArray);
+    }
+  }
+}, true);
