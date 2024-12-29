@@ -322,6 +322,7 @@ body {
     justify-items: start;
     justify-content: center;
     min-height: max-content;
+    transition: 0.2s ease-out;
 }
 
 .clicked-mymix-container1 {
