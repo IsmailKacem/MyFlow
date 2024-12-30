@@ -519,14 +519,12 @@ function triggerMyMix1() {
 
   if (btnMyMix.textContent.trim() !== "Create Your Mix") {
     if (isMyMixActive) {
-      // Désactiver le mix
       deactivateMyMix();
     } else {
-      // Activer le mix
       activateMyMix();
     }
   } else {
-    // Processus de création du mix
+    // Container select your sounds
     btnMyMix.classList.add("btn__my-mix-clicked");
     containerAmbiance.classList.add("clicked-mymix-container1");
     pSelectSounds.style.display = "block";
@@ -574,7 +572,7 @@ function deactivateMyMix() {
 
 
 function handleOutsideClick(event) {
-  // Vérifie si le clic est en dehors de containerAmbiance
+  // Vérifie si le clic est en dehors du container select sounds
   if (!containerAmbiance.contains(event.target) && event.target !== btnMyMix) {
     btnMyMix.classList.remove("btn__my-mix-clicked")
     containerAmbiance.classList.remove("clicked-mymix-container1")
@@ -587,7 +585,7 @@ function handleOutsideClick(event) {
 
 btnSaveMyMix.addEventListener("click", triggerBtnSave)
 function triggerBtnSave() {
-  MyMixArray = [...listGeneralSounds]; // Créer une copie de listGeneralSounds
+  MyMixArray = [...listGeneralSounds];
   
   if (MyMixArray.length > 0) {
     triggerNameMix();
@@ -627,8 +625,8 @@ function triggerSubmitNameMix(e){
   updateSoundsOnGeneralControls()
 }
 
+// Ajouter un bouton delete mix
 const pMyMix = document.querySelector('.p__my-mix');
-// Ajouter un bouton de suppression du mix
 const btnDeleteMix = document.createElement('button');
 btnDeleteMix.className = 'btn-delete-mix material-symbols-outlined';
 btnDeleteMix.textContent = 'manufacturing';
@@ -640,30 +638,28 @@ btnDeleteMix.style.display = 'none';
 btnDeleteMix.addEventListener("click", triggerBtnDeleteMyMix)
 
 function triggerBtnDeleteMyMix (e) {
-  e.stopPropagation(); // Empêcher la propagation au document
+  e.stopPropagation();
 
   const btnPopUPDeleteYes = document.querySelector(".btn-popop-delete__yes")
   const btnPopUPDeleteNo = document.querySelector(".btn-popop-delete__no")
   const popUpDeleteDiv = document.querySelector(".popup-delete-div")
   popUpDeleteDiv.style.display = "flex"
 
-  // Ajouter un gestionnaire pour le bouton "Oui"
   btnPopUPDeleteYes.addEventListener('click', () => {
-    clearMyMixFromLocalStorage(); // Supprimer le mix du stockage local
-    deactivateMyMix(); // Désactiver le mix actif
-    popUpDeleteDiv.style.display = "none"; // Fermer la popup
+    clearMyMixFromLocalStorage();
+    deactivateMyMix();
+    popUpDeleteDiv.style.display = "none";
   });
 
-  // Ajouter un gestionnaire pour le bouton "Non"
   btnPopUPDeleteNo.addEventListener('click', () => {
-    popUpDeleteDiv.style.display = "none"; // Fermer la popup sans rien faire
+    popUpDeleteDiv.style.display = "none";
   });
 
    // Fermer la popup si l'utilisateur clique en dehors
    document.addEventListener('click', (event) => {
     // Vérifie si le clic est à l'extérieur de la popup
     if (!popUpDeleteDiv.contains(event.target) && popUpDeleteDiv.style.display === "flex") {
-      popUpDeleteDiv.style.display = "none"; // Fermer la popup
+      popUpDeleteDiv.style.display = "none";
     }
   });
 
