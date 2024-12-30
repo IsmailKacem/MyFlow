@@ -483,6 +483,10 @@ body {
     cursor: pointer;
 }
 
+.btn-generals-controls-for-input:hover {
+    opacity: 0.7;
+}
+
 /* audio player  */
 .audio-player {
     width: 180px;
@@ -498,19 +502,12 @@ body {
     transition: 0.3s cubic-bezier(0.14, 0.73, 0.58, 1);
 }
 
-/* .audio-player:hover {
-    transform: translate(-5px, -5px);
-    box-shadow: 5px 5px 0 0 #282A2C;
-} */
-
 .audio-player:hover .div-audioplayer-btn__p {
     background: #606265;
 }
 .audio-player:hover .div-audioplayer-input {
     background: #313437;
 }
-
-
 
 .div-audioplayer-btn__p {
     width: 100%;
