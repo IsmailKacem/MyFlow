@@ -425,12 +425,12 @@ function updateAudioPlayerUI(audioPlayer, isPlaying) {
   if (isPlaying) {
     spanPlayPause.textContent = "pause";
     divIcon.style.background = "#ffffffe3";
-    divIcon.style.color = "#1e1d1d";
+    divIcon.style.color = "#282a2c";
     audioPlayer.classList.add("clicked-audioplayer");
     activeSounds.push(nameSound)
   } else {
     spanPlayPause.textContent = "play_arrow";
-    divIcon.style.background = "#00000085";
+    divIcon.style.background = "#282a2c";
     divIcon.style.color = "white";
     audioPlayer.classList.remove("clicked-audioplayer");
     activeSounds = activeSounds.filter((sound) => sound !== nameSound);
