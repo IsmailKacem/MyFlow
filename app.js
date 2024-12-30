@@ -430,7 +430,10 @@ function updateAudioPlayerUI(audioPlayer, isPlaying) {
     divIcon.style.color = "#282a2c";
     divAudioPlayerBtnP.classList.add("clicked-audioplayer-btn-p");
     divAudioPlayerInput.classList.add("clicked-audioplayer-input");
-    activeSounds.push(nameSound)
+ 
+     if (!activeSounds.includes(nameSound)) {
+      activeSounds.push(nameSound);
+    }
   } else {
     spanPlayPause.textContent = "play_arrow";
     divIcon.style.background = "#282a2c";
