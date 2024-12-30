@@ -633,12 +633,10 @@ btnDeleteMix.setAttribute('translate', 'no');
 pMyMix.parentNode.insertBefore(btnDeleteMix, pMyMix.nextSibling);
 btnDeleteMix.style.display = 'none';
 
-btnDeleteMix.addEventListener('click', (e) => {
+btnDeleteMix.addEventListener("click", triggerBtnDeleteMyMix)
+
+function triggerBtnDeleteMyMix (e) {
   e.stopPropagation(); // Empêcher la propagation au document
-  // if (confirm('Are you sure you want to delete this mix?')) {
-  //   clearMyMixFromLocalStorage();
-  //   deactivateMyMix();
-  // }
 
   const btnPopUPDeleteYes = document.querySelector(".btn-popop-delete__yes")
   const btnPopUPDeleteNo = document.querySelector(".btn-popop-delete__no")
@@ -657,7 +655,15 @@ btnDeleteMix.addEventListener('click', (e) => {
     popUpDeleteDiv.style.display = "none"; // Fermer la popup sans rien faire
   });
 
-});
+   // Fermer la popup si l'utilisateur clique en dehors
+   document.addEventListener('click', (event) => {
+    // Vérifie si le clic est à l'extérieur de la popup
+    if (!popUpDeleteDiv.contains(event.target) && popUpDeleteDiv.style.display === "flex") {
+      popUpDeleteDiv.style.display = "none"; // Fermer la popup
+    }
+  });
+
+};
 
 window.addEventListener('error', (e) => {
   if (e.target.tagName === 'AUDIO') {
