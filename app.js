@@ -421,18 +421,22 @@ function updateAudioPlayerUI(audioPlayer, isPlaying) {
   const spanPlayPause = audioPlayer.querySelector(".spanplaypause");
   const divIcon = audioPlayer.querySelector(".div-icon");
   const nameSound = audioPlayer.querySelector(".p-audioplayer").textContent;
+  const divAudioPlayerBtnP = audioPlayer.querySelector(".div-audioplayer-btn__p")
+  const divAudioPlayerInput = audioPlayer.querySelector(".div-audioplayer-input")
 
   if (isPlaying) {
     spanPlayPause.textContent = "pause";
     divIcon.style.background = "#ffffffe3";
     divIcon.style.color = "#282a2c";
-    audioPlayer.classList.add("clicked-audioplayer");
+    divAudioPlayerBtnP.classList.add("clicked-audioplayer-btn-p");
+    divAudioPlayerInput.classList.add("clicked-audioplayer-input");
     activeSounds.push(nameSound)
   } else {
     spanPlayPause.textContent = "play_arrow";
     divIcon.style.background = "#282a2c";
     divIcon.style.color = "white";
-    audioPlayer.classList.remove("clicked-audioplayer");
+    divAudioPlayerBtnP.classList.remove("clicked-audioplayer-btn-p");
+    divAudioPlayerInput.classList.remove("clicked-audioplayer-input");
     activeSounds = activeSounds.filter((sound) => sound !== nameSound);
   }
 }
