@@ -675,8 +675,7 @@ body {
 }
 
 .link-social-footer:hover {
-    transform: translate(-3px, -3px);
-    box-shadow: 3px 3px 0 0 #adadadbd;
+    opacity: 0.6;
 }
 
 .logo-footer-IK {
