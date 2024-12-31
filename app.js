@@ -53,6 +53,21 @@ function handlePlayAudio(e) {
   const audioPlayer = btn.closest(".audio-player");
   const songAudio = audioPlayer.querySelector(".audio-player-song");
 
+    // Si des sons étaient précédemment actifs et qu'on active un nouveau son
+    if (previouslyActiveSounds.length > 0) {
+      // Désactiver tous les autres sons
+      previouslyActiveSounds.forEach(audio => {
+        if (audio !== songAudio) {
+          audio.pause();
+          const otherPlayer = audio.closest(".audio-player");
+          updateAudioPlayerUI(otherPlayer, false);
+        }
+      });
+      // Réinitialiser la liste des sons précédents
+      previouslyActiveSounds = [];
+      listGeneralSounds = [];
+    }
+
   if (activeMix && !MyMixArray.includes(songAudio) && activeMix === MyMixArray) {
     deactivateMyMix();
   }
@@ -197,6 +212,7 @@ function updateSoundsOnGeneralControls() {
   }
 }
 
+let previouslyActiveSounds = [];
 btnPlayPauseGeneral.addEventListener("click", handleBtnPlayPauseGeneral);
 
 function handleBtnPlayPauseGeneral() {
@@ -209,6 +225,7 @@ function handleBtnPlayPauseGeneral() {
   const isAnyPlaying = listGeneralSounds.some((audio) => !audio.paused);
 
   if (isAnyPlaying) {
+    previouslyActiveSounds = [...listGeneralSounds];
     // Mettre tous les sons en pause
     listGeneralSounds.forEach((audio) => {
       if (!audio.paused) {
@@ -222,14 +239,15 @@ function handleBtnPlayPauseGeneral() {
     spanPlayPauseGeneral.textContent = "play_arrow";
   } else {
     // Relancer tous les sons
-    listGeneralSounds.forEach((audio) => {
+    previouslyActiveSounds.forEach((audio) => {
       audio.play();
       const AudioPlayer = audio.closest(".audio-player");
       const spanAudioPlayer = AudioPlayer.querySelector(".spanplaypause");
       spanAudioPlayer.textContent = "pause";
     });
-
+    
     spanPlayPauseGeneral.textContent = "pause";
+    previouslyActiveSounds = [];
   } 
 
   setTimeout(() => {
