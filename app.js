@@ -572,11 +572,12 @@ function activateMyMix() {
 
   btnMyMix.classList.add("btn__my-mix-clicked");
   activeMix = MyMixArray;
+  isMyMixActive = true;
   updateSoundsOnGeneralControls();
 }
 
 function deactivateMyMix() {
-  MyMixArray.forEach((sound) => {
+  listGeneralSounds.forEach((sound) => {
     sound.pause();
     sound.currentTime = 0;
     const audioPlayer = sound.closest(".audio-player");
@@ -585,6 +586,7 @@ function deactivateMyMix() {
 
   btnMyMix.classList.remove("btn__my-mix-clicked");
   activeMix = null;
+  isMyMixActive = false;
   listGeneralSounds = [];
   activeSounds = [];
   updateSoundsOnGeneralControls();
