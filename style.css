@@ -313,7 +313,6 @@ body {
     box-shadow: 0 0 20px 0px #0069ff63;
 }
 .section__ambiance {
-    width: 90%;
     margin: 0 auto;
 }
 
@@ -329,8 +328,8 @@ body {
 }
 
 .clicked-mymix-container1 {
-    padding: 50px 20px;
-    border: 2px solid white;
+    padding: 50px;
+    border: 2px solid #838383;
     border-radius: 15px;
     position: relative;
     margin-top: 30px;
@@ -363,10 +362,26 @@ body {
     background: white;
     border: none;
     border-radius: 50px;
+    overflow: hidden;
+}
+.spansave {
+    position: relative;
+    z-index: 9999;
 }
 
-.btn-save-mymix:hover{
+.btn-save-mymix::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
     background: linear-gradient(45deg, rgb(70, 96, 255), rgb(14, 204, 255));
+    top: 101%;
+    left: 0;
+    transition: 0.2s cubic-bezier(0.49, 0.12, 0.58, 1);
+}
+
+.btn-save-mymix:hover.btn-save-mymix::before {
+    top: 0;
 }
 
 .div__volume-general {
@@ -728,8 +743,8 @@ body {
 
 @media screen and (max-width:1030px) {
 
-    .section__ambiance {
-        width: 100%;
+    .clicked-mymix-container1{
+        padding: 50px 20px;
     }
 }
 
