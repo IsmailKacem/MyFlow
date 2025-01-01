@@ -608,13 +608,15 @@ function handleOutsideClick(event) {
   }
 }
 
+const popupNameMix = document.querySelector(".popup-namemix")
+
 btnSaveMyMix.addEventListener("click", triggerBtnSave)
 function triggerBtnSave() {
   MyMixArray = [...listGeneralSounds];
   
   if (MyMixArray.length > 0) {
-    triggerNameMix();
-    btnDeleteMix.style.display = 'block';
+    popupNameMix.style.display = "flex"
+    // btnDeleteMix.style.display = 'block';
   }
   
   btnMyMix.classList.remove("btn__my-mix-clicked");
@@ -626,10 +628,6 @@ function triggerBtnSave() {
   updateSoundsOnGeneralControls();
 }
 
-const popupNameMix = document.querySelector(".popup-namemix")
-function triggerNameMix() {
-popupNameMix.style.display = "flex"
-}
 
 const formNameMix = document.querySelector(".form-namemix")
 formNameMix.addEventListener("submit", triggerSubmitNameMix)
