@@ -532,10 +532,9 @@ const pSelectSounds = document.querySelector(".p-select-sounds")
 btnMyMix.addEventListener("click", triggerMyMix1)
 
 function triggerMyMix1() {
-  if (activeMix) {
-    deactivateMix();
-    updateSoundsOnGeneralControls();
-    return;
+  if (listGeneralSounds.some(sound => !sound.paused)) {
+    deactivateAllSounds();
+    updateSoundsOnGeneralControls()
   }
 
   if (btnMyMix.textContent.trim() !== "Create Your Mix") {
