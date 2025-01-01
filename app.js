@@ -532,24 +532,27 @@ const pSelectSounds = document.querySelector(".p-select-sounds")
 btnMyMix.addEventListener("click", triggerMyMix1)
 
 function triggerMyMix1() {
-  if (listGeneralSounds.some(sound => !sound.paused)) {
-    deactivateAllSounds();
-    updateSoundsOnGeneralControls()
+  // si le mix n'est pas crée, supprime les sons actives et go
+  if (btnMyMix.textContent.trim() === "Create Your Mix") {
+    if (listGeneralSounds.some(sound => !sound.paused)) {
+      deactivateAllSounds();
+      updateSoundsOnGeneralControls()
+    }
+        // Container select activé
+        btnMyMix.classList.add("btn__my-mix-clicked");
+        containerAmbiance.classList.add("clicked-mymix-container1");
+        pSelectSounds.style.display = "block";
+        btnSaveMyMix.style.display = "block";
+        document.addEventListener("click", handleOutsideClick);
   }
 
-  if (btnMyMix.textContent.trim() !== "Create Your Mix") {
+  // sinon si le mix est crée active ou desactive le mix
+  else if (btnMyMix.textContent.trim() !== "Create Your Mix") {
     if (isMyMixActive) {
       deactivateMyMix();
     } else {
       activateMyMix();
     }
-  } else {
-    // Container select your sounds
-    btnMyMix.classList.add("btn__my-mix-clicked");
-    containerAmbiance.classList.add("clicked-mymix-container1");
-    pSelectSounds.style.display = "block";
-    btnSaveMyMix.style.display = "block";
-    document.addEventListener("click", handleOutsideClick);
   }
 }
 
