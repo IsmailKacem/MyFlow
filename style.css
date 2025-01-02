@@ -76,7 +76,7 @@ body {
     position: fixed;
     background: #0a0a0a99;
     width: 50%;
-    height: 25%;
+    height: 200px;
     z-index: 999;
     top: 45%;
     left: 50%;
@@ -114,7 +114,7 @@ body {
     border: 2px solid #333333;
     border-radius: 8px;
     width: 50%;
-    height: 25%;
+    height: 200px;
     z-index: 999;
     top: 45%;
     left: 50%;
