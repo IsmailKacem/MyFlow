@@ -549,6 +549,7 @@ function triggerMyMix1() {
 
   // sinon si le mix est crée active ou desactive le mix
   else if (btnMyMix.textContent.trim() !== "Create Your Mix") {
+    deactivateMix()
     if (isMyMixActive) {
       deactivateMyMix();
     } else {
