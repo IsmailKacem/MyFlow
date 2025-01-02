@@ -648,6 +648,12 @@ function triggerSubmitNameMix(e){
   updateSoundsOnGeneralControls()
 }
 
+const crossPopUpNameMix = document.querySelector(".crosspopup-namemix")
+crossPopUpNameMix.addEventListener("click", triggerCrossNameMix)
+function triggerCrossNameMix() {
+  popupNameMix.style.display = "none"
+}
+
 // Ajouter un bouton delete mix
 const pMyMix = document.querySelector('.p__my-mix');
 const btnDeleteMix = document.createElement('button');
