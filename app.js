@@ -541,7 +541,8 @@ function triggerMyMix1() {
         // Container select activé
         btnMyMix.classList.add("btn__my-mix-clicked");
         containerAmbiance.classList.add("clicked-mymix-container1");
-        pSelectSounds.style.display = "block";
+        pSelectSounds.style.transition = "0.3s ease-out";
+        pSelectSounds.style.transform = "translate(-50%, -50%) rotateX(0deg)";
         btnSaveMyMix.style.display = "block";
         document.addEventListener("click", handleOutsideClick);
   }
@@ -601,7 +602,8 @@ function handleOutsideClick(event) {
   if (!containerAmbiance.contains(event.target) && event.target !== btnMyMix) {
     btnMyMix.classList.remove("btn__my-mix-clicked")
     containerAmbiance.classList.remove("clicked-mymix-container1")
-    pSelectSounds.style.display = "none";
+    pSelectSounds.style.transition = "none";
+    pSelectSounds.style.transform = "translate(-50%, -50%) rotateX(90deg)";
     btnSaveMyMix.style.display = "none";
     // Retirer l'écouteur une fois que l'action est effectuée
     document.removeEventListener("click", handleOutsideClick);
@@ -616,12 +618,11 @@ function triggerBtnSave() {
   
   if (MyMixArray.length > 0) {
     popupNameMix.style.display = "flex"
-    // btnDeleteMix.style.display = 'block';
   }
   
   btnMyMix.classList.remove("btn__my-mix-clicked");
   containerAmbiance.classList.remove("clicked-mymix-container1");
-  pSelectSounds.style.display = "none";
+  pSelectSounds.style.transform = "translate(-50%, -50%) rotateX(90deg)";
   btnSaveMyMix.style.display = "none";
   
   deactivateAllSounds();

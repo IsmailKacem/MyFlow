@@ -343,6 +343,8 @@ body {
     justify-content: center;
     min-height: max-content;
     transition: 0.2s ease-out;
+
+    position: relative;
 }
 
 .clicked-mymix-container1 {
@@ -354,17 +356,17 @@ body {
 }
 
 .p-select-sounds {
-    display: none;
     position: absolute;
     background: white;
     color: black;
     padding: 5px 15px;
     top: 0;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) rotateX(90deg);
     border-radius: 50px;
     font-size: 18px;
     width: max-content;
+    transition: 0.3s ease-out;
 }
 
 .btn-save-mymix{
