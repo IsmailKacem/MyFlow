@@ -338,10 +338,18 @@ function triggerBtnAddGeneral() {
 
 
 function triggerMix(mixArray, buttonElement) {
-  // Desactivation de l'ancien mix si il existe
+  deactivateAllSounds();
+
+  // Desactivation de l'ancien mix si il existe et on rpl la func pr joué le mix
   if (activeMix && activeMix !== mixArray) {
     deactivateMix();
     updateSoundsOnGeneralControls();
+    setTimeout(() => {
+      // Continuer avec le nouveau mix
+      if (activeMix !== mixArray) {
+        triggerMix(mixArray, buttonElement);
+      }
+    }, 50);
     return;
   }
 
@@ -352,7 +360,6 @@ function triggerMix(mixArray, buttonElement) {
     return;
   }
 
-  deactivateAllSounds();
 
   // On joue les sons du mix
   mixArray.forEach((sound) => {
@@ -391,6 +398,13 @@ function triggerMix(mixArray, buttonElement) {
       }
     });
   });
+  // si reclique sur le mix apres avoir mis un son en pause relance le mix
+  setTimeout(() => {
+    // Continuer avec le nouveau mix
+    if (activeMix !== mixArray) {
+      triggerMix(mixArray, buttonElement);
+    }
+  }, 50);
 }
 
 const btnBeachCampFire = document.querySelector(".beach-campfire-btn");
