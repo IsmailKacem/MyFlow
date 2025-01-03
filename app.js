@@ -338,12 +338,14 @@ function triggerBtnAddGeneral() {
 
 
 function triggerMix(mixArray, buttonElement) {
+  // Desactivation de l'ancien mix si il existe
   if (activeMix && activeMix !== mixArray) {
     deactivateMix();
     updateSoundsOnGeneralControls();
     return;
   }
 
+  // Desactivation si le mix est cliqué à nouveau
   if (activeMix === mixArray) {
     deactivateMix();
     updateSoundsOnGeneralControls();
@@ -352,6 +354,7 @@ function triggerMix(mixArray, buttonElement) {
 
   deactivateAllSounds();
 
+  // On joue les sons du mix
   mixArray.forEach((sound) => {
     sound.play();
     const audioPlayer = sound.closest(".audio-player");
@@ -374,9 +377,11 @@ function triggerMix(mixArray, buttonElement) {
     } else if (mixArray === seaSideCityMix) {
       btnSeaSideCity.classList.add('seaside-city-btn-clicked');
     }
+
   activeMix = mixArray;
   updateSoundsOnGeneralControls();
 
+  // Si un des sons du mix est mis en pause on le desactive
   mixArray.forEach(sound => {
     sound.addEventListener("pause", () => {
       if (!isGeneralPause && mixArray.some(s => s.paused)) {
@@ -546,6 +551,13 @@ function triggerMyMix1() {
         btnSaveMyMix.style.display = "block";
         document.addEventListener("click", handleOutsideClick);
   }
+
+    // Desactivation si le mix est cliqué à nouveau
+    if (isMyMixActive) {
+      deactivateMyMix()
+      updateSoundsOnGeneralControls();
+      return;
+    }
 
   // sinon si le mix est crée active ou desactive le mix
   else if (btnMyMix.textContent.trim() !== "Create Your Mix") {
