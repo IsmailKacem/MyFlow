@@ -258,82 +258,58 @@ function handleBtnPlayPauseGeneral() {
 
 volumeGeneralInput.addEventListener("input", triggerVolumeGeneral);
 
-function triggerVolumeGeneral(e) {
-  volumeGeneralNumber = parseFloat(e.target.value);
-  // console.log(`volume general réglé à : ${volumeGeneralNumber * 100}%`);
 
+function triggerVolumeGeneral(e) {
+  const newVolume = parseFloat(e.target.value);
+  volumeGeneralNumber = newVolume;
+
+  // Appliquer le nouveau volume à tous les sons actifs
   listGeneralSounds.forEach((songAudio) => {
     const songId = songAudio.dataset.id;
     const individualVolume = userVolumes.get(songId) || 1.0;
-
-     // Vérifier si le volume individuel est à 0
-    if (songAudio.volume === 0) {
-      songAudio.volume = 0; // Le son reste désactivé
-      volumeGeneralNumber === 0;
-    } else {
-      songAudio.volume = individualVolume * volumeGeneralNumber; // Appliquer le volume ajusté
-    }
+    songAudio.volume = individualVolume * volumeGeneralNumber;
   });
 
-  if (volumeGeneralNumber === 0) {
+  // Mettre à jour l'icône de volume
+  updateVolumeIcon(newVolume);
+}
+
+function updateVolumeIcon(volume) {
+  if (volume === 0) {
     spanVolumeGeneral.textContent = "volume_off";
-  } else if (volumeGeneralNumber < 0.5) {
+  } else if (volume < 0.5) {
     spanVolumeGeneral.textContent = "volume_down";
-  } else if (volumeGeneralNumber >= 0.5) {
+  } else {
     spanVolumeGeneral.textContent = "volume_up";
   }
 }
-
-listGeneralSounds.forEach((songAudio, index) => {
-  songAudio.dataset.id = `audio-${index}`; // Ajout de l'ID unique
-  userVolumes.set(songAudio.dataset.id, 1.0); // Volume par défaut
-});
-
 
 const btnRemoveGeneral = document.querySelector(".btnremove-general");
 btnRemoveGeneral.addEventListener("click", triggerBtnRemoveGeneral);
 
 function triggerBtnRemoveGeneral() {
   const currentVolume = parseFloat(volumeGeneralInput.value);
-
   const newVolume = Math.max(0, currentVolume - 0.01);
+  
+  // Mettre à jour la valeur de l'input
   volumeGeneralInput.value = newVolume.toFixed(2);
-
-  listGeneralSounds.forEach((songAudio) => {
-    songAudio.volume = volumeGeneralInput.value;
-  });
-
-  if (currentVolume === 0) {
-    spanVolumeGeneral.textContent = "volume_off";
-  } else if (currentVolume < 0.5) {
-    spanVolumeGeneral.textContent = "volume_down";
-  } else if (currentVolume >= 0.5) {
-    spanVolumeGeneral.textContent = "volume_up";
-  }
-
+  
+  // Utiliser triggerVolumeGeneral pour appliquer les changements
+  triggerVolumeGeneral({ target: volumeGeneralInput });
 }
 
-
 const btnAddGeneral = document.querySelector(".btnadd-general");
-btnAddGeneral.addEventListener("click", triggerBtnAddGeneral)
+btnAddGeneral.addEventListener("click", triggerBtnAddGeneral);
 
 function triggerBtnAddGeneral() {
-    const currentVolume = parseFloat(volumeGeneralInput.value)
-
-    const newVolume = Math.max(0, currentVolume + 0.01)
-    volumeGeneralInput.value = newVolume.toFixed(2)
-
-    listGeneralSounds.forEach((songAudio) => {
-        songAudio.volume = volumeGeneralInput.value;
-      });
-
-      if (currentVolume === 0) {
-        spanVolumeGeneral.textContent = "volume_off";
-      } else if (currentVolume < 0.5) {
-        spanVolumeGeneral.textContent = "volume_down";
-      } else if (currentVolume >= 0.5) {
-        spanVolumeGeneral.textContent = "volume_up";
-      }
+  const currentVolume = parseFloat(volumeGeneralInput.value);
+  const newVolume = Math.min(1, currentVolume + 0.01);
+  
+  // Mettre à jour la valeur de l'input
+  volumeGeneralInput.value = newVolume.toFixed(2);
+  
+  // Utiliser triggerVolumeGeneral pour appliquer les changements
+  triggerVolumeGeneral({ target: volumeGeneralInput });
 }
 
 
@@ -560,8 +536,8 @@ function triggerMyMix1() {
         // Container select activé
         btnMyMix.classList.add("btn__my-mix-clicked");
         containerAmbiance.classList.add("clicked-mymix-container1");
-        pSelectSounds.style.transition = "0.3s ease-out";
         pSelectSounds.style.transform = "translate(-50%, -50%) rotateX(0deg)";
+        pSelectSounds.style.transition = "0.3s ease-out";
         btnSaveMyMix.style.display = "block";
         document.addEventListener("click", handleOutsideClick);
   }
@@ -629,8 +605,8 @@ function handleOutsideClick(event) {
   if (!containerAmbiance.contains(event.target) && event.target !== btnMyMix) {
     btnMyMix.classList.remove("btn__my-mix-clicked")
     containerAmbiance.classList.remove("clicked-mymix-container1")
-    pSelectSounds.style.transition = "none";
     pSelectSounds.style.transform = "translate(-50%, -50%) rotateX(90deg)";
+    pSelectSounds.style.transition = "none";
     btnSaveMyMix.style.display = "none";
     // Retirer l'écouteur une fois que l'action est effectuée
     document.removeEventListener("click", handleOutsideClick);
