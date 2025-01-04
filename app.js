@@ -305,10 +305,8 @@ function triggerBtnAddGeneral() {
   const currentVolume = parseFloat(volumeGeneralInput.value);
   const newVolume = Math.min(1, currentVolume + 0.01);
   
-  // Mettre à jour la valeur de l'input
   volumeGeneralInput.value = newVolume.toFixed(2);
   
-  // Utiliser triggerVolumeGeneral pour appliquer les changements
   triggerVolumeGeneral({ target: volumeGeneralInput });
 }
 
@@ -557,6 +555,13 @@ function triggerMyMix1() {
     } else {
       activateMyMix();
     }
+  }
+
+  if (activeMix) {
+    deactivateMix()
+    setTimeout(() => {
+        activateMyMix()
+    }, 50);
   }
 }
 
