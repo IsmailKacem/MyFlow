@@ -527,6 +527,13 @@ btnMyMix.addEventListener("click", triggerMyMix1)
 function triggerMyMix1() {
   // si le mix n'est pas crée, supprime les sons actives et go
   if (btnMyMix.textContent.trim() === "Create Your Mix") {
+
+     // Si le bouton est déjà en mode création, appeler handleOutsideClick
+     if (btnMyMix.classList.contains("btn__my-mix-clicked")) {
+      handleOutsideClick({ target: document.body });
+      return;
+    }
+    
     if (listGeneralSounds.some(sound => !sound.paused)) {
       deactivateAllSounds();
       updateSoundsOnGeneralControls()
