@@ -186,7 +186,6 @@ const btnAdd = document.querySelectorAll(".btnadd");
 btnAdd.forEach((btn) => {
   btn.addEventListener("click", handleBtnAdd);
 });
-
 function handleBtnAdd(e) {
   const btn = e.currentTarget;
   const audioPlayer = btn.closest(".audio-player");
@@ -195,6 +194,60 @@ function handleBtnAdd(e) {
   handleVolumeControle({ currentTarget: input });
 }
 
+// MouseDown volume individuel
+let setTimeoutBtnRemove;
+let intervalBtnRemove;
+let currentBtnRemove;
+btnRemove.forEach((btn) => {
+  btn.addEventListener("mousedown", handleBtnRemoveMouseDown);
+});
+function handleBtnRemoveMouseDown(e) {
+  e.preventDefault()
+  currentBtnRemove = e.currentTarget;
+      setTimeoutBtnRemove = setTimeout(() => {    
+      intervalBtnRemove = setInterval(() => {
+        const syntheticEvent = { currentTarget: currentBtnRemove };
+        handleBtnRemove(syntheticEvent)
+  }, 100);  
+  }, 200);
+}
+btnRemove.forEach((btn) => {
+  btn.addEventListener("mouseup", handleBtnRemoveMouseUp);
+  btn.addEventListener("mouseleave", handleBtnRemoveMouseUp);
+});
+function handleBtnRemoveMouseUp() {
+  clearInterval(intervalBtnRemove);
+  clearTimeout(setTimeoutBtnRemove);
+  currentBtnRemove = null;
+}
+
+
+let setTimeoutBtnAdd;
+let intervalBtnAdd;
+let currentBtnAdd;
+btnAdd.forEach((btn) => {
+  btn.addEventListener("mousedown", handleBtnAddMouseDown);
+});
+function handleBtnAddMouseDown(e) {
+  e.preventDefault()
+  currentBtnAdd = e.currentTarget;
+      setTimeoutBtnAdd = setTimeout(() => {    
+      intervalBtnAdd = setInterval(() => {
+        const syntheticEvent = { currentTarget: currentBtnAdd };
+        handleBtnAdd(syntheticEvent)
+  }, 100);  
+  }, 200);
+}
+btnAdd.forEach((btn) => {
+  btn.addEventListener("mouseup", handleBtnAddMouseUp);
+  btn.addEventListener("mouseleave", handleBtnAddMouseUp);
+});
+function handleBtnAddMouseUp() {
+  clearInterval(intervalBtnAdd);
+  clearTimeout(setTimeoutBtnAdd);
+  currentBtnAdd = null;
+}
+// MouseDown volume individuel END
 
 function updateSoundsOnGeneralControls() {
   if (activeSounds.length > 0) {
