@@ -314,6 +314,7 @@ function triggerBtnAddGeneral() {
 let intervalGeneralRemove;
 let setTimeoutGeneralRemove;
 btnRemoveGeneral.addEventListener("mousedown", handleMouseDownBtnRemove)
+btnRemoveGeneral.addEventListener("touchstart", handleMouseDownBtnRemove)
 function handleMouseDownBtnRemove(e) {
   e.preventDefault()
   setTimeoutGeneralRemove = setTimeout(() => {    
@@ -324,6 +325,7 @@ function handleMouseDownBtnRemove(e) {
 }
 
 btnRemoveGeneral.addEventListener("mouseup", handleMouseUpBtnRemove)
+btnRemoveGeneral.addEventListener("touchend", handleMouseUpBtnRemove)
 btnRemoveGeneral.addEventListener("mouseleave", handleMouseUpBtnRemove)
 function handleMouseUpBtnRemove() {
   clearInterval(intervalGeneralRemove);
@@ -334,6 +336,7 @@ function handleMouseUpBtnRemove() {
 let intervalGeneralAdd;
 let setTimeoutGeneralAdd;
 btnAddGeneral.addEventListener("mousedown", handleMouseDownBtnAdd)
+btnAddGeneral.addEventListener("touchstart", handleMouseDownBtnAdd)
 function handleMouseDownBtnAdd(e) {
   e.preventDefault()
   setTimeoutGeneralAdd = setTimeout(() => {    
@@ -344,6 +347,7 @@ function handleMouseDownBtnAdd(e) {
 }
 
 btnAddGeneral.addEventListener("mouseup", handleMouseUpBtnAdd)
+btnAddGeneral.addEventListener("touchend", handleMouseUpBtnAdd)
 btnAddGeneral.addEventListener("mouseleave", handleMouseUpBtnAdd)
 function handleMouseUpBtnAdd() {
   clearInterval(intervalGeneralAdd);
