@@ -310,6 +310,47 @@ function triggerBtnAddGeneral() {
   triggerVolumeGeneral({ target: volumeGeneralInput });
 }
 
+// MouseDown volume general
+let intervalGeneralRemove;
+let setTimeoutGeneralRemove;
+btnRemoveGeneral.addEventListener("mousedown", handleMouseDownBtnRemove)
+function handleMouseDownBtnRemove(e) {
+  e.preventDefault()
+  setTimeoutGeneralRemove = setTimeout(() => {    
+    intervalGeneralRemove = setInterval(() => {
+      triggerBtnRemoveGeneral()
+  }, 10);  
+  }, 200);
+}
+
+btnRemoveGeneral.addEventListener("mouseup", handleMouseUpBtnRemove)
+btnRemoveGeneral.addEventListener("mouseleave", handleMouseUpBtnRemove)
+function handleMouseUpBtnRemove() {
+  clearInterval(intervalGeneralRemove);
+  clearTimeout(setTimeoutGeneralRemove);
+}
+
+
+let intervalGeneralAdd;
+let setTimeoutGeneralAdd;
+btnAddGeneral.addEventListener("mousedown", handleMouseDownBtnAdd)
+function handleMouseDownBtnAdd(e) {
+  e.preventDefault()
+  setTimeoutGeneralAdd = setTimeout(() => {    
+    intervalGeneralAdd = setInterval(() => {
+      triggerBtnAddGeneral()
+  }, 10);  
+  }, 200);
+}
+
+btnAddGeneral.addEventListener("mouseup", handleMouseUpBtnAdd)
+btnAddGeneral.addEventListener("mouseleave", handleMouseUpBtnAdd)
+function handleMouseUpBtnAdd() {
+  clearInterval(intervalGeneralAdd);
+  clearTimeout(setTimeoutGeneralAdd);
+}
+// MouseDown volume general end
+
 
 function triggerMix(mixArray, buttonElement) {
   deactivateAllSounds();
