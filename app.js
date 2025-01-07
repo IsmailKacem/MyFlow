@@ -207,12 +207,13 @@ btnRemove.forEach((btn) => {
 function handleBtnRemoveMouseDown(e) {
   e.preventDefault()
   currentBtnRemove = e.currentTarget;
+  const delay = e.type === "touchstart" ? 400 : 200;
       setTimeoutBtnRemove = setTimeout(() => {    
       intervalBtnRemove = setInterval(() => {
         const syntheticEvent = { currentTarget: currentBtnRemove };
         handleBtnRemove(syntheticEvent)
   }, 100);  
-  }, 200);
+  }, delay);
 }
 btnRemove.forEach((btn) => {
   btn.addEventListener("mouseup", handleBtnRemoveMouseUp);
@@ -236,12 +237,13 @@ btnAdd.forEach((btn) => {
 function handleBtnAddMouseDown(e) {
   e.preventDefault()
   currentBtnAdd = e.currentTarget;
+  const delay = e.type === "touchstart" ? 400 : 200;
       setTimeoutBtnAdd = setTimeout(() => {    
       intervalBtnAdd = setInterval(() => {
         const syntheticEvent = { currentTarget: currentBtnAdd };
         handleBtnAdd(syntheticEvent)
   }, 100);  
-  }, 200);
+  }, delay);
 }
 btnAdd.forEach((btn) => {
   btn.addEventListener("mouseup", handleBtnAddMouseUp);
