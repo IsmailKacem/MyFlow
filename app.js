@@ -339,6 +339,7 @@ function updateVolumeIcon(volume) {
 
 const btnRemoveGeneral = document.querySelector(".btnremove-general");
 btnRemoveGeneral.addEventListener("click", triggerBtnRemoveGeneral);
+btnRemoveGeneral.addEventListener("touchstart", triggerBtnRemoveGeneral);
 
 function triggerBtnRemoveGeneral() {
   const currentVolume = parseFloat(volumeGeneralInput.value);
@@ -353,6 +354,7 @@ function triggerBtnRemoveGeneral() {
 
 const btnAddGeneral = document.querySelector(".btnadd-general");
 btnAddGeneral.addEventListener("click", triggerBtnAddGeneral);
+btnAddGeneral.addEventListener("touchstart", triggerBtnAddGeneral);
 
 function triggerBtnAddGeneral() {
   const currentVolume = parseFloat(volumeGeneralInput.value);
