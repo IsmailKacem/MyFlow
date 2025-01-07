@@ -172,6 +172,7 @@ const btnRemove = document.querySelectorAll(".btnremove");
 
 btnRemove.forEach((btn) => {
   btn.addEventListener("click", handleBtnRemove);
+  btn.addEventListener("touchstart", handleBtnRemove);
 });
 function handleBtnRemove(e) {
   const btn = e.currentTarget;
@@ -185,6 +186,7 @@ const btnAdd = document.querySelectorAll(".btnadd");
 
 btnAdd.forEach((btn) => {
   btn.addEventListener("click", handleBtnAdd);
+  btn.addEventListener("touchstart", handleBtnAdd);
 });
 function handleBtnAdd(e) {
   const btn = e.currentTarget;
@@ -200,6 +202,7 @@ let intervalBtnRemove;
 let currentBtnRemove;
 btnRemove.forEach((btn) => {
   btn.addEventListener("mousedown", handleBtnRemoveMouseDown);
+  btn.addEventListener("touchstart", handleBtnRemoveMouseDown);
 });
 function handleBtnRemoveMouseDown(e) {
   e.preventDefault()
@@ -213,6 +216,7 @@ function handleBtnRemoveMouseDown(e) {
 }
 btnRemove.forEach((btn) => {
   btn.addEventListener("mouseup", handleBtnRemoveMouseUp);
+  btn.addEventListener("touchend", handleBtnRemoveMouseUp);
   btn.addEventListener("mouseleave", handleBtnRemoveMouseUp);
 });
 function handleBtnRemoveMouseUp() {
@@ -227,6 +231,7 @@ let intervalBtnAdd;
 let currentBtnAdd;
 btnAdd.forEach((btn) => {
   btn.addEventListener("mousedown", handleBtnAddMouseDown);
+  btn.addEventListener("touchstart", handleBtnAddMouseDown);
 });
 function handleBtnAddMouseDown(e) {
   e.preventDefault()
@@ -240,6 +245,7 @@ function handleBtnAddMouseDown(e) {
 }
 btnAdd.forEach((btn) => {
   btn.addEventListener("mouseup", handleBtnAddMouseUp);
+  btn.addEventListener("touchend", handleBtnAddMouseUp);
   btn.addEventListener("mouseleave", handleBtnAddMouseUp);
 });
 function handleBtnAddMouseUp() {
