@@ -7,6 +7,8 @@ const btnPlayPauseGeneral = document.querySelector(".btnplaypause-general");
 const spanVolumeGeneral = document.querySelector(".spanvolume-general");
 const volumeGeneralInput = document.querySelector(".generals-controls-input");
 
+const bgNeonTop = document.querySelector(".bg-neon-top")
+
 const beachAudio = document.querySelector(".beach-audio")
 const birdsAudio = document.querySelector(".birds-audio")
 const fireAudio = document.querySelector(".fire-audio")
@@ -461,10 +463,13 @@ function triggerMix(mixArray, buttonElement) {
     // Ajouter la classe clicked au bon bouton
     if (mixArray === beachCampFireMix) {
       btnBeachCampFire.classList.add('beach-campfire-btn-clicked');
+      bgNeonTop.style.background = "linear-gradient(45deg, #ffeb3bd1, #e91e63d4)"
     } else if (mixArray === calmStormMix) {
       btnCalmStorm.classList.add('calm-storm-btn-clicked');
+      bgNeonTop.style.background = "linear-gradient(45deg, #9C27B0, #2196F3)"
     } else if (mixArray === seaSideCityMix) {
       btnSeaSideCity.classList.add('seaside-city-btn-clicked');
+      bgNeonTop.style.background = "linear-gradient(180deg, #00b8ff, #0756ff)"
     }
 
   activeMix = mixArray;
@@ -515,6 +520,8 @@ function deactivateMix() {
       btnBeachCampFire.classList.remove("beach-campfire-btn-clicked");
       btnCalmStorm.classList.remove("calm-storm-btn-clicked");
       btnSeaSideCity.classList.remove("seaside-city-btn-clicked");
+      bgNeonTop.style.background = "linear-gradient(90deg, #4660ff, #0eccff, #4660ff)"
+
 
       listGeneralSounds = [];
       activeSounds = [];
@@ -570,7 +577,7 @@ function triggerLoad() {
   const divLoad = document.querySelector(".div-loading-page")
   divLoad.style.display = "none"
   divLoad.remove()
-
+  document.body.style.overflow = "auto"
   loadMyMixFromLocalStorage();
 }
 
