@@ -689,6 +689,7 @@ function triggerMyMix1() {
 
 function activateMyMix() {
   deactivateAllSounds();
+  bgNeonTop.style.background = "white"
   
   MyMixArray.forEach((sound) => {
     sound.play();
@@ -718,6 +719,7 @@ function deactivateMyMix() {
     updateAudioPlayerUI(audioPlayer, false);
   });
 
+  bgNeonTop.style.background = "linear-gradient(90deg, #4660ff, #0eccff, #4660ff)"
   btnMyMix.classList.remove("btn__my-mix-clicked");
   activeMix = null;
   isMyMixActive = false;

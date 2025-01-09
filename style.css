@@ -282,6 +282,7 @@ body {
     background: white;
     color: black;
     background-image: url(assets/bg-mymix.png);
+    background-position: bottom;
 }
 
 .p__my-mix {
