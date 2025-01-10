@@ -347,6 +347,19 @@ function updateVolumeIcon(volume) {
   }
 }
 
+let previousVolume = 1.0;
+const btnIconVolumeGeneral = document.querySelector(".button-icon__generals-controls")
+btnIconVolumeGeneral.addEventListener("click", handleBtnIconVolumeGeneral)
+function handleBtnIconVolumeGeneral() {
+  if (volumeGeneralNumber > 0) {
+    previousVolume = volumeGeneralNumber;
+    volumeGeneralInput.value = 0;
+  } else {
+    volumeGeneralInput.value = previousVolume;
+  }
+  triggerVolumeGeneral({target : volumeGeneralInput})
+}
+
 const btnRemoveGeneral = document.querySelector(".btnremove-general");
 btnRemoveGeneral.addEventListener("click", triggerBtnRemoveGeneral);
 btnRemoveGeneral.addEventListener("touchstart", triggerBtnRemoveGeneral);
