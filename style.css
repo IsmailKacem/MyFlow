@@ -447,6 +447,8 @@ body {
 
 .material-symbols-outlined {
     font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    position: relative;
+    z-index: 2;
 }
 
 /* volume control general  */
@@ -579,6 +581,50 @@ body {
     align-items: center;
     justify-content: center;
     color: white;
+    position: relative;
+}
+
+.div-icon::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50px;
+    background: #282a2c;
+    z-index: 1;
+    opacity: 1;
+    box-shadow: 0 0 0 1px #282a2c;
+}
+
+.div-icon.hidden::after{
+    opacity: 0;
+}
+
+.circle--1 {
+    background: linear-gradient(0deg, #654ffe, #00e0fe);
+}
+.circle--2 {
+    background: linear-gradient(0deg, #ed5a60, #e095af);
+}
+.circle--3 {
+    background: linear-gradient(180deg, #FFC107, #F44336);
+}
+.circle--4 {
+    background: linear-gradient(37deg, #1f1c81, #9800ff);
+}
+.circle--5 {
+    background: linear-gradient(182deg, #4a64ea, #bb95db);
+}
+.circle--6 {
+    background: linear-gradient(45deg, #4fd0a7, #7d93ff);
+}
+.circle--7 {
+    background: linear-gradient(0deg, #009688, #CDDC39);
+}
+.circle--8 {
+    background: linear-gradient(180deg, #5789aa, #2c3e50);
 }
 
 .p-audioplayer {

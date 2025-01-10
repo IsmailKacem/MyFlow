@@ -552,8 +552,7 @@ function updateAudioPlayerUI(audioPlayer, isPlaying) {
 
   if (isPlaying) {
     spanPlayPause.textContent = "pause";
-    divIcon.style.background = "#ffffffe3";
-    divIcon.style.color = "#282a2c";
+    divIcon.classList.add("hidden");
     divAudioPlayerBtnP.classList.add("clicked-audioplayer-btn-p");
     divAudioPlayerInput.classList.add("clicked-audioplayer-input");
  
@@ -562,8 +561,7 @@ function updateAudioPlayerUI(audioPlayer, isPlaying) {
     }
   } else {
     spanPlayPause.textContent = "play_arrow";
-    divIcon.style.background = "#282a2c";
-    divIcon.style.color = "white";
+    divIcon.classList.remove("hidden");
     divAudioPlayerBtnP.classList.remove("clicked-audioplayer-btn-p");
     divAudioPlayerInput.classList.remove("clicked-audioplayer-input");
     activeSounds = activeSounds.filter((sound) => sound !== nameSound);
