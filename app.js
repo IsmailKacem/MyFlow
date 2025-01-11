@@ -457,7 +457,6 @@ function triggerMix(mixArray, buttonElement) {
     return;
   }
 
-
   // On joue les sons du mix
   mixArray.forEach((sound) => {
     sound.play();
@@ -535,7 +534,6 @@ function deactivateMix() {
       btnSeaSideCity.classList.remove("seaside-city-btn-clicked");
       bgNeonTop.style.background = "linear-gradient(90deg, #4660ff, #0eccff, #4660ff)"
 
-
       listGeneralSounds = [];
       activeSounds = [];
       activeMix = null;
@@ -551,7 +549,6 @@ function deactivateAllSounds() {
     const audioPlayer = sound.closest(".audio-player");
     updateAudioPlayerUI(audioPlayer, false);
   });
-
   listGeneralSounds = [];
   activeSounds = [];
 }
@@ -592,9 +589,7 @@ function triggerLoad() {
   loadMyMixFromLocalStorage();
 }
 
-
 //My Mix
-// Ajout des fonctions de gestion du localStorage
 function saveMyMixToLocalStorage(mixName, mixSources) {
   const myMixData = {
     name: mixName,
