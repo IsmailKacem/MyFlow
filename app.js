@@ -208,6 +208,7 @@ btnRemove.forEach((btn) => {
 });
 function handleBtnRemoveMouseDown(e) {
   e.preventDefault()
+  document.body.style.userSelect = "none";
   currentBtnRemove = e.currentTarget;
   const delay = e.type === "touchstart" ? 400 : 200;
       setTimeoutBtnRemove = setTimeout(() => {    
@@ -226,6 +227,7 @@ function handleBtnRemoveMouseUp() {
   clearInterval(intervalBtnRemove);
   clearTimeout(setTimeoutBtnRemove);
   currentBtnRemove = null;
+  document.body.style.userSelect = "auto";
 }
 
 
@@ -238,6 +240,7 @@ btnAdd.forEach((btn) => {
 });
 function handleBtnAddMouseDown(e) {
   e.preventDefault()
+  document.body.style.userSelect = "none";
   currentBtnAdd = e.currentTarget;
   const delay = e.type === "touchstart" ? 400 : 200;
       setTimeoutBtnAdd = setTimeout(() => {    
@@ -256,6 +259,7 @@ function handleBtnAddMouseUp() {
   clearInterval(intervalBtnAdd);
   clearTimeout(setTimeoutBtnAdd);
   currentBtnAdd = null;
+  document.body.style.userSelect = "auto";
 }
 // MouseDown volume individuel END
 
@@ -393,6 +397,7 @@ btnRemoveGeneral.addEventListener("mousedown", handleMouseDownBtnRemove)
 btnRemoveGeneral.addEventListener("touchstart", handleMouseDownBtnRemove)
 function handleMouseDownBtnRemove(e) {
   e.preventDefault()
+  document.body.style.userSelect = "none"
   const delay = e.type === "touchstart" ? 400 : 200;
   setTimeoutGeneralRemove = setTimeout(() => {    
     intervalGeneralRemove = setInterval(() => {
@@ -407,6 +412,7 @@ btnRemoveGeneral.addEventListener("mouseleave", handleMouseUpBtnRemove)
 function handleMouseUpBtnRemove() {
   clearInterval(intervalGeneralRemove);
   clearTimeout(setTimeoutGeneralRemove);
+  document.body.style.userSelect = "auto"
 }
 
 
@@ -416,6 +422,7 @@ btnAddGeneral.addEventListener("mousedown", handleMouseDownBtnAdd)
 btnAddGeneral.addEventListener("touchstart", handleMouseDownBtnAdd)
 function handleMouseDownBtnAdd(e) {
   e.preventDefault()
+  document.body.style.userSelect = "none";
   const delay = e.type === "touchstart" ? 400 : 200;
   setTimeoutGeneralAdd = setTimeout(() => {    
     intervalGeneralAdd = setInterval(() => {
@@ -430,6 +437,7 @@ btnAddGeneral.addEventListener("mouseleave", handleMouseUpBtnAdd)
 function handleMouseUpBtnAdd() {
   clearInterval(intervalGeneralAdd);
   clearTimeout(setTimeoutGeneralAdd);
+  document.body.style.userSelect = "auto";
 }
 // MouseDown volume general end
 
