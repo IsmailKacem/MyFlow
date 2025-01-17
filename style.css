@@ -299,15 +299,15 @@ body {
     transition: background-color 0.3s;
 }
 
-  .btn-delete-mix:hover {
+.btn-delete-mix:hover {
     color: crimson;
 }
 
-  .btn-delete-mix span {
+.btn-delete-mix span {
     font-size: 20px;
 }
 
-  .material-symbols-outlined.btn-delete-mix {
+.material-symbols-outlined.btn-delete-mix {
     font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
 }
 
@@ -526,6 +526,7 @@ body {
     border: none;
     color: white;
     cursor: pointer;
+    user-select: none;
 }
 
 .btn-generals-controls-for-input:hover {
@@ -698,6 +699,7 @@ body {
     display: flex;
     width: 90%;
     justify-content: space-evenly;
+    user-select: none;
 }
 
 .btn-audioplayer-input {

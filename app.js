@@ -261,9 +261,7 @@ function handleBtnAddMouseUp() {
 
 function updateSoundsOnGeneralControls() {
   if (activeSounds.length > 0) {
-    PSoundsOnGeneralControls.textContent = `Sounds On : ${activeSounds.join(
-      ", "
-    )}`;
+    PSoundsOnGeneralControls.textContent = `Sounds On : ${activeSounds.join(", ")}`;
     spanPlayPauseGeneral.textContent = "pause";
     PSoundsOnGeneralControls.style.background = "linear-gradient(45deg, rgb(70 96 255), rgb(14 204 255))";
     PSoundsOnGeneralControls.style.color = "black";
@@ -395,11 +393,12 @@ btnRemoveGeneral.addEventListener("mousedown", handleMouseDownBtnRemove)
 btnRemoveGeneral.addEventListener("touchstart", handleMouseDownBtnRemove)
 function handleMouseDownBtnRemove(e) {
   e.preventDefault()
+  const delay = e.type === "touchstart" ? 400 : 200;
   setTimeoutGeneralRemove = setTimeout(() => {    
     intervalGeneralRemove = setInterval(() => {
       triggerBtnRemoveGeneral()
   }, 10);  
-  }, 200);
+  }, delay);
 }
 
 btnRemoveGeneral.addEventListener("mouseup", handleMouseUpBtnRemove)
@@ -417,11 +416,12 @@ btnAddGeneral.addEventListener("mousedown", handleMouseDownBtnAdd)
 btnAddGeneral.addEventListener("touchstart", handleMouseDownBtnAdd)
 function handleMouseDownBtnAdd(e) {
   e.preventDefault()
+  const delay = e.type === "touchstart" ? 400 : 200;
   setTimeoutGeneralAdd = setTimeout(() => {    
     intervalGeneralAdd = setInterval(() => {
       triggerBtnAddGeneral()
   }, 10);  
-  }, 200);
+  }, delay);
 }
 
 btnAddGeneral.addEventListener("mouseup", handleMouseUpBtnAdd)
@@ -811,7 +811,7 @@ function triggerBtnDeleteMyMix (e) {
   const btnPopUPDeleteYes = document.querySelector(".btn-popop-delete__yes")
   const btnPopUPDeleteNo = document.querySelector(".btn-popop-delete__no")
   const popUpDeleteDiv = document.querySelector(".popup-delete-div")
-  popUpDeleteDiv.style.display = "flex"
+  popUpDeleteDiv.style.display = "flex";
 
   btnPopUPDeleteYes.addEventListener('click', () => {
     clearMyMixFromLocalStorage();
