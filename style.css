@@ -54,6 +54,14 @@ body {
 .container__navbar__header {
     color: white;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.img-logo-header {
+    width: 35px;
 }
 
 .h1__header {
