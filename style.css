@@ -62,6 +62,7 @@ body {
 
 .img-logo-header {
     width: 35px;
+    object-fit: contain;
 }
 
 .h1__header {
