@@ -756,7 +756,7 @@ function handleOutsideClick(event) {
   }
 }
 
-const popupNameMix = document.querySelector(".popup-namemix")
+const popupNameMix = document.querySelector(".popup-namemix__screen")
 
 btnSaveMyMix.addEventListener("click", triggerBtnSave)
 function triggerBtnSave() {
@@ -818,7 +818,8 @@ function triggerBtnDeleteMyMix (e) {
 
   const btnPopUPDeleteYes = document.querySelector(".btn-popop-delete__yes")
   const btnPopUPDeleteNo = document.querySelector(".btn-popop-delete__no")
-  const popUpDeleteDiv = document.querySelector(".popup-delete-div")
+  const popUpDeleteDiv = document.querySelector(".popup-delete-div__screen")
+  const popUpDeleteDivChild = document.querySelector(".popup-delete-div")
   popUpDeleteDiv.style.display = "flex";
 
   btnPopUPDeleteYes.addEventListener('click', () => {
@@ -834,7 +835,7 @@ function triggerBtnDeleteMyMix (e) {
    // Fermer la popup si l'utilisateur clique en dehors
    document.addEventListener('click', (event) => {
     // Vérifie si le clic est à l'extérieur de la popup
-    if (!popUpDeleteDiv.contains(event.target) && popUpDeleteDiv.style.display === "flex") {
+    if (!popUpDeleteDivChild.contains(event.target)) {
       popUpDeleteDiv.style.display = "none";
     }
   });
