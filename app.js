@@ -441,6 +441,390 @@ function handleMouseUpBtnAdd() {
 }
 // MouseDown volume general end
 
+const btnMixG = document.querySelector(".btnmix")
+const divMixs = document.querySelector(".div__mixs")
+
+btnMixG.addEventListener("click", handleBtnMixG)
+function handleBtnMixG() {
+  btnTimerPomodoro.classList.remove("clicked-mix-timer")
+  divModeTimer.style.display = "none";
+
+  btnMixG.classList.toggle("clicked-mix-timer")
+  
+  if (btnMixG.classList.contains("clicked-mix-timer")) {
+    divMixs.style.display = "flex";    
+  } else {
+    divMixs.style.display = "none";
+
+  }
+}
+
+const btnTimerPomodoro = document.querySelector(".btntimerpomodoro")
+const divModeTimer = document.querySelector(".div-mode-timer")
+btnTimerPomodoro.addEventListener("click", handleTimerPomodoroMode)
+function handleTimerPomodoroMode() {
+  btnMixG.classList.remove("clicked-mix-timer")
+  divMixs.style.display = "none";    
+
+  btnTimerPomodoro.classList.toggle("clicked-mix-timer")
+
+  if (btnTimerPomodoro.classList.contains("clicked-mix-timer")) {
+    divModeTimer.style.display = "flex";
+  } else {
+    divModeTimer.style.display = "none";
+
+  }
+  
+}
+
+const timerInput = document.getElementById('input-pomodoro-work');
+const timerInputs = document.querySelectorAll(".input-timer");
+
+
+class Pomodoro {
+  constructor(){
+    this.inputs = document.querySelectorAll(".input-timer");
+
+    this.checkNumber = this.checkNumber.bind(this);
+    this.addZero = this.addZero.bind(this);
+
+    this.inputs.forEach(input => {
+      input.addEventListener("input", this.checkNumber);
+      input.addEventListener("blur", this.addZero);
+  });
+
+  }
+
+  checkNumber(e) {
+    // Vérifie si c'est un nombre et s'il est entre 0 et 59
+    if (/^\d{1,2}$/.test(e.target.value) && parseInt(e.target.value) >= 0 && parseInt(e.target.value) <= 59) {
+     console.log(`Valeur valide: ${e.target.value}`);
+ 
+   } else if (parseInt(e.target.value) > 59) {
+     e.target.value = "59";
+ 
+   } else if (e.target.value >= 0 && e.target.value <= 9 && e.target.value !== "") {
+     e.target.value = e.target.value.padStart(2, "0");
+     // e.target.value = `0${e.target.value}`;
+   }
+    else {
+     // La valeur n'est pas valide, on peut la vider ou la réinitialiser
+     e.target.value = "";
+     console.log(`Valeur invalide: ${e.target.value}`);
+   }
+ }
+
+ addZero(e) {
+  if (e.target.value >= 0 && e.target.value <= 9 && e.target.value !== "") {
+    e.target.value = e.target.value.padStart(2, "0");
+    // e.target.value = `0${e.target.value}`;
+  }
+
+  else if (e.target.value === "") {
+    e.target.value = "00"
+  }
+}
+}
+
+const pomodoroTest = new Pomodoro()
+
+
+const btnPomodoro = document.querySelector(".btn-pomodoro")
+const btnSimpleTimer = document.querySelector(".btn-simpletimer")
+const divPomodoroScreen = document.querySelector(".div-pomodoro-screen")
+const divSimpleTimerScreen = document.querySelector(".div-simpletimer-screen")
+const btnsTimer = document.querySelectorAll(".btns-timer")
+
+btnPomodoro.classList.add("clicked-timer")
+
+btnsTimer.forEach(btn => {
+  btn.addEventListener("click", handleBtnTabsBg)
+})
+
+function handleBtnTabsBg(e) {
+
+  btnsTimer.forEach((btn) => {
+    btn.classList.remove("clicked-timer");
+  });
+
+  e.target.classList.add("clicked-timer");
+
+  if (e.target.classList.contains("btn-pomodoro")) {    
+    divPomodoroScreen.style.display = "flex";
+    divSimpleTimerScreen.style.display = "none";
+
+  } else if (e.target.classList.contains("btn-simpletimer")) {
+    divSimpleTimerScreen.style.display = "flex";
+    divPomodoroScreen.style.display = "none";
+  }
+  }
+
+  const inputTimerHours = document.querySelector(".input-timer-hours")
+  inputTimerHours.addEventListener("input", checkNumberSimpleTimer)
+  function checkNumberSimpleTimer(e) {
+    // Vérifie si c'est un nombre et s'il est entre 0 et 59
+    if (/^\d{1,2}$/.test(e.target.value) && parseInt(e.target.value) >= 0 && parseInt(e.target.value) <= 99) {
+     console.log(`Valeur valide: ${e.target.value}`);
+ 
+   } else if (parseInt(e.target.value) > 99) {
+     e.target.value = "99";
+ 
+   } else if (e.target.value >= 0 && e.target.value <= 9 && e.target.value !== "") {
+     e.target.value = e.target.value.padStart(2, "0");
+     // e.target.value = `0${e.target.value}`;
+   }
+    else {
+     // La valeur n'est pas valide, on peut la vider ou la réinitialiser
+     e.target.value = "";
+     console.log(`Valeur invalide: ${e.target.value}`);
+   }
+ }
+
+ inputTimerHours.addEventListener("blur", addZeroSimpleTimer)
+ function addZeroSimpleTimer(e) {
+  if (e.target.value >= 0 && e.target.value <= 9 && e.target.value !== "") {
+    e.target.value = e.target.value.padStart(2, "0");
+    // e.target.value = `0${e.target.value}`;
+  }
+
+  else if (e.target.value === "") {
+    e.target.value = "00"
+  }
+}
+
+
+class StartBtn {
+  constructor() {
+
+    this.initialMinutes = 25;
+    this.initialSecondes = 0;
+
+    this.initialMinutesBreak = 5;
+    this.initialSecondesBreak = 0;
+
+    this.initialHoursTimer = 1;
+    this.initialMinutesTimer = 0;
+    this.initialSecondesTimer = 0;
+
+    this.interval = null;
+    this.intervalBreak = null;
+    this.intervalTimer = null;
+    this.isRunning = false;
+
+    this.minutesPomodoro = document.querySelector(".minutes-pomodoro")
+    this.secondesPomodoro = document.querySelector(".secondes-pomodoro")
+    this.minutesPomodoroBreak = document.querySelector(".minutes-pomodoro-break")
+    this.secondesPomodoroBreak = document.querySelector(".secondes-pomodoro-break")
+    this.hoursTimer = document.querySelector(".hours-simpletimer")
+    this.minutesTimer = document.querySelector(".minutes-simpletimer")
+    this.secondesTimer = document.querySelector(".secondes-simpletimer")
+    this.btnStart = document.querySelector(".btn-timer-start")
+    this.btnVoicesBottom = document.querySelector(".btn-voice")
+    
+    this.btnPomodoro = document.querySelector(".btn-pomodoro");
+    this.btnSimpleTimer = document.querySelector(".btn-simpletimer");
+
+    this.handlePomodoroAndTimer = this.handlePomodoroAndTimer.bind(this);
+    this.breakTime = this.breakTime.bind(this);
+    this.resetTimer = this.resetTimer.bind(this);
+    this.btnVoices = this.btnVoices.bind(this);
+    this.voiceWork = this.voiceWork.bind(this);
+    this.voiceBreak = this.voiceBreak.bind(this);
+    this.voiceTimer = this.voiceTimer.bind(this);
+
+    this.btnStart.addEventListener("click", this.handlePomodoroAndTimer);
+    this.btnVoicesBottom.addEventListener("click", this.btnVoices);
+  }
+
+  resetTimer() {
+    document.title = "MyFlow"
+    clearInterval(this.interval)
+    clearInterval(this.intervalBreak)
+    clearInterval(this.intervalTimer)
+    this.isRunning = false;
+
+    // Restaurer les valeurs de work
+    this.minutesPomodoro.value = String(this.initialMinutes).padStart(2, '0');
+    this.secondesPomodoro.value = String(this.initialSecondes).padStart(2, '0');
+
+     // Restauration des valeurs de break
+    this.minutesPomodoroBreak.value = String(this.initialMinutesBreak).padStart(2, '0');
+    this.secondesPomodoroBreak.value = String(this.initialSecondesBreak).padStart(2, '0');
+
+    this.hoursTimer.value = String(this.initialHoursTimer).padStart(2, '0');
+    this.minutesTimer.value = String(this.initialMinutesTimer).padStart(2, '0');
+    this.secondesTimer.value = String(this.initialSecondesTimer).padStart(2, '0');
+    
+    this.btnStart.textContent = "Start";
+    this.btnStart.classList.remove("clicked-btn-start");
+  }
+
+  handlePomodoroAndTimer() {
+
+    if (this.isRunning) {
+      this.resetTimer();
+      return
+    }
+
+    this.isRunning = true
+    this.btnStart.textContent = "Stop";
+    this.btnStart.classList.add("clicked-btn-start")
+
+    if (this.btnPomodoro.classList.contains("clicked-timer")) {
+      console.log("pomodoro a la class");
+
+      this.voiceWork()
+      this.initialMinutes = parseInt(this.minutesPomodoro.value)
+      this.initialSecondes = parseInt(this.secondesPomodoro.value)
+
+      let minutes = this.initialMinutes
+      let secondes = this.initialSecondes
+    
+      this.interval = setInterval(() => {
+        if (secondes > 0) {
+          secondes--;
+        } else if (minutes > 0) {
+          minutes--;
+          secondes = 59;
+        } else {
+          // Timer terminé
+          clearInterval(this.interval);
+          // Restaurer les valeurs initiales
+          this.minutesPomodoro.value = String(this.initialMinutes).padStart(2, '0');
+          this.secondesPomodoro.value = String(this.initialSecondes).padStart(2, '0');
+          this.breakTime()
+          return;
+        }
+        
+        // Mise à jour de l'affichage
+        this.minutesPomodoro.value = String(minutes).padStart(2, '0');
+        this.secondesPomodoro.value = String(secondes).padStart(2, '0');
+        document.title = `${this.minutesPomodoro.value}:${this.secondesPomodoro.value} (Work) - MyFlow`;
+        
+      }, 1000);
+      
+  
+    } else if (this.btnSimpleTimer.classList.contains("clicked-timer")) {
+      console.log("btn-simpletimer a la class");
+
+      
+      this.initialHoursTimer = parseInt(this.hoursTimer.value)
+      this.initialMinutesTimer = parseInt(this.minutesTimer.value)
+      this.initialSecondesTimer = parseInt(this.secondesTimer.value)
+
+      let hoursT = this.initialHoursTimer;
+      let minutesT = this.initialMinutesTimer;
+      let secondesT = this.initialSecondesTimer;
+
+      this.intervalTimer = setInterval(() => {
+
+        if (secondesT > 0) {
+          secondesT--
+        } else if (minutesT > 0) {
+          minutesT--;
+          secondesT = 59;
+        } else if (hoursT > 0) {
+          hoursT--;
+          minutesT = 59;
+          secondesT = 59;
+        } else {
+          this.resetTimer();
+          this.hoursTimer.value = String(this.initialHoursTimer).padStart(2, '0');
+          this.minutesTimer.value = String(this.initialMinutesTimer).padStart(2, '0');
+          this.secondesTimer.value = String(this.initialSecondesTimer).padStart(2, '0');
+          this.voiceTimer();
+          return;
+        }
+
+        // Mise à jour de l'affichage
+        this.hoursTimer.value = String(hoursT).padStart(2, '0');
+        this.minutesTimer.value = String(minutesT).padStart(2, '0');
+        this.secondesTimer.value = String(secondesT).padStart(2, '0');
+        document.title = `${this.hoursTimer.value}:${this.minutesTimer.value}:${this.secondesTimer.value} - THE LAB`;
+      
+      }, 1000);
+    }
+  }
+
+  breakTime() {
+      this.isRunning = false;
+      this.voiceBreak();
+      this.initialMinutesBreak = parseInt(this.minutesPomodoroBreak.value)
+      this.initialSecondesBreak = parseInt(this.secondesPomodoroBreak.value)
+      
+      let minutesBreak = this.initialMinutesBreak
+      let secondesBreak = this.initialSecondesBreak
+  
+      this.intervalBreak = setInterval(() => {
+        if (secondesBreak > 0) {
+          secondesBreak--;
+        } else if (minutesBreak > 0) {
+          minutesBreak--;
+          secondesBreak = 59;
+        } else {
+          // Timer terminé
+          clearInterval(this.intervalBreak);
+          // Restaurer les valeurs initiales
+          this.minutesPomodoroBreak.value = String(this.initialMinutesBreak).padStart(2, '0');
+          this.secondesPomodoroBreak.value = String(this.initialSecondesBreak).padStart(2, '0');
+          this.handlePomodoroAndTimer()
+          return;
+        }
+        
+        // Mise à jour de l'affichage
+        this.minutesPomodoroBreak.value = String(minutesBreak).padStart(2, '0');
+        this.secondesPomodoroBreak.value = String(secondesBreak).padStart(2, '0');
+        document.title = `${this.minutesPomodoroBreak.value}:${this.secondesPomodoroBreak.value} (Break) - MyFlow`;
+      }, 1000);
+  }
+
+  voiceWork(){
+    const workSounds = ["assets/work1.mp3", "assets/work2.mp3"]
+    const randomWorkSound = workSounds[Math.floor(Math.random() * workSounds.length)];
+    const voiceWork = new Audio(randomWorkSound)
+    
+    if (this.btnVoicesBottom.classList.contains("muted")) {
+      voiceWork.pause();
+    } else {
+      voiceWork.play();
+    }
+  }
+  voiceBreak(){
+    const breakSounds = ["assets/break1.mp3", "assets/break2.mp3", "assets/break3.mp3"]
+    const randomBreakSound = breakSounds[Math.floor(Math.random() * breakSounds.length)]
+    const voiceBreak = new Audio(randomBreakSound)
+    
+    if (this.btnVoicesBottom.classList.contains("muted")) {
+      voiceBreak.pause();
+    } else {
+      voiceBreak.play();
+    }
+  }
+
+  voiceTimer(){
+    const timerSounds = ["assets/timer1.mp3", "assets/timer2.mp3"]
+    const randomTimerSound = timerSounds[Math.floor(Math.random() * timerSounds.length)]
+    const voiceTimer = new Audio(randomTimerSound)
+    
+    if (this.btnVoicesBottom.classList.contains("muted")) {
+      voiceTimer.pause();
+    } else {
+      voiceTimer.play();
+    }
+  }
+
+  btnVoices(){
+    this.btnVoicesBottom.classList.toggle("muted")
+
+    if (this.btnVoicesBottom.classList.contains("muted")) {
+      this.btnVoicesBottom.textContent = "Voices : OFF"
+    } else {
+      this.btnVoicesBottom.textContent = "Voices : ON"
+    }
+  }
+}
+
+const newStartBtn = new StartBtn();
 
 function triggerMix(mixArray, buttonElement) {
   deactivateAllSounds();
@@ -809,7 +1193,7 @@ btnDeleteMix.textContent = 'manufacturing';
 btnDeleteMix.setAttribute('translate', 'no');
 // Insérer le bouton après btnMyMix
 pMyMix.parentNode.insertBefore(btnDeleteMix, pMyMix.nextSibling);
-btnDeleteMix.style.display = 'none';
+btnDeleteMix.style.display = 'flex';
 
 btnDeleteMix.addEventListener("click", triggerBtnDeleteMyMix)
 

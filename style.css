@@ -244,17 +244,51 @@ body {
 
 .section__mix {
     display: flex;
-    flex-direction: row;
-    align-items: flex-end;
-    justify-content: space-between;
+    flex-direction: column;
     margin: 0 auto;
-    gap: 10%;
     width: 90%;
     max-width: 795px;
     border-bottom: 1px solid #838383;
     padding-bottom: 15px;
+    gap: 10px;
 }
 
+.div-btns-mix-timer{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    flex-flow: row wrap;
+}
+
+.btntop {
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 50px;
+    border: none;
+    background: #3d3f42;
+    color: white;
+    cursor: pointer;
+}
+
+.btntop:hover {
+    opacity: 0.8;
+}
+
+.div__mixs {
+    display: none;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: center;
+    background: #282a2c;
+    border-radius: 20px;
+    padding: 15px;
+}
+
+.clicked-mix-timer {
+    color: #282a2c;
+    background: white;
+}
 .group__default-mix {
     width: max-content;
     display: flex;
@@ -390,6 +424,152 @@ body {
     border-radius: 15px;
     position: relative;
     margin-top: 30px;
+}
+
+.div-mode-timer {
+    background: #282a2c;
+    width: 100%;
+    height: max-content;
+    margin: 0 auto;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    color: white;
+    border-radius: 20px;
+}
+
+.div-btns-pomo-timer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 15px;
+}
+
+.btns-timer {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    background: #3D3F42;
+    color: white;
+}
+
+.btns-timer:hover {
+    opacity: 0.8;
+}
+.div-pomodoro-screen {
+    display: flex;
+    flex-flow: row nowrap;
+    padding: 20px;
+}
+
+.div-label-input{
+    display: flex;
+    flex-flow: column-reverse wrap;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+}
+
+.div-inputs-pomodoro {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+}
+
+.input-timer {
+    border: none;
+    background: none;
+    font-size: clamp(40px, 3.5vw, 50px);
+    width: 100%;
+    outline: none;
+    text-align: center;
+    color: white;
+}
+
+
+.p-pomodoro {
+    font-size: clamp(40px, 3.5vw, 50px);
+}
+
+.div-simpletimer-screen {
+    display: none;
+    flex-flow: row nowrap;
+    padding: 20px;
+}
+
+.div-input-simple-timer {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+    width: 230px;
+    margin: 0 auto;
+}
+
+.input-timer-hours {
+    border: none;
+    background: none;
+    font-size: clamp(40px, 3.5vw, 50px);
+    width: 100%;
+    outline: none;
+    text-align: center;
+    color: white;
+}
+
+.clicked-timer {
+    background: white;
+    color: #46494b;
+}
+
+.div-btn-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 15px 0;
+}
+
+.btn-voice {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    background: white;
+    color: #3d3f42;
+}
+
+.btn-voice:hover{
+    opacity: 0.8;
+}
+
+.muted {
+    background: #3d3f42;
+    color: white;
+}
+
+.btn-timer-start {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    background: #3d3f42;
+    color: white;
+}
+
+.btn-timer-start:hover {
+    opacity: 0.8;
+}
+
+.clicked-btn-start {
+    background: white;
+    color: #3d3f42;
 }
 
 .p-select-sounds {
@@ -897,9 +1077,19 @@ body {
     .group__default-mix {
         width: 50%;
     }
+
+    .div__mixs{
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
 }
 
 @media screen and (max-width:700px) {
+
+    .div-input-simple-timer {
+        width: 200px;
+    }
 
     .popup-namemix{
         width: 90%;
@@ -924,6 +1114,21 @@ body {
 }
 
 @media screen and (max-width:500px) {
+
+    .btntop {
+        flex-grow: 1;
+    }
+
+    .div-pomodoro-screen{
+        flex-flow: column nowrap;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .div-label-input{
+        width: 70%;
+    }
 
     .container__ambiance {
         display: flex;
@@ -971,7 +1176,7 @@ body {
     }
 
     .section__mix {
-        flex-direction: column-reverse;
+        flex-direction: column;
         gap: 15px;
     }
 
