@@ -463,6 +463,8 @@ body {
     display: flex;
     flex-flow: row nowrap;
     padding: 20px;
+    justify-content: center;
+    align-items: center;
 }
 
 .div-label-input{
@@ -470,7 +472,7 @@ body {
     flex-flow: column-reverse wrap;
     align-items: center;
     justify-content: center;
-    width: 50%;
+    width: 40%;
 }
 
 .div-inputs-pomodoro {
@@ -1089,6 +1091,10 @@ body {
 
     .div-input-simple-timer {
         width: 200px;
+    }
+
+    .div-label-input {
+        width: 50%;
     }
 
     .popup-namemix{
