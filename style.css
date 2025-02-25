@@ -255,7 +255,7 @@ body {
 
 .div-btns-mix-timer{
     display: flex;
-    gap: 10px;
+    gap: 15px;
     align-items: center;
     justify-content: center;
     flex-flow: row wrap;
@@ -414,7 +414,7 @@ body {
     justify-content: center;
     min-height: max-content;
     transition: 0.2s ease-out;
-
+    align-items: end;
     position: relative;
 }
 
