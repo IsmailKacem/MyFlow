@@ -740,7 +740,7 @@ class StartBtn {
         this.hoursTimer.value = String(hoursT).padStart(2, '0');
         this.minutesTimer.value = String(minutesT).padStart(2, '0');
         this.secondesTimer.value = String(secondesT).padStart(2, '0');
-        document.title = `${this.hoursTimer.value}:${this.minutesTimer.value}:${this.secondesTimer.value} - THE LAB`;
+        document.title = `${this.hoursTimer.value}:${this.minutesTimer.value}:${this.secondesTimer.value} - MyFlow`;
       
       }, 1000);
     }
