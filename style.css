@@ -1047,7 +1047,7 @@ body {
 @media screen and (min-width:1920px) {
 
     body{
-        font-size: 24px;
+        font-size: 20px;
     }
 
     .h1__header{
@@ -1160,6 +1160,10 @@ body {
 
     .footer-myflow {
         font-size: 16px;
+    }
+
+    .content-footer{
+        max-width: 1075px;
     }
 }
 
