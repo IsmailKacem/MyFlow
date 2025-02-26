@@ -262,7 +262,7 @@ body {
 }
 
 .btntop {
-    padding: 10px 15px;
+    padding: 10px 20px;
     font-size: 16px;
     border-radius: 50px;
     border: none;
@@ -1042,6 +1042,125 @@ body {
 
 .div-paypal-link:hover .paypal-link {
     background: transparent;
+}
+
+@media screen and (min-width:1920px) {
+
+    body{
+        font-size: 24px;
+    }
+
+    .h1__header{
+        font-size: 50px;
+    }
+
+    .img-logo-header{
+        width: 40px;
+    }
+
+    .section__mix{
+        max-width: 1075px;
+    }
+
+    .btntop {
+        padding: 15px 25px;
+        font-size: 20px;
+    }
+
+    .btn-mix{
+        font-size: 20px;
+        padding: 15px 25px;
+    }
+
+    .btns-timer {
+        padding: 15px 25px;
+        font-size: 20px;
+    }
+
+    .btn-timer-start{
+        padding: 15px 25px;
+        font-size: 20px;
+    }
+
+    .btn-voice{
+        padding: 15px 25px;
+        font-size: 20px;
+    }
+
+    .container__ambiance {
+        grid-template-columns: repeat(4, 250px);
+        grid-template-rows: repeat(3, 250px);
+    }
+
+    .div-generals-controls-div-input{
+        width: 300px;
+        padding: 20px 25px;
+    }
+
+    .div-generals-controls-btns{
+        width: 300px;
+    }
+
+    .btnadd-general .material-symbols-outlined {
+        font-size: 34px;
+    }
+
+    .btnremove-general .material-symbols-outlined {
+        font-size: 34px;
+    }
+
+    .btnplaypause-general .material-symbols-outlined {
+        font-size: 34px;
+    }
+
+
+    .audio-player {
+        width: 250px;
+        height: 250px;
+        border-radius: 20px;
+    }
+
+    .div-audioplayer-btn__p{
+        height: 160px;
+    }
+
+    .div-icon{
+        width: 90px;
+        height: 90px;
+    }
+
+    .div-icon .material-symbols-outlined{
+        font-size: 30px;
+    }
+
+    .div-audioplayer-input{
+        height: 90px;
+        gap: 10px;
+    }
+    
+    .volumeControl__audioplayer{
+        height: 25px;
+    }
+
+    .span-vol-for-input.material-symbols-outlined {
+        font-size: 23px;
+    }
+
+    .btnadd .material-symbols-outlined {
+        font-size: 34px;
+    }
+
+    .btnremove .material-symbols-outlined {
+        font-size: 34px;
+    }
+
+    .btnplaypause .material-symbols-outlined {
+        font-size: 34px;
+    }
+
+    .footer-myflow {
+        font-size: 16px;
+    }
 }
 
 @media screen and (max-width:1030px) {
