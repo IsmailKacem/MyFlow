@@ -998,26 +998,38 @@ function loadMyMixFromLocalStorage() {
   if (savedMixData) {
     try {
       const { name, sources } = JSON.parse(savedMixData);
-      btnMyMix.textContent = name;
       
-      // Récréer MyMixArray avec les éléments audio correspondants
-      MyMixArray = sources
-        .map(className => document.querySelector(`.${className}`))
-        .filter(Boolean); // Filtrer les éléments null/undefined
-      
-      // Afficher le bouton de suppression si le mix existe
-      if (MyMixArray.length > 0) {
-        btnDeleteMix.style.display = 'block';
+      if (name && sources && sources.length > 0) {
+        btnMyMix.textContent = name;
+        
+        // Récréer MyMixArray avec les éléments audio correspondants
+        MyMixArray = sources
+          .map(className => document.querySelector(`.${className}`))
+          .filter(Boolean); // Filtrer les éléments null/undefined
+        
+        if (MyMixArray.length > 0) {
+          btnDeleteMix.style.display = 'block';
+        } else {
+          clearMyMixFromLocalStorage();
+        }
+        
+        return true;
+      } else {
+        clearMyMixFromLocalStorage();
+        return false;
       }
-      
-      return true;
     } catch (error) {
       console.error('Error loading mix:', error);
       clearMyMixFromLocalStorage();
       return false;
     }
+  } else {
+    // Initialisation explicite quand aucun mix n'existe
+    btnMyMix.textContent = "Create Your Mix";
+    MyMixArray = [];
+    btnDeleteMix.style.display = 'none';
+    return false;
   }
-  return false;
 }
 
 function clearMyMixFromLocalStorage() {
