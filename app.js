@@ -637,7 +637,7 @@ class StartBtn {
   }
 
   resetTimer() {
-    document.title = "MyFlow"
+    document.title = "MyFlow";
     clearInterval(this.interval)
     clearInterval(this.intervalBreak)
     clearInterval(this.intervalTimer)
@@ -660,6 +660,11 @@ class StartBtn {
   }
 
   handlePomodoroAndTimer() {
+
+    if (this.btnStart.textContent === "Stop") {
+      this.resetTimer();
+      return
+    }
 
     if (this.isRunning) {
       this.resetTimer();
