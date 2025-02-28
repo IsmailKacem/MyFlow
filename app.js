@@ -677,6 +677,8 @@ class StartBtn {
 
     if (this.btnPomodoro.classList.contains("clicked-timer")) {
       console.log("pomodoro a la class");
+      this.initialMinutesBreak = parseInt(this.minutesPomodoroBreak.value)
+      this.initialSecondesBreak = parseInt(this.secondesPomodoroBreak.value)
 
       this.voiceWork()
       this.initialMinutes = parseInt(this.minutesPomodoro.value)
