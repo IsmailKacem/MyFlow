@@ -498,7 +498,6 @@ class Pomodoro {
   checkNumber(e) {
     // Vérifie si c'est un nombre et s'il est entre 0 et 59
     if (/^\d{1,2}$/.test(e.target.value) && parseInt(e.target.value) >= 0 && parseInt(e.target.value) <= 59) {
-     console.log(`Valeur valide: ${e.target.value}`);
  
    } else if (parseInt(e.target.value) > 59) {
      e.target.value = "59";
@@ -510,7 +509,6 @@ class Pomodoro {
     else {
      // La valeur n'est pas valide, on peut la vider ou la réinitialiser
      e.target.value = "";
-     console.log(`Valeur invalide: ${e.target.value}`);
    }
  }
 
@@ -564,7 +562,6 @@ function handleBtnTabsBg(e) {
   function checkNumberSimpleTimer(e) {
     // Vérifie si c'est un nombre et s'il est entre 0 et 59
     if (/^\d{1,2}$/.test(e.target.value) && parseInt(e.target.value) >= 0 && parseInt(e.target.value) <= 99) {
-     console.log(`Valeur valide: ${e.target.value}`);
  
    } else if (parseInt(e.target.value) > 99) {
      e.target.value = "99";
@@ -576,7 +573,6 @@ function handleBtnTabsBg(e) {
     else {
      // La valeur n'est pas valide, on peut la vider ou la réinitialiser
      e.target.value = "";
-     console.log(`Valeur invalide: ${e.target.value}`);
    }
  }
 
@@ -676,7 +672,6 @@ class StartBtn {
     this.btnStart.classList.add("clicked-btn-start")
 
     if (this.btnPomodoro.classList.contains("clicked-timer")) {
-      console.log("pomodoro a la class");
       this.initialMinutesBreak = parseInt(this.minutesPomodoroBreak.value)
       this.initialSecondesBreak = parseInt(this.secondesPomodoroBreak.value)
 
@@ -712,8 +707,6 @@ class StartBtn {
       
   
     } else if (this.btnSimpleTimer.classList.contains("clicked-timer")) {
-      console.log("btn-simpletimer a la class");
-
       
       this.initialHoursTimer = parseInt(this.hoursTimer.value)
       this.initialMinutesTimer = parseInt(this.minutesTimer.value)
@@ -1184,7 +1177,6 @@ formNameMix.addEventListener("submit", triggerSubmitNameMix)
 function triggerSubmitNameMix(e){
   e.preventDefault()
   let inputValue = document.querySelector(".input-namemix").value;
-  console.log(inputValue);
   
   if (inputValue.trim() === "") {
     inputValue = "Custom Mix";
