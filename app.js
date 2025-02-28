@@ -659,14 +659,14 @@ class StartBtn {
     this.btnStart.classList.remove("clicked-btn-start");
   }
 
-  handlePomodoroAndTimer() {
+  handlePomodoroAndTimer(isUserClick = true) {
 
-    if (this.btnStart.textContent === "Stop") {
+    if (isUserClick && this.btnStart.textContent === "Stop") {
       this.resetTimer();
       return
     }
 
-    if (this.isRunning) {
+    if (isUserClick && this.isRunning) {
       this.resetTimer();
       return
     }
@@ -772,7 +772,7 @@ class StartBtn {
           // Restaurer les valeurs initiales
           this.minutesPomodoroBreak.value = String(this.initialMinutesBreak).padStart(2, '0');
           this.secondesPomodoroBreak.value = String(this.initialSecondesBreak).padStart(2, '0');
-          this.handlePomodoroAndTimer()
+          this.handlePomodoroAndTimer(false)
           return;
         }
         
