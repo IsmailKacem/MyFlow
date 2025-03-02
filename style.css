@@ -812,6 +812,7 @@ body {
     z-index: 1;
     opacity: 1;
     box-shadow: 0 0 0 1px #282a2c;
+    transition: 0.3s ease-out;
 }
 
 .div-icon.hidden::after{
