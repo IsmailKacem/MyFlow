@@ -826,6 +826,54 @@ class StartBtn {
 
 const newStartBtn = new StartBtn();
 
+const btnFullScreenTimer = document.querySelector(".btn-fullscreen-timer")
+const spanFull = document.querySelector(".spanfull")
+
+const divModeTimerF = document.querySelector(".div-mode-timer")
+const divInputPomodoro = document.querySelectorAll(".div-inputs-pomodoro")
+const inputTimer = document.querySelectorAll(".input-timer")
+const pPomodoro = document.querySelectorAll(".p-pomodoro")
+const inputTimerHoursF = document.querySelector(".input-timer-hours")
+const divInputSimpleTimer = document.querySelector(".div-input-simple-timer")
+btnFullScreenTimer.addEventListener("click", fullScreenTimer)
+
+function fullScreenTimer() {
+  btnFullScreenTimer.classList.toggle("click-fullscreen-btn")
+
+  if (btnFullScreenTimer.classList.contains("click-fullscreen-btn")) {
+    spanFull.textContent = "close_fullscreen";
+    
+    divModeTimerF.classList.add("timer-fullscreen")
+    divInputPomodoro.forEach(div => {
+      div.classList.add("fs-div-input-pomodoro");
+    });
+    inputTimer.forEach(input => {
+      input.style.fontSize = "clamp(40px, 12vw, 120px)";
+    });
+    pPomodoro.forEach(paragraph => {
+      paragraph.style.fontSize = "clamp(40px, 12vw, 120px)";
+    });
+    inputTimerHoursF.style.fontSize = "clamp(40px, 12vw, 120px)";
+    divInputSimpleTimer.classList.add("fs-div-input-simple-timer")
+
+  } else {
+    spanFull.textContent = "open_in_full";
+
+    divModeTimerF.classList.remove("timer-fullscreen")
+    divInputPomodoro.forEach(div => {
+      div.classList.remove("fs-div-input-pomodoro");
+    });
+    inputTimer.forEach(input => {
+      input.style.fontSize = "clamp(40px, 5vw, 50px)";
+    });
+    pPomodoro.forEach(paragraph => {
+      paragraph.style.fontSize = "clamp(40px, 5vw, 50px)";
+    });
+    inputTimerHoursF.style.fontSize = "clamp(40px, 5vw, 50px)";
+    divInputSimpleTimer.classList.remove("fs-div-input-simple-timer")
+  }
+}
+
 function triggerMix(mixArray, buttonElement) {
   deactivateAllSounds();
 
