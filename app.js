@@ -856,6 +856,8 @@ function fullScreenTimer() {
     inputTimerHoursF.style.fontSize = "clamp(40px, 12vw, 120px)";
     divInputSimpleTimer.classList.add("fs-div-input-simple-timer")
 
+    document.addEventListener("keydown", handleEscKey)
+
   } else {
     spanFull.textContent = "open_in_full";
 
@@ -871,6 +873,12 @@ function fullScreenTimer() {
     });
     inputTimerHoursF.style.fontSize = "clamp(40px, 5vw, 50px)";
     divInputSimpleTimer.classList.remove("fs-div-input-simple-timer")
+  }
+}
+
+function handleEscKey(e){
+  if (e.key === "Escape" && btnFullScreenTimer.classList.contains("click-fullscreen-btn")) {
+    fullScreenTimer()
   }
 }
 
